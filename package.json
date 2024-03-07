@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky",
+    "precommit": "lint-staged",
     "test": "next dev"
   },
   "dependencies": {
