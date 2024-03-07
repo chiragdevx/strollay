@@ -1,25 +1,35 @@
-import { Skeleton } from "@/components/ui/skeleton";
-import { Shell } from "@/components/shells/shell";
-import { ProductCardSkeleton } from "@/components/skeletons/product-card-skeleton";
+import React from "react";
 
-export default function ProductsLoading() {
+import { cn } from "@/common/util/commonHelper";
+
+interface ProductCardSkeletonProps
+  extends React.ComponentPropsWithoutRef<"div"> {}
+
+export function ProductCardSkeleton({
+  className,
+  ...props
+}: ProductCardSkeletonProps) {
   return (
-    <Shell>
-      <div className="space-y-2">
-        <Skeleton className="h-10 w-28" />
-        <Skeleton className="h-4 w-48" />
-      </div>
-      <div className="flex flex-col space-y-6">
-        <div className="flex items-center gap-2">
-          <Skeleton className="h-8 w-14" />
-          <Skeleton className="h-8 w-20" />
-        </div>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {Array.from({ length: 8 }).map((_, i) => (
-            <ProductCardSkeleton key={i} />
-          ))}
+    <div
+      className={cn("h-full overflow-hidden rounded-sm", className)}
+      {...props}
+    >
+      <div className="border-b p-0">
+        <div style={{ position: "relative", paddingTop: "75%" }}>
+          <div
+            className="rounded-none h-full w-full"
+            style={{ background: "lightgray" }}
+          />
         </div>
       </div>
-    </Shell>
+      <div className="space-y-2.5 p-4">
+        <div className="h-4 w-1/2 bg-gray-300 rounded"></div>
+        <div className="h-4 w-1/6 bg-gray-300 rounded"></div>
+      </div>
+      <div className="space-x-2 p-4 pt-1 flex justify-between">
+        <div className="h-8 w-full bg-gray-300 rounded"></div>
+        <div className="h-8 w-8 bg-gray-300 rounded"></div>
+      </div>
+    </div>
   );
 }
