@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 
 import React, { useMemo } from "react";
 import { getProductImages } from "@/common/util/helper";
-import Button from "@/components/common/button";
-import Ratings from "@/components/common/ratings";
-import Quantity from "../qauntity";
+
 import Image from "next/image";
 import { safelyReadString } from "@/common/util/commonHelper";
+import Button from "../elements/button";
+import Quantity from "../elements/quantity";
 
 const ProductCard = ({
   product,
