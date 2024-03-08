@@ -10,9 +10,9 @@ import Button from "../elements/button";
 import Quantity from "../elements/quantity";
 
 const ProductCard = ({
-  product,
-  onAdd = () => {},
   onMinus = () => {},
+  onAdd = () => {},
+  product,
   selected,
 }) => {
   const { id, title, images } = product;
