@@ -7,7 +7,7 @@ interface QuantityProps {
   className?: string;
   max?: number;
   onChangeQty?: (quantity: number) => void;
-  product?: any; // Define a more specific type if possible
+  product?: any;
 }
 
 const Quantity: React.FC<QuantityProps> = ({
@@ -15,7 +15,7 @@ const Quantity: React.FC<QuantityProps> = ({
   onMinus = () => {},
   qty = 1,
   className,
-  max = 10, // Assuming a default max value, adjust as needed
+  max = 10,
   onChangeQty,
   product,
 }) => {
@@ -85,8 +85,8 @@ const Quantity: React.FC<QuantityProps> = ({
           <div className="flex-1 text-center text-sm  font-semibold text-md  md:text-base cursor-default flex items-center text-gray-700 border-none">
             <div
               className="w-full items-center justify-center flex border-none h-full"
-              type="number"
               min="1"
+              type="number"
               max={props.max}
               value={quantity}
               onChange={changeQty}
