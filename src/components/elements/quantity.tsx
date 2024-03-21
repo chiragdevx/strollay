@@ -83,17 +83,17 @@ const Quantity: React.FC<QuantityProps> = ({
             </span>
           </button>
           <div className="flex-1 text-center text-sm  font-semibold text-md  md:text-base cursor-default flex items-center text-gray-700 border-none">
-            <div
+            <input
               className="w-full items-center justify-center flex border-none h-full"
               min="1"
               type="number"
-              max={props.max}
+              max={max}
               value={quantity}
               onChange={changeQty}
               onBlur={handleBlur}
             >
               {quantity}
-            </div>
+            </input>
           </div>
           <button
             aria-label="increase quantity"

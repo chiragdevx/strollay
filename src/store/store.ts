@@ -35,13 +35,12 @@ const rootReducer = combineReducers({
   [orderInfoSlice.name]: (orderInfoSlice as any).reducer,
 });
 
-type RootState = ReturnType<typeof rootReducer>;
+export type RootState = ReturnType<typeof store.getState>;
 
-export type { RootState };
 // Persist Configuration
 const persistConfig = {
   key: "root",
-  storage, 
+  storage,
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -55,9 +54,7 @@ const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+      serializableCheck: false,
     }).concat(middleware) as any,
 });
 
@@ -66,5 +63,8 @@ sagaMiddleware.run(rootSaga);
 
 // Persisted Store
 const persistor = persistStore(store);
+
+export type AppStore = ReturnType<typeof configureStore>;
+export type AppDispatch = AppStore["dispatch"];
 
 export { store, persistor };

@@ -3,7 +3,7 @@ import {
   getPercentageDiscount,
   getPlanByProduct,
   getVariantUsingVariantOptions,
-} from "../../../helpers/variantHelper";
+} from "./variantHelper";
 
 export const getVariantData = ({
   variantGroup,
