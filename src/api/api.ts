@@ -17,12 +17,15 @@ interface ApiConfig {
   headers?: any;
 }
 
-const createApi = (resource: string) => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/${resource}`;
+const createApi = (type: string, resource: string) => {
+  const url =
+    type === "PIM"
+      ? `${process.env.NEXT_PUBLIC_PIM_URL}/${resource}`
+      : `${process.env.NEXT_PUBLIC_OMS_URL}/${resource}`;
 
   const list = async <T>(
     params: ApiParams,
-    prefix?: string,
+    prefix: string = "",
   ): Promise<ApiResponse<T>> => {
     return buildQuery<T>("get", params, prefix);
   };

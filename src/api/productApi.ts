@@ -1,10 +1,11 @@
 import createApi from "./api";
 
-const api = createApi("api/product");
+const api = createApi("PIM", "product");
+const listApi = createApi("OMS", "orders");
 export default class ProductApi {
-  static async getAll() {
+  static async getAll(prefix?: string) {
     try {
-      const response = await api.list({});
+      const response = await listApi.list({}, prefix);
       return response.data;
     } catch (error) {
       throw new Error(`Error fetching products: ${error}`);
