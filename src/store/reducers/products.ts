@@ -26,16 +26,24 @@ export const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    getProducts: (state, action) => {
-      state.loading = true;
-    },
-    setProducts: (state, action) => {
-      // console.log(111);
+    getProductSuccess: (state, action) => {
+      const data = current(state);
+      console.log("product successs reducer:>> ", data, action);
       state.loading = false;
-      state.products = action.payload;
+    },
+
+    getProductFailed: (state, action) => {
+      const data = current(state);
+      console.log("failed reducer:>> ", data, action);
+      state.loading = false;
+    },
+
+    attemptGetProducts: (state, action) => {
+      console.log("attempt product reducer :>> ", action);
+      //loading true
     },
   },
 });
 
-export const { getProducts, setProducts } = productSlice.actions;
+export const { getProductSuccess, attemptGetProducts } = productSlice.actions;
 export default productSlice.reducer;

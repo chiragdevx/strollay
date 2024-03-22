@@ -5,13 +5,10 @@ import { productActions } from "@/store/actions/products";
 
 function Product() {
   const dispatch = useDispatch();
-  const getData = () => {
-    dispatch(productActions.getProducts());
-    // dispatch(productActions.setProducts("test"));
-  };
 
   useEffect(() => {
-    console.log("getData() :>> ", getData());
+    dispatch(productActions.attemptGetProducts({ test: "test" }));
+    //  dispatch(productActions.attemptGetProducts({ test: "test" }));
   }, []);
 
   return <div>@@</div>;
