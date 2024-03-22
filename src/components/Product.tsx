@@ -7,8 +7,7 @@ function Product() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(productActions.attemptGetProducts({ test: "test" }));
-    //  dispatch(productActions.attemptGetProducts({ test: "test" }));
+    // dispatch(productActions.attemptGetProducts({ test: "test" }));
   }, []);
 
   return <div>@@</div>;
