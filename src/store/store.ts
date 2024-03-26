@@ -1,15 +1,15 @@
-// src/store/index.js
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
+import storage from "redux-persist/lib/storage";
 import createSagaMiddleware from "redux-saga";
 import { productSlice } from "./reducers/products";
+import { userSlice } from "./reducers/user";
 
 import rootSaga from "./reducers";
 
 const rootReducer = combineReducers({
-  // [authSlice.name]: (authSlice as any).reducer,
   [productSlice.name]: (productSlice as any).reducer,
+  [userSlice.name]: (userSlice as any).reducer,
 });
 
 export type RootState = ReturnType<typeof store.getState>;
