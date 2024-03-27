@@ -6,7 +6,7 @@ type Props = {};
 
 const Navbar = (props: Props) => {
   return (
-    <div>
+    <div className="">
       <NavbarPrimary />
       <NavbarSecondary />
     </div>

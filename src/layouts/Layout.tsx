@@ -1,5 +1,3 @@
-import NavbarPrimary from "@/components/navbar/NavbarPrimary";
-import NavbarSecondary from "@/components/navbar/NavbarSecondary";
 import React, { ReactNode } from "react";
 import Navbar from "./Navbar";
 import HeroSection from "@/components/heroSection/HeroSection";

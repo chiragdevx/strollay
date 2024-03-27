@@ -1,7 +1,3 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Button from "../Button";
-import { UserActions } from "@/store/actions/user";
 import SearchBar from "./SearchBar";
 import CartButton from "./CartButton";
 import AuthMenu from "./AuthMenu";
