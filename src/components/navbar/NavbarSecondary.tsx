@@ -18,7 +18,6 @@ const NavbarSecondary = (props: Props) => {
           <Categories />
         </div>
       </div>
-      <hr />
     </div>
   );
 };

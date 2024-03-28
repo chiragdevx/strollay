@@ -20,7 +20,7 @@ const Button: React.FC<ButtonProps> = ({
         type="button"
         onClick={onClick}
         style={style}
-        className={`py-2 px-4 text-center w-32 bg-primary rounded-[30px] flex-1 font-bogue md:min-w-max w-[278px] focus:bg-yellow ${className}`}
+        className={`py-2 px-4 text-center bg-primary rounded-[30px] flex-1 font-bogue md:min-w-max w-[278px] focus:bg-yellow ${className}`}
       >
         <span className="block text-black w-32 spx-[37px]  text-[22px] font-bogue">
           {children}

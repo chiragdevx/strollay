@@ -24,8 +24,8 @@ const HeroSection = (props: Props) => {
     autoPlaySpeed: 2000,
   };
   return (
-    <div className="relative px-2 space-x-4 gap-2">
-      <Slider {...settings} className="w-screen flex ">
+    <div className="relative px-2 space-x-4 gap-2 ">
+      <Slider {...settings} className="w-screen flex cursor-pointer ">
         <div className="px-2">
           <Image src={Banner9} alt="banner-9" />
         </div>
