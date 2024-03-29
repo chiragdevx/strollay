@@ -11,13 +11,7 @@ const index = (props: Props) => {
     <div className="max-w-7xl lg:max-w-[1400px] mx-auto">
       <Route />
       <div className="flex w-full">
-        <div className="w-[20%]">
-          <Sidebar />
-        </div>
-        <div className="w-[80%]">
-          <ViewAs />
-          <ProductList />
-        </div>
+        <ViewAs />
       </div>
     </div>
   );
