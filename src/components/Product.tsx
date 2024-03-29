@@ -10,7 +10,7 @@ function Product() {
     // dispatch(productActions.attemptGetProducts({ test: "test" }));
   }, []);
 
-  return <div>@@</div>;
+  return <>@@</>;
 }
 
 export default Product;

@@ -2,11 +2,14 @@ import { Provider } from "react-redux";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { Providers } from "@/store/store-provider";
+import Layout from "@/layouts/Layout";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Providers>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </Providers>
   );
 }
