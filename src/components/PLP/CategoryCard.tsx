@@ -13,11 +13,11 @@ const Card = (props: Props) => {
     <div
       className={`h-[550px] w-[343px] relative group py-3 ${props.className}`}
     >
-      <div className="relative w-[343px] h-[460px] ">
+      <div className="relative w-[314px] h-[443px] ">
         <div>
           <Image
             src={greenSareeOne}
-            className="w-[343px] h-[460px]"
+            className="w-[313px] h-[443px]"
             alt="greenSaree"
           />
         </div>

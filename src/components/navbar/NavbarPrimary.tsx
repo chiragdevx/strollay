@@ -7,7 +7,7 @@ type Props = {};
 const NavbarPrimary = (props: Props) => {
   return (
     <div className="w-full">
-      <div className="flex items-center justify-between py-[9px] px-[20px] ">
+      <div className="flex items-center justify-between py-[9px] ">
         <div>
           <AuthMenu />
         </div>

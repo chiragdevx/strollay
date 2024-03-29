@@ -12,8 +12,8 @@ const FooterPrimary = (props: Props) => {
           <h3 className="relative mb-[35px]">LOCATION</h3>
           <div>
             <ul>
-              <li>
-                <p>
+              <li className="mb-4">
+                <div className="flex gap-2">
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -33,16 +33,18 @@ const FooterPrimary = (props: Props) => {
                       ></path>
                     </svg>
                   </span>
-                  G S Tech India Private Limited
-                  <br />
-                  507, Metro Tower, Ring Road,
-                  <br />
-                  Surat-395002, Gujarat, India.
-                  <br />
-                </p>
+                  <div>
+                    G S Tech India Private Limited
+                    <br />
+                    507, Metro Tower, Ring Road,
+                    <br />
+                    Surat-395002, Gujarat, India.
+                    <br />
+                  </div>
+                </div>
               </li>
-              <li>
-                <p>
+              <li className="mb-4">
+                <div className="flex gap-2">
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -62,11 +64,11 @@ const FooterPrimary = (props: Props) => {
                       ></path>
                     </svg>
                   </span>
-                  WhatsApp @ +91 90 81 81 68 95
-                </p>
+                  <div>WhatsApp @ +91 90 81 81 68 95</div>
+                </div>
               </li>
               <li>
-                <p>
+                <div className="flex gap-2">
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -87,8 +89,8 @@ const FooterPrimary = (props: Props) => {
                       </g>
                     </svg>
                   </span>
-                  sales@strollay.com
-                </p>
+                  <div>sales@strollay.com</div>
+                </div>
               </li>
             </ul>
           </div>
@@ -97,18 +99,18 @@ const FooterPrimary = (props: Props) => {
           <h3 className="relative mb-[35px]">INFORMATION</h3>
           <div>
             <ul>
-              <li>
+              <li className="mb-3">
                 <a href="https://www.strollay.com/aboutus/">About Us</a>
               </li>
-              <li>
+              <li className="mb-3">
                 <a href="https://www.strollay.com/cancellation-refund-policy/">
                   Cancellation & Refund Policy
                 </a>
               </li>
-              <li>
+              <li className="mb-3">
                 <a href="https://www.strollay.com/privacy/">Privacy Policy</a>
               </li>
-              <li>
+              <li className="mb-3">
                 <a href="https://www.strollay.com/shipping-delivery/">
                   Shipping & Delivery
                 </a>
@@ -124,8 +126,12 @@ const FooterPrimary = (props: Props) => {
         <div>
           <div>
             <h3 className="relative mb-[35px]">FOLLOW AND LIKE US</h3>
-            <div>
-              <a href="https://www.instagram.com/Strollay">
+            <div className="flex gap-x-3">
+              <a
+                href="https://www.instagram.com/Strollay"
+                className=" justify-center flex items-center
+                 "
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 16 16"
@@ -203,7 +209,7 @@ const FooterPrimary = (props: Props) => {
           </div>
           <div className="mt-[30px]">
             <h3>WE ACCEPT</h3>
-            <div>
+            <div className="mt-2">
               <Image src={Cards} alt="cards" />
             </div>
           </div>
