@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import Banner9 from "../../../public/images/Banner9.jpg";
+import greenSareeOne from "../../../public/images/greenSareeOne.jpeg";
 import CartButton from "../navbar/CartButton";
 import LikeLogo from "../LikeLogo";
 
@@ -11,11 +11,15 @@ type Props = {
 const Card = (props: Props) => {
   return (
     <div
-      className={`h-[400px] min-w-[225px] relative group p-3 ${props.className}`}
+      className={`h-[550px] w-[343px] relative group py-3 ${props.className}`}
     >
-      <div className="relative h-[314px] w-[200px]">
+      <div className="relative w-[343px] h-[460px] ">
         <div>
-          <Image src={Banner9} height={400} width={200} alt="banner" />
+          <Image
+            src={greenSareeOne}
+            className="w-[343px] h-[460px]"
+            alt="greenSaree"
+          />
         </div>
         <div className="absolute hidden bottom-3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 justify-between items-start gap-3 group-hover:flex">
           <div className="bg-blue-300 rounded-full cursor-pointer">
@@ -31,11 +35,9 @@ const Card = (props: Props) => {
         <div className="overflow-hidden text-ellipsis whitespace-nowrap">
           Sea Blue Georgette Sequins-Work Gharara-Bottom Readymade Salwar Kameez
         </div>
-        <div className="flex justify-between gap-2 mt-2">
+        <div className="flex gap-3 mt-4">
           <div className="font-semibold text-lg">₹1,701.00</div>
-          <div className="line-through decoration-2 font-semibold text-lg">
-            ₹1,801.00
-          </div>
+          <div className="line-through decoration-2 text-lg">₹1,801.00</div>
         </div>
       </div>
     </div>

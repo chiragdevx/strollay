@@ -1,7 +1,6 @@
 import React, { ReactNode } from "react";
 import Navbar from "./Navbar";
-import HeroSection from "@/components/heroSection/HeroSection";
-import Services from "@/components/services/Services";
+import Footer from "@/components/Footer/Footer";
 
 interface LayoutProps {
   children: ReactNode;
@@ -11,9 +10,8 @@ function Layout({ children }: LayoutProps): JSX.Element {
   return (
     <div>
       <Navbar />
-
       {children}
-      {/* <>Footer</> */}
+      <Footer />
     </div>
   );
 }

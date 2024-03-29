@@ -14,15 +14,15 @@ const Categories = (props: Props) => {
       link: "/",
     },
     {
-      name: "LEHNGAS",
+      name: "LEHENGAS",
       link: "/",
     },
     {
-      name: "KURTIES",
+      name: "KURTIS",
       link: "/",
     },
     {
-      name: "KURTIES",
+      name: "GOWNS",
       link: "/",
     },
   ];
