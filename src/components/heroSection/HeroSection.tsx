@@ -21,8 +21,8 @@ const HeroSection = (props: Props) => {
     slidesToScroll: 1,
     autoplay: true,
     speed: 1500,
-    autoPlaySpeed: 1500,
-    cssEase: "ease-out",
+    autoplaySpeed: 2000,
+    cssEase: "linear",
   };
   return (
     <div className="relative px-2 space-x-4 gap-2 ">
