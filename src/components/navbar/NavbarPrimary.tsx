@@ -1,6 +1,7 @@
 import SearchBar from "./SearchBar";
 import CartButton from "./CartButton";
 import AuthMenu from "./AuthMenu";
+import SearchBox from "../common/partials/SearchBox";
 
 type Props = {};
 
@@ -12,7 +13,7 @@ const NavbarPrimary = (props: Props) => {
           <AuthMenu />
         </div>
         <div>
-          <SearchBar />
+          {/* <SearchBar /> */} <SearchBox />
         </div>
 
         <div>

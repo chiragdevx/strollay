@@ -4,6 +4,8 @@ import SearchBar from "./SearchBar";
 import CartButton from "./CartButton";
 import Logo from "./Logo";
 import Categories from "../category/Categories";
+import MainMenu from "../common/partials/MainMenu";
+import ALink from "../features/CustomLink";
 
 type Props = {};
 
@@ -15,7 +17,13 @@ const NavbarSecondary = (props: Props) => {
           <Logo />
         </div>
         <div>
-          <Categories />
+          <div className="header-bottom d-lg-show">
+            <div className="container">
+              <div className="header-left">
+                <MainMenu />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
