@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import ALink from "@/components/features/CustomLink";
@@ -32,16 +32,56 @@ export default function Header(props: any) {
     document.querySelector("body").classList.add("mmenu-active");
   };
 
+  function closeTopNotice(e: any) {
+    e.preventDefault();
+    setShowTopNotice(false);
+  }
+
+  const [showTopNotice, setShowTopNotice] = useState(true);
+  const settings = {
+    dots: false,
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 1500,
+    autoplaySpeed: 1500,
+    cssEase: "linear",
+  };
   return (
     <header className="header header-border">
-      <div className="header-top">
+      {showTopNotice ? (
+        <div className="justify-content-center bg-red top-notice p-relative">
+          <div className="alert-top-runner bg-red font-primary">
+            Get 10% extra Off on Riode Birthday Sale - Use coupon Riodebirthday
+            10% -&nbsp;
+            <ALink
+              href="/shop"
+              className="btn btn-shop btn-link btn-primary text-normal btn-sm font-primary ml-1"
+            >
+              Shop now!
+            </ALink>
+          </div>
+          <a
+            className="btn btn-icon btn-notice-close y-50"
+            href="#"
+            onClick={closeTopNotice}
+          >
+            <i className="d-icon-close"></i>
+          </a>
+        </div>
+      ) : (
+        ""
+      )}
+
+      {/* <div className="header-top">
         <div className="container">
-          <div className="header-left">
+          {/* <div className="header-left">
             <p className="welcome-msg">
               Welcome to Riode store message or remove it!
             </p>
-          </div>
-          <div className="header-right">
+          </div> */}
+      {/* <div className="header-right">
             <div className="dropdown">
               <ALink href="#">USD</ALink>
               <ul className="dropdown-box">
@@ -75,8 +115,8 @@ export default function Header(props: any) {
             </ALink>
             <LoginModal />
           </div>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
 
       <div className="header-middle sticky-header fix-top sticky-content">
         <div className="container">
@@ -97,7 +137,7 @@ export default function Header(props: any) {
           </div>
 
           <div className="header-right">
-            <ALink href="tel:#" className="icon-box icon-box-side">
+            {/* <ALink href="tel:#" className="icon-box icon-box-side">
               <div className="icon-box-icon mr-0 mr-lg-2">
                 <i className="d-icon-phone"></i>
               </div>
@@ -105,14 +145,20 @@ export default function Header(props: any) {
                 <h4 className="icon-box-title">Call Us Now:</h4>
                 <p>0(800) 123-456</p>
               </div>
-            </ALink>
-            <span className="divider"></span>
+            </ALink> */}
+            {/* <span className="divider"></span> */}
             <ALink href="/pages/wishlist" className="wishlist">
               <i className="d-icon-heart"></i>
             </ALink>
             <span className="divider"></span>
 
-            <CartMenu />
+            <div className="pr-1">
+              <CartMenu />
+            </div>
+
+            <span className="divider"></span>
+
+            <LoginModal />
           </div>
         </div>
       </div>
@@ -123,11 +169,11 @@ export default function Header(props: any) {
             <MainMenu />
           </div>
 
-          <div className="header-right">
+          {/* <div className="header-right">
             <ALink href="#">
               <i className="d-icon-card"></i>Special Offers
             </ALink>
-          </div>
+          </div> */}
         </div>
       </div>
     </header>

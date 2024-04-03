@@ -121,3 +121,12 @@ body {
 @import "pages/faq";
 
 @import "demo/demo1_custom";
+
+.slick-slide > div {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slider__item > img {
+  width: 100%;
+  height: auto;
+}

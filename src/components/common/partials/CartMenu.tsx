@@ -37,12 +37,12 @@ function CartMenu(props: any) {
         className="cart-toggle label-block link"
         onClick={showCartMenu}
       >
-        <div className="cart-label d-lg-show">
+        {/* <div className="cart-label d-lg-show">
           <span className="cart-name">Shopping Cart:</span>
           <span className="cart-price">
             ${toDecimal(getTotalPrice(cartList))}
           </span>
-        </div>
+        </div> */}
         <i className="d-icon-bag">
           <span className="cart-count">{getCartCount(cartList)}</span>
         </i>

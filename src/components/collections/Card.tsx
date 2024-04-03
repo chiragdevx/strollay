@@ -6,6 +6,7 @@ import LikeLogo from "../LikeLogo";
 
 type Props = {
   className?: string;
+  img: string;
 };
 
 const Card = (props: Props) => {
@@ -15,7 +16,7 @@ const Card = (props: Props) => {
     >
       <div className="relative h-[314px] w-[200px]">
         <div>
-          <Image src={Banner9} height={400} width={200} alt="banner" />
+          <Image src={props.img} height={400} width={200} alt="banner" />
         </div>
         <div className="absolute hidden bottom-3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 justify-between items-start gap-3 group-hover:flex">
           <div className="bg-blue-300 rounded-full cursor-pointer">

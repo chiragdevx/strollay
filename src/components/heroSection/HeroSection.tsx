@@ -9,8 +9,6 @@ import Image from "next/image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-//
-
 type Props = {};
 
 const HeroSection = (props: Props) => {
@@ -21,12 +19,15 @@ const HeroSection = (props: Props) => {
     slidesToScroll: 1,
     autoplay: true,
     speed: 1500,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 1500,
     cssEase: "linear",
   };
   return (
     <div className="relative px-2 space-x-4 gap-2 ">
-      <Slider {...settings} className="w-screen flex cursor-pointer ">
+      <Slider
+        {...settings}
+        className="w-screen flex cursor-pointer  transition-all duration-300"
+      >
         <div className="px-2">
           <Image src={Banner9} alt="banner-9" />
         </div>

@@ -225,6 +225,18 @@
     @include css(background, header, transparent, fixed, background);
   }
 }
+.top-notice {
+  display: flex;
+  .btn-notice-close {
+    position: absolute;
+    right: 10px;
+    font-size: 14px;
+    color: #fff;
+    background-color: transparent;
+    padding: 0;
+    border: none;
+  }
+}
 .header-top,
 .header-middle,
 .header-bottom {
