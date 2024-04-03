@@ -9,9 +9,9 @@ const FooterPrimary = (props: Props) => {
     <div className="w-full bg-gray-100">
       <div className="w-[80%] flex justify-around py-[55px] mx-auto ">
         <div>
-          <h3 className="relative mb-[35px]">LOCATION</h3>
+          <h4 className="relative mb-[35px]">LOCATION</h4>
           <div>
-            <ul>
+            <ul className="pl-0">
               <li className="mb-4">
                 <div className="flex gap-2">
                   <span>
@@ -96,9 +96,9 @@ const FooterPrimary = (props: Props) => {
           </div>
         </div>
         <div>
-          <h3 className="relative mb-[35px]">INFORMATION</h3>
+          <h4 className="relative mb-[35px]">INFORMATION</h4>
           <div>
-            <ul>
+            <ul className="pl-0">
               <li className="mb-3">
                 <a href="https://www.strollay.com/aboutus/">About Us</a>
               </li>
@@ -125,7 +125,7 @@ const FooterPrimary = (props: Props) => {
         </div>
         <div>
           <div>
-            <h3 className="relative mb-[35px]">FOLLOW AND LIKE US</h3>
+            <h4 className="relative mb-[35px]">FOLLOW AND LIKE US</h4>
             <div className="flex gap-x-3">
               <a
                 href="https://www.instagram.com/Strollay"
@@ -208,7 +208,7 @@ const FooterPrimary = (props: Props) => {
             </div>
           </div>
           <div className="mt-[30px]">
-            <h3>WE ACCEPT</h3>
+            <h4>WE ACCEPT</h4>
             <div className="mt-2">
               <Image src={Cards} alt="cards" />
             </div>

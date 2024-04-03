@@ -6,14 +6,14 @@ const CTA = (props: Props) => {
   return (
     <div className="mt-1 pt-10 flex justify-center items-center mb-12">
       <div>
-        <div className="text-center text-lg font-semibold px-4 pb-[20px]">
-          NEWSLETTER
-        </div>
+        <h4 className="text-center font-semibold px-4">NEWSLETTER</h4>
         <div className="text-center text-xs text-[14px] pb-[20px]">
-          Sign up for our newsletter and get 15% off your next order.
+          <strong className="text-xl font-thin">
+            Sign up for our newsletter and get 15% off your next order.
+          </strong>
         </div>
         <div className="text-center flex justify-around border-[1px] border-black">
-          <input
+          {/* <input
             type="email"
             placeholder="Enter your email address"
             className="w-full px-3 py-2"
@@ -43,7 +43,23 @@ const CTA = (props: Props) => {
                 ></path>{" "}
               </g>
             </svg>
-          </div>
+          </div> */}
+          <form action="#" className="input-wrapper input-wrapper-inline ">
+            <input
+              type="email"
+              className="form-control news-letter-input"
+              name="email"
+              id="email"
+              placeholder="Email address here..."
+              required
+            />
+            <button
+              className="btn btn-primary btn-rounded btn-md"
+              type="submit"
+            >
+              subscribe<i className="d-icon-arrow-right"></i>
+            </button>
+          </form>
         </div>
       </div>
     </div>

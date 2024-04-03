@@ -18,8 +18,11 @@ const Card = (props: Props) => {
         <div>
           <Image src={props.img} height={400} width={200} alt="banner" />
         </div>
-        <div className="absolute hidden bottom-3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 justify-between items-start gap-3 group-hover:flex">
-          <div className="bg-blue-300 rounded-full cursor-pointer">
+        {/* Ensure horizontal alignment and smooth appearance */}
+        <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex opacity-0 visibility-hidden group-hover:opacity-100 group-hover:visibility-visible transition-opacity duration-300 ease-in-out">
+          <div className="bg-blue-300 rounded-full cursor-pointer mr-2">
+            {" "}
+            {/* Add margin-right for spacing */}
             <CartButton />
           </div>
           <div className="bg-blue-300 rounded-full cursor-pointer">

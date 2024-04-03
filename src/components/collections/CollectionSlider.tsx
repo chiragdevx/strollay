@@ -28,7 +28,7 @@ const CollectionSlider = (props: Props) => {
     autoplay: true,
     speed: 2000, // Consider lowering this for quicker transitions if needed
     autoplaySpeed: 2000, // Correct property name for autoplay speed
-    cssEase: "linear", // This easing function can help make transitions appear smoother
+    cssEase: "ease-out", // This easing function can help make transitions appear smoother
 
     responsive: [
       {
