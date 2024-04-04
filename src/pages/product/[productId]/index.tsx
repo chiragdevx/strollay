@@ -63,7 +63,7 @@ const Index = () => {
                   </ALink>
                 </li>
                 <li>
-                  <ALink href="#" className="active">
+                  <ALink href="/products" className="active">
                     Products
                   </ALink>
                 </li>

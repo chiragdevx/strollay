@@ -126,7 +126,7 @@ function LoginModal() {
                         </ALink>
                       </div>
                       <button
-                        className="btn btn-dark btn-block btn-rounded"
+                        className="btn btn-primary btn-block btn-rounded"
                         type="submit"
                       >
                         Login
@@ -195,7 +195,7 @@ function LoginModal() {
                         </div>
                       </div>
                       <button
-                        className="btn btn-dark btn-block btn-rounded"
+                        className="btn btn-primary btn-block btn-rounded"
                         type="submit"
                       >
                         Register

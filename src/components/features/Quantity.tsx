@@ -19,7 +19,11 @@ export default function Quantity({ qty = 1, ...props }) {
   }
 
   function plusQuantity() {
+    if (!props.max) {
+      props.max = 10;
+    }
     if (quantity < props.max) {
+      console.log("first");
       setQuantity(parseInt(quantity) + 1);
     }
   }

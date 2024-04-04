@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
-import { Magnifier } from "@datobs/react-image-magnifiers";
+import dynamic from "next/dynamic";
+
+const Magnifier = dynamic(
+  () => import("@datobs/react-image-magnifiers").then((mod) => mod.Magnifier),
+  { ssr: false },
+);
 import Image from "next/image";
 import Banner9 from "../../../../public/images/greenSaree.jpeg";
 import Banner10 from "../../../../public/images/greenSareeOne.jpeg";
 import Banner11 from "../../../../public/images/greenSaree5.jpeg";
 import Banner12 from "../../../../public/images/greenSaree4.jpeg";
+// import InnerImageZoom from "react-inner-image-zoom";
+// import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
 
 // import MediaLightBox from "~/components/partials/product/light-box";
 const array = [
@@ -33,6 +40,12 @@ export default function MediaTwo(props) {
     setOpenState(openState);
   };
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIndex(0);
+    }
+  }, [typeof window !== "undefined" && window.location.pathname]);
+
   const openLightBox = (e) => {
     e.preventDefault();
     setIndex(parseInt(e.currentTarget.getAttribute("index")));
@@ -44,16 +57,22 @@ export default function MediaTwo(props) {
       <div className="product-gallery row cols-sm-2">
         {array?.slice(0, 4).map((image: any, index: any) => (
           <figure className="product-image mb-4" key={"image" + index}>
-            {/* <Magnifier
-              imageSrc={process.env.NEXT_PUBLIC_ASSET_URI + image.url}
+            <Magnifier
+              imageSrc={image.src}
               imageAlt="magnifier"
-              largeImageSrc={process.env.NEXT_PUBLIC_ASSET_URI + image.url}
+              largeImageSrc={image.src}
               dragToMove={false}
               mouseActivation="hover"
               cursorStyleActive="crosshair"
               className="product-image large-image"
+            />
+            {/* <InnerImageZoom
+              src={image.src}
+              zoomSrc={image.src}
+              zoomType="hover"
             /> */}
-            <Image src={image} width={400} height={400} />
+
+            {/* <Image src={image} width={400} height={400} /> */}
 
             {index === 0 ? (
               <div className="product-label-group">

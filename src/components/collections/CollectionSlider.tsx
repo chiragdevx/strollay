@@ -9,32 +9,37 @@ import Banner12 from "../../../public/images/Banner12.jpeg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Card from "./Card";
+import Product from "../product/Product";
 
-type Props = {};
+type Props = {
+  autoPlay?: boolean;
+};
 const array = [
-  Banner10,
-  Banner11,
-  Banner12,
-  Banner9,
-  Banner10,
-  Banner11,
-  Banner12,
+  { slug: "2", price: 20, pictures: [Banner10, Banner12] },
+  { slug: "3", price: 30, pictures: [Banner9, Banner11] },
+  { slug: "4", price: 40, pictures: [Banner11, Banner12] },
+  { slug: "5", price: 50, pictures: [Banner10, Banner9] },
+  { slug: "6", price: 60, pictures: [Banner12, Banner9] },
+  { slug: "7", price: 70, pictures: [Banner11, Banner10] },
+  { slug: "8", price: 80, pictures: [Banner9, Banner11] },
 ];
 
 const CollectionSlider = (props: Props) => {
+  const { autoPlay } = props;
   const settings = {
     dots: false,
     infinite: true,
-    autoplay: true,
-    speed: 2000, // Consider lowering this for quicker transitions if needed
-    autoplaySpeed: 2000, // Correct property name for autoplay speed
+    autoplay: autoPlay === true ? autoPlay : false,
+
+    // speed: 5000, // Consider lowering this for quicker transitions if needed
+    // autoplaySpeed: 3000, // Correct property name for autoplay speed
     cssEase: "ease-out", // This easing function can help make transitions appear smoother
 
     responsive: [
       {
         breakpoint: 1980,
         settings: {
-          slidesToShow: 6,
+          slidesToShow: 4,
           slidesToScroll: 1,
           infinite: true,
           dots: false,
@@ -77,10 +82,10 @@ const CollectionSlider = (props: Props) => {
   return (
     <div className="relative px-2 space-x-4 gap-2 max-w-7xl lg:max-w-[1400px] mx-auto">
       <Slider {...settings} className=" flex cursor-pointer ">
-        {array.map((img: any, index: any) => {
+        {array.map((product: any, index: any) => {
           return (
             <div key={index} className="px-4">
-              <Card img={img} />
+              <Card product={product} />
             </div>
           );
         })}

@@ -467,7 +467,7 @@ function Detail(props: any) {
         </a>
       </div> */}
 
-      <div className="flex flex-col p-6 space-y-4 w-full mb-4 ">
+      <div className="flex flex-col py-6 space-y-4 w-full mb-4 ">
         <h1 className="text-3xl font-semibold text-gray-900 mb-4 ">
           Blouse Option
         </h1>
@@ -500,13 +500,14 @@ function Detail(props: any) {
             onChangeQty={changeQty}
           />
           <button
-            className={`btn-product btn-cart text-normal ls-normal font-weight-semi-bold ${cartActive ? "" : "disabled"}`}
+            className={`  btn-product btn-cart  text-normal ls-normal font-weight-semi-bold ${cartActive ? "" : "disabled"}`}
             onClick={addToCartHandler}
           >
             <i className="d-icon-bag"></i>Add to Cart
           </button>
         </div>
       </div>
+
       {true ? <Desc product={product?.data} adClass={adClass} /> : ""}
     </div>
   );

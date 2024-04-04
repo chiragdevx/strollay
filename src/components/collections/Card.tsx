@@ -1,31 +1,63 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import Banner9 from "../../../public/images/Banner9.jpg";
 import CartButton from "../navbar/CartButton";
 import LikeLogo from "../LikeLogo";
+import ALink from "../features/CustomLink";
 
 type Props = {
   className?: string;
-  img: string;
+  product: any;
 };
 
 const Card = (props: Props) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const { product } = props;
+  console.log("product", product);
+  const displayImageSrc =
+    isHovered && product.pictures.length > 1
+      ? product?.pictures[1].src
+      : product?.pictures[0].src;
+
   return (
-    <div
-      className={`h-[400px] min-w-[225px] relative group p-3 ${props.className}`}
+    <ALink
+      href={`/product/2`}
+      className={`h-[411px] min-w-[300px] relative group p-3 ${props.className}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative h-[314px] w-[200px]">
-        <div>
-          <Image src={props.img} height={400} width={200} alt="banner" />
+      <div className="relative h-[411px] w-[300px] ">
+        <div
+          className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${isHovered && product?.pictures?.length > 1 ? "opacity-0" : "opacity-100"}`}
+        >
+          <Image
+            src={product?.pictures[0]?.src}
+            layout="fill"
+            objectFit="cover"
+            alt="Product Image"
+          />
         </div>
+        {/* Second Image */}
+        {product?.pictures.length > 1 && (
+          <div
+            className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${isHovered ? "opacity-100" : "opacity-0"}`}
+          >
+            <Image
+              src={product?.pictures[1]?.src}
+              layout="fill"
+              objectFit="cover"
+              alt="Product Image"
+            />
+          </div>
+        )}
         {/* Ensure horizontal alignment and smooth appearance */}
         <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex opacity-0 visibility-hidden group-hover:opacity-100 group-hover:visibility-visible transition-opacity duration-300 ease-in-out">
-          <div className="bg-blue-300 rounded-full cursor-pointer mr-2">
+          <div className="bg-[#87c6e3] rounded-full cursor-pointer mr-2 p-4">
             {" "}
             {/* Add margin-right for spacing */}
             <CartButton />
           </div>
-          <div className="bg-blue-300 rounded-full cursor-pointer">
+          <div className="bg-[#87c6e3] rounded-full cursor-pointer p-4">
             <LikeLogo />
           </div>
         </div>
@@ -36,13 +68,16 @@ const Card = (props: Props) => {
           Sea Blue Georgette Sequins-Work Gharara-Bottom Readymade Salwar Kameez
         </div>
         <div className="flex justify-between gap-2 mt-2">
-          <div className="font-semibold text-lg">₹1,701.00</div>
-          <div className="line-through decoration-2 font-semibold text-lg">
-            ₹1,801.00
+          <div className="font-semibold text-lg">
+            {" "}
+            <h5>₹1,601.00</h5>
+          </div>
+          <div className="line-through decoration-2 text-lg">
+            <h5 className="font-normal">₹1,801.00</h5>
           </div>
         </div>
       </div>
-    </div>
+    </ALink>
   );
 };
 

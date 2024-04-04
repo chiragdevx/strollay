@@ -1,4 +1,3 @@
-import { Provider } from "react-redux";
 import "@/styles/globals.scss";
 import type { AppProps } from "next/app";
 import { Providers } from "@/store/store-provider";

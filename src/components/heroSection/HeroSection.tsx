@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import LikeLogo from "../LikeLogo";
 import CartButton from "../navbar/CartButton";
+import ALink from "../features/CustomLink";
 
 type Props = {};
 
@@ -49,21 +50,21 @@ const HeroSection = (props: Props) => {
             </div>
           </div>
         </div>  */}
-        <div className="px-2">
+        <ALink href={"/product/3"} className="px-2">
           <Image src={Banner10} alt="banner-9" />
-        </div>
-        <div className="px-2">
+        </ALink>
+        <ALink href={"/product/3"} className="px-2">
           <Image src={Banner11} alt="banner-9" />
-        </div>
-        <div className="px-2">
+        </ALink>
+        <ALink href={"/product/3"} className="px-2">
           <Image src={Banner12} alt="banner-9" />
-        </div>
-        <div className="px-2">
-          <Image src={Banner10} alt="banner-9" />
-        </div>
-        <div className="px-2">
+        </ALink>
+        <ALink href={"/product/3"} className="px-2">
+          <Image src={Banner10} alt="banner-9" priority="lazy" />
+        </ALink>
+        <ALink href={"/product/3"} className="px-2">
           <Image src={Banner11} alt="banner-9" />
-        </div>
+        </ALink>
       </Slider>
     </div>
   );

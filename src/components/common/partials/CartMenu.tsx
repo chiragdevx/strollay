@@ -7,6 +7,7 @@ import ALink from "@/components/features/CustomLink";
 // import { cartActions } from "~/store/cart";
 
 import { getTotalPrice, getCartCount, toDecimal } from "@/utils";
+import Image from "next/image";
 
 function CartMenu(props: any) {
   const { cartList, removeFromCart } = props;
@@ -70,7 +71,7 @@ function CartMenu(props: any) {
                 >
                   <figure className="product-media pure-media">
                     <ALink href={"/product/default/" + item.slug}>
-                      <img
+                      <Image
                         src={
                           process.env.NEXT_PUBLIC_ASSET_URI +
                           item.pictures[0].url

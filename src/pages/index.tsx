@@ -13,7 +13,7 @@ export default function Home() {
       <HeroSection />
       <Services />
       <Collections />
-      <CollectionSlider />
+      <CollectionSlider autoPlay={true} />
       <CTA />
     </main>
   );
