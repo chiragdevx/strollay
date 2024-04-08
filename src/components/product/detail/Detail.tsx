@@ -211,7 +211,9 @@ function Detail(props: any) {
   }
 
   return (
-    <div className={`product-details ${isSticky ? "sticky" : ""} ${adClass}`}>
+    <div
+      className={`md:mb-10 product-details ${isSticky ? "sticky" : ""} ${adClass}`}
+    >
       {isNav ? (
         <div className="product-navigation">
           <ul className="breadcrumb breadcrumb-lg">
@@ -313,25 +315,23 @@ function Detail(props: any) {
         </ALink>
       </div> */}
 
-      <div className="flex justify-between w-full border divide-x-2 mt-6 ">
-        <div className="w-[33%] py-10 px-2 flex flex-col items-center justify-center gap-5">
+      <div className="flex flex-col md:flex-row justify-between w-full border divide-y md:divide-y-0 md:divide-x-2 mt-6 ">
+        <div className="w-full md:w-[33%] py-10 px-2 flex flex-col items-center justify-center gap-5">
           <span>
-            {" "}
-            <Image src={dryWashSVG} alt="" />
+            {/* Make sure to provide appropriate alt text for accessibility */}
+            <Image src={dryWashSVG} alt="Dry Wash Only" />
           </span>
           <span>Dry Wash Only</span>
         </div>
-        <div className="w-[33%] py-10 px-2 flex flex-col items-center justify-center gap-5">
+        <div className="w-full md:w-[33%] py-10 px-2 flex flex-col items-center justify-center gap-5">
           <span>
-            {" "}
-            <Image src={fabricSVG} alt="" />
+            <Image src={fabricSVG} alt="Premium Fabrics" />
           </span>
           <span> Premium Fabrics</span>
         </div>
-        <div className="w-[33%] py-10 px-2 flex flex-col items-center justify-center gap-5">
+        <div className="w-full md:w-[33%] py-10 px-2 flex flex-col items-center justify-center gap-5">
           <span>
-            {" "}
-            <Image src={helpSVG} alt="" />
+            <Image src={helpSVG} alt="Contact Number" />
           </span>
           <span> +91 90 81 81 68 95 </span>
         </div>
@@ -467,28 +467,30 @@ function Detail(props: any) {
         </a>
       </div> */}
 
-      <div className="flex flex-col py-6 space-y-4 w-full mb-4 ">
-        <h1 className="text-3xl font-semibold text-gray-900 mb-4 ">
+      <div className="flex flex-col py-6 space-y-4 w-full mb-4">
+        <h1 className="text-3xl font-semibold text-gray-900 mb-4">
           Blouse Option
         </h1>
-        <div className="flex gap-9">
-          <div className="w-full">
-            <button className="block w-full text-left px-6 py-3  rounded-full border-r-2 border-black-300 text-gray-700 tab-button">
+        {/* Add 'flex-wrap' to allow wrapping on small screens and 'lg:flex-nowrap' to prevent wrapping on larger screens */}
+        <div className="flex flex-wrap gap-9 lg:flex-nowrap">
+          <div className="w-full lg:w-auto">
+            <button className="block w-full text-left px-6 py-3 rounded-full border-r-2 border-black-300 text-gray-700 tab-button">
               Unstitched Blouse Fabric
             </button>
           </div>
-          <div className="w-full">
-            <button className="block w-full text-left px-6 py-3  rounded-full border-r-2 border-black-300 text-gray-700 tab-button">
+          <div className="w-full lg:w-auto">
+            <button className="block w-full text-left px-6 py-3 rounded-full border-r-2 border-black-300 text-gray-700 tab-button">
               Customized Blouse (Without Pads)
             </button>
           </div>
-          <div className="w-full">
-            <button className="block w-full text-left px-6 py-3  rounded-full border-r-2 border-black-300 text-gray-700 tab-button">
+          <div className="w-full lg:w-auto">
+            <button className="block w-full text-left px-6 py-3 rounded-full border-r-2 border-black-300 text-gray-700 tab-button">
               Customized Blouse (With Pads)
             </button>
           </div>
         </div>
       </div>
+
       <hr className="product-divider"></hr>
 
       <div className="product-form product-qty pb-0">

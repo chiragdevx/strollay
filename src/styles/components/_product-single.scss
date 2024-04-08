@@ -456,6 +456,7 @@
   }
   .input-group {
     margin-right: 1rem;
+    width: 14rem;
   }
   .btn-cart {
     border: 0;
@@ -497,7 +498,6 @@
   width: max-content;
   position: relative;
   display: flex;
-  align-items: flex-start;
   flex-wrap: wrap;
   flex: 1;
   > * {

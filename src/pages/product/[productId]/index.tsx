@@ -54,27 +54,28 @@ const Index = () => {
       </h1>
       {true ? (
         <div className={`page-content mb-10 ${true ? "" : "d-none"}`}>
-          <div className="container-fluid skeleton-body">
-            <div className="product-navigation">
-              <ul className="breadcrumb breadcrumb-lg">
-                <li>
-                  <ALink href="/">
-                    <i className="d-icon-home"></i>
-                  </ALink>
-                </li>
-                <li>
-                  <ALink href="/products" className="active">
-                    Products
-                  </ALink>
-                </li>
-                <li>Detail</li>
-              </ul>
+          <div>
+            <div className="container-fluid skeleton-body">
+              <div className="product-navigation">
+                <ul className="breadcrumb breadcrumb-lg">
+                  <li>
+                    <ALink href="/">
+                      <i className="d-icon-home"></i>
+                    </ALink>
+                  </li>
+                  <li>
+                    <ALink href="/products" className="active">
+                      Products
+                    </ALink>
+                  </li>
+                  <li>Detail</li>
+                </ul>
 
-              {/* <ProductNav product={[]} /> */}
-            </div>
+                {/* <ProductNav product={[]} /> */}
+              </div>
 
-            <div className="row gutter-lg">
-              {/* <aside className="col-lg-3 col-xxl-2 right-sidebar sidebar-fixed sticky-sidebar-wrapper">
+              <div className="-px-4 row">
+                {/* <aside className="col-lg-3 col-xxl-2 right-sidebar sidebar-fixed sticky-sidebar-wrapper">
                 <div className="sidebar-overlay" onClick={hideSidebar}>
                   <ALink className="sidebar-close" href="#">
                     <i className="d-icon-times"></i>
@@ -88,7 +89,7 @@ const Index = () => {
                 >
                   <i className="fas fa-chevron-left"></i>
                 </ALink> */}
-              {/* <div className="sidebar-content">
+                {/* <div className="sidebar-content">
                   <div className="sticky-sidebar">
                     <div className="service-list mb-4">
                       <div className="icon-box icon-box-side icon-box3">
@@ -153,44 +154,44 @@ const Index = () => {
                     </div>
                   </div>
                 </div> */}
-              {/* </aside> */}
+                {/* </aside> */}
 
-              <div className="col-lg-12 col-xxl-10">
-                <div className="product product-single row mb-4">
-                  <div className="col-lg-7">
-                    <MediaTwo product={product} />
-                  </div>
+                <div className="col-lg-12 col-xxl-10">
+                  <div className="product product-single gutter-lg row mb-4">
+                    <div className="col-lg-7">
+                      <MediaTwo product={product} />
+                    </div>
 
-                  <div className="col-lg-5">
-                    <Detail
-                      isDesc={true}
-                      data={data}
-                      isSticky={true}
-                      adClass="pb-0 mb-10"
-                      isNav={false}
-                    />
+                    <div className="col-lg-5">
+                      <Detail
+                        isDesc={true}
+                        data={data}
+                        isSticky={true}
+                        adClass="pb-0"
+                        isNav={false}
+                      />
+                    </div>
                   </div>
-                </div>
-
-                <div className="mt-15">
-                  <div className="flex items-center justify-center">
-                    <h3 className="font-semibold">
-                      {" "}
-                      You may also be Interested in
-                    </h3>
-                  </div>
-                  <CollectionSlider />
-                </div>
-                <div className="mt-24">
-                  <div className="flex items-center justify-center">
-                    <h3 className="font-semibold">
-                      {" "}
-                      You may also want to Look at
-                    </h3>
-                  </div>
-                  <CollectionSlider />
                 </div>
               </div>
+            </div>
+            <div className="">
+              <div className="flex items-center justify-center">
+                <h3 className="font-semibold text-center">
+                  {" "}
+                  You may also be Interested in
+                </h3>
+              </div>
+              <CollectionSlider autoPlay={true} />
+            </div>
+            <div className="mt-5">
+              <div className="flex items-center justify-center ">
+                <h3 className="font-semibold text-center">
+                  {" "}
+                  You may also want to Look at
+                </h3>
+              </div>
+              <CollectionSlider autoPlay={true} />
             </div>
           </div>
         </div>

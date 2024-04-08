@@ -24,12 +24,63 @@ const HeroSection = (props: Props) => {
     speed: 1500,
     autoplaySpeed: 2000,
     cssEase: "ease-out",
+    responsive: [
+      {
+        breakpoint: 1980,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 1440,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 640, // Tailwind's 'sm' breakpoint
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          // Additional settings for mobile views
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
   return (
-    <div className="relative px-2 space-x-4 gap-2 ">
+    <div className="relative px-2 sm:px-4  gap-2 ">
       <Slider
         {...settings}
-        className="w-screen flex cursor-pointer  transition-all duration-300"
+        className="w-full flex cursor-pointer transition-all duration-300"
       >
         {/* <div className="px-2 relative group">
           <Image

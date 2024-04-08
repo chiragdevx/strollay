@@ -4,7 +4,7 @@ type Props = {};
 
 const CTA = (props: Props) => {
   return (
-    <div className="mt-1 pt-10 flex justify-center items-center mb-12">
+    <div className="mt-5 md:mt-10 flex justify-center items-center mb-12">
       <div>
         <h4 className="text-center font-semibold px-4">NEWSLETTER</h4>
         <div className="text-center text-xs text-[14px] pb-[20px]">
@@ -12,7 +12,7 @@ const CTA = (props: Props) => {
             Sign up for our newsletter and get 15% off your next order.
           </strong>
         </div>
-        <div className="text-center flex justify-around border-[1px] border-black">
+        <div className="mx-auto w-[80%] md:w-[100%] text-center flex justify-around border-[1px] border-black">
           {/* <input
             type="email"
             placeholder="Enter your email address"
@@ -44,17 +44,17 @@ const CTA = (props: Props) => {
               </g>
             </svg>
           </div> */}
-          <form action="#" className="input-wrapper input-wrapper-inline ">
+          <form action="#" className="input-wrapper input-wrapper-inline">
             <input
               type="email"
-              className="form-control news-letter-input"
+              className="form-control news-letter-input w100"
               name="email"
               id="email"
               placeholder="Email address here..."
               required
             />
             <button
-              className="btn btn-primary btn-rounded btn-md"
+              className="btn btn-primary  btn-rounded btn-md"
               type="submit"
             >
               subscribe<i className="d-icon-arrow-right"></i>

@@ -1,15 +1,16 @@
 import Image from "next/image";
 import React from "react";
 import Cards from "../../../public/images/cards.webp";
+import Link from "next/link";
 
 type Props = {};
 
 const FooterPrimary = (props: Props) => {
   return (
     <div className="w-full bg-gray-100">
-      <div className="w-[80%] flex justify-around py-[55px] mx-auto ">
-        <div>
-          <h4 className="relative mb-[35px]">LOCATION</h4>
+      <div className="w-full space-y-4 flex-col md:w-[80%] flex md:flex-row  justify-around px-8 py-6 md:py-[55px] mx-auto ">
+        <div className="mb-5">
+          <h4 className="relative md:mb-10">LOCATION</h4>
           <div>
             <ul className="pl-0">
               <li className="mb-4">
@@ -95,12 +96,12 @@ const FooterPrimary = (props: Props) => {
             </ul>
           </div>
         </div>
-        <div>
-          <h4 className="relative mb-[35px]">INFORMATION</h4>
+        <div className="mb-5">
+          <h4 className="relative md:mb-10">INFORMATION</h4>
           <div>
             <ul className="pl-0">
               <li className="mb-3">
-                <a href="https://www.strollay.com/aboutus/">About Us</a>
+                <Link href="/about-us">About Us</Link>
               </li>
               <li className="mb-3">
                 <a href="https://www.strollay.com/cancellation-refund-policy/">
@@ -125,7 +126,7 @@ const FooterPrimary = (props: Props) => {
         </div>
         <div>
           <div>
-            <h4 className="relative mb-[35px]">FOLLOW AND LIKE US</h4>
+            <h4 className="relative md:mb-10">FOLLOW AND LIKE US</h4>
             <div className="flex gap-x-3">
               <a
                 href="https://www.instagram.com/Strollay"

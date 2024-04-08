@@ -11,13 +11,13 @@ type Props = {
 const Card = (props: Props) => {
   return (
     <div
-      className={`h-[550px] w-[343px] relative group py-3 ${props.className}`}
+      className={`h-[550px] w-[100%] relative group py-3 ${props.className}`}
     >
-      <div className="relative w-[314px] h-[443px] ">
+      <div className="relative w-[100%] h-[443px] ">
         <div>
           <Image
             src={greenSareeOne}
-            className="w-[313px] h-[443px]"
+            className="w-[100%] h-[443px]"
             alt="greenSaree"
           />
         </div>

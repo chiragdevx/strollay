@@ -195,7 +195,7 @@ input::-webkit-inner-spin-button {
   }
   button {
     padding: 0;
-    width: 3.1rem;
+    width: 5.1rem;
     @if (get(form, input-group, border-color)) {
       border: 1px solid get(form, input-group, border-color);
     }

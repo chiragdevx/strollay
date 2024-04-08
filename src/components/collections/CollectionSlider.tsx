@@ -63,6 +63,7 @@ const CollectionSlider = (props: Props) => {
           dots: false,
         },
       },
+
       {
         breakpoint: 600,
         settings: {
@@ -73,7 +74,7 @@ const CollectionSlider = (props: Props) => {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
@@ -81,10 +82,10 @@ const CollectionSlider = (props: Props) => {
   };
   return (
     <div className="relative px-2 space-x-4 gap-2 max-w-7xl lg:max-w-[1400px] mx-auto">
-      <Slider {...settings} className=" flex cursor-pointer ">
+      <Slider {...settings} className=" flex cursor-pointer">
         {array.map((product: any, index: any) => {
           return (
-            <div key={index} className="px-4">
+            <div key={index} className="px-4 ">
               <Card product={product} />
             </div>
           );

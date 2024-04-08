@@ -21,12 +21,12 @@ const Card = (props: Props) => {
 
   return (
     <ALink
-      href={`/product/2`}
-      className={`h-[411px] min-w-[300px] relative group p-3 ${props.className}`}
+      href={`/product/${product.slug}`}
+      className={`w-full h-auto relative group p-3  ${props.className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative h-[411px] w-[300px] ">
+      <div className="relative h-[250px] md:h-[411px] w-[175px] md:w-[300px] ">
         <div
           className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${isHovered && product?.pictures?.length > 1 ? "opacity-0" : "opacity-100"}`}
         >
@@ -63,11 +63,11 @@ const Card = (props: Props) => {
         </div>
         <div className="absolute px-2 bg-white top-5 right-0">-10%</div>
       </div>
-      <div className="mt-2 w-[200px]">
+      <div className="mt-2 w-[175px] md:w-[300px] ">
         <div className="overflow-hidden text-ellipsis whitespace-nowrap">
           Sea Blue Georgette Sequins-Work Gharara-Bottom Readymade Salwar Kameez
         </div>
-        <div className="flex justify-between gap-2 mt-2">
+        <div className="flex justify-between gap-2 mt-2 md:w-[200px]">
           <div className="font-semibold text-lg">
             {" "}
             <h5>₹1,601.00</h5>

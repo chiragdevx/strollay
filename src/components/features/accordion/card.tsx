@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 
 import ALink from "@/components/features/CustomLink";
 
-import SlideToggle from "react-slide-toggle";
+import { parseContent } from "../../../utils";
 
 export default function Card(props: any) {
   const { adClass, iconClass, type = "normal", url } = props;
@@ -15,14 +15,33 @@ export default function Card(props: any) {
     setExpanded(!expanded);
   };
 
-  return (
+  return "parse" === type ? (
+    <div
+      className={`border-top: 3px solid;
+    padding-top: 2rem;
+    padding-bottom: 2rem card`}
+    >
+      <div
+        className={`border-t border-gray-200 pt-4 py-4 card-header`}
+        onClick={toggle}
+      >
+        <a
+          className={`toggle-button ${expanded ? "expanded" : "collapsed"}`}
+          dangerouslySetInnerHTML={parseContent(title)}
+        ></a>
+      </div>
+      <div
+        className="card-body overflow-hidden transition-height duration-300 ease-in-out"
+        style={{ height: expanded ? contentRef?.current?.scrollHeight : "0" }}
+      >
+        <div className="card-body overflow-hidden">{props.children}</div>
+      </div>
+    </div>
+  ) : (
     <>
       <div className={`card`}>
         <div className={`card-header`} onClick={toggle}>
-          <a
-            href="#"
-            className={`toggle-button ${expanded ? "expanded" : "collapsed"}`}
-          >
+          <a className={`toggle-button ${expanded ? "expanded" : "collapsed"}`}>
             {title}
           </a>
         </div>
@@ -35,6 +54,4 @@ export default function Card(props: any) {
       </div>
     </>
   );
-
-  return "";
 }
