@@ -139,7 +139,7 @@ function Detail(props: any) {
   };
 
   const addToCartHandler = () => {
-    if (product.data.stock > 0 && cartActive) {
+    if (product?.data?.stock > 0 && cartActive) {
       if (product.data.variants.length > 0) {
         let tmpName = product.data.name,
           tmpPrice;

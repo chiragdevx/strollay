@@ -159,7 +159,11 @@ function Desc(props: any) {
           </div>
         </Card> */}
 
-        <Card title="Additional information" adClass="card-additional">
+        <Card
+          title="Additional information"
+          type="normal"
+          adClass="card-additional"
+        >
           <ul>
             <li className="flex justify-start gap-10">
               <label className="min-w-[20rem]">SKU</label>

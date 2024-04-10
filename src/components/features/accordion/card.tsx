@@ -39,7 +39,7 @@ export default function Card(props: any) {
     </div>
   ) : (
     <>
-      <div className={`card`}>
+      <div className={`py-3 card`}>
         <div className={`card-header`} onClick={toggle}>
           <a className={`toggle-button ${expanded ? "expanded" : "collapsed"}`}>
             {title}

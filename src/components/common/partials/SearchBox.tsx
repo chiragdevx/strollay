@@ -15,6 +15,7 @@ const SearchBox = () => {
   // const [searchProducts, { data }] = useLazyQuery(GET_PRODUCTS);
   const [timer, setTimer] = useState(null);
 
+  const data = [];
   useEffect(() => {
     document.querySelector("body").addEventListener("click", onBodyClick);
 
@@ -139,7 +140,7 @@ const SearchBox = () => {
         <div className="live-search-list bg-white scrollable">
           {search.length > 2 &&
             data &&
-            data.products.data.map((product: any, index: any) => (
+            data?.products?.data?.map((product: any, index: any) => (
               <ALink
                 href={`/product/default/${product.slug}`}
                 className="autocomplete-suggestion"
