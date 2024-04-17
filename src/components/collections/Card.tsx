@@ -13,7 +13,6 @@ type Props = {
 const Card = (props: Props) => {
   const [isHovered, setIsHovered] = useState(false);
   const { product } = props;
-  console.log("product", product);
   const displayImageSrc =
     isHovered && product.pictures.length > 1
       ? product?.pictures[1].src

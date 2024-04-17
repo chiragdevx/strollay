@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Product from "../../../components/Product";
 import Helmet from "react-helmet";
 import ALink from "@/components/features/CustomLink";
 import { useRouter } from "next/router";
@@ -9,33 +8,19 @@ import imagesLoaded from "imagesloaded";
 import MediaTwo from "@/components/product/media/MediaTwo";
 import Detail from "@/components/product/detail/Detail";
 import CollectionSlider from "@/components/collections/CollectionSlider";
+import { GetServerSidePropsContext } from "next";
+import ProductApi from "@/api/productApi";
+import { Product } from "headless-toolkit";
 
-const Index = () => {
-  // const slug = useRouter().query.slug;
+type Props = {
+  data: Product;
+};
 
+const Index = ({ data }: Props) => {
+  const productId = useRouter().query.productId;
   // if (!slug) return "";
 
-  // const { data, loading, error } = useQuery(GET_PRODUCT, {
-  //   variables: { slug },
-  // });
-  const data = {};
   const [loaded, setLoadingState] = useState(false);
-  // const product = data && data.product.data;
-  const product: any = [];
-  // const related = data && data.product.related;
-  const related = [];
-
-  // useEffect(() => {
-  //   if (!loading && product)
-  //     imagesLoaded("main")
-  //       .on("done", function () {
-  //         setLoadingState(true);
-  //       })
-  //       .on("progress", function () {
-  //         setLoadingState(false);
-  //       });
-  //   if (loading) setLoadingState(false);
-  // }, [loading, product]);
 
   // const showSidebar = () => {
   //   document.querySelector("body").classList.add("right-sidebar-active");
@@ -159,7 +144,7 @@ const Index = () => {
                 <div className="col-lg-12 col-xxl-10">
                   <div className="product product-single gutter-lg row mb-4">
                     <div className="col-lg-7">
-                      <MediaTwo product={product} />
+                      <MediaTwo product={data} />
                     </div>
 
                     <div className="col-lg-5">
@@ -240,5 +225,14 @@ const Index = () => {
     </main>
   );
 };
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  // Extract the pathname from the context
+  const pathname = context.req.url as string;
+  const productId = pathname.substring(pathname.lastIndexOf("/"));
+  const response: any = await ProductApi.getById(productId);
+  // Pass data to the page via props
+  return { props: { data: response.data } };
+}
 
 export default Index;

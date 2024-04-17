@@ -101,7 +101,7 @@ export const parseContent = (html: any) => {
  */
 export const stickyHeaderHandler = function () {
   let top: any = document.querySelector("main")
-    ? document.querySelector("main").offsetTop
+    ? document?.querySelector("main")?.offsetTop
     : 300;
 
   let stickyHeader: any = document.querySelector(".sticky-header");
@@ -119,17 +119,17 @@ export const stickyHeaderHandler = function () {
         newNode.className = "sticky-wrapper";
         stickyHeader.parentNode.insertBefore(newNode, stickyHeader);
         document
-          .querySelector(".sticky-wrapper")
-          .insertAdjacentElement("beforeend", stickyHeader);
+          ?.querySelector(".sticky-wrapper")
+          ?.insertAdjacentElement("beforeend", stickyHeader);
         document
-          .querySelector(".sticky-wrapper")
-          .setAttribute("style", "height: " + height + "px");
+          ?.querySelector(".sticky-wrapper")
+          ?.setAttribute("style", "height: " + height + "px");
       }
 
-      if (!document.querySelector(".sticky-wrapper").getAttribute("style")) {
+      if (!document?.querySelector(".sticky-wrapper")?.getAttribute("style")) {
         document
-          .querySelector(".sticky-wrapper")
-          .setAttribute("style", "height: " + height + "px");
+          ?.querySelector(".sticky-wrapper")
+          ?.setAttribute("style", "height: " + height + "px");
       }
     }
   } else {
@@ -137,16 +137,16 @@ export const stickyHeaderHandler = function () {
       stickyHeader.classList.remove("fixed");
     }
 
-    if (document.querySelector(".sticky-wrapper")) {
-      document.querySelector(".sticky-wrapper").removeAttribute("style");
+    if (document?.querySelector(".sticky-wrapper")) {
+      document?.querySelector(".sticky-wrapper")?.removeAttribute("style");
     }
   }
 
   if (
     window.outerWidth >= 992 &&
-    document.querySelector("body").classList.contains("right-sidebar-active")
+    document?.querySelector("body")?.classList.contains("right-sidebar-active")
   ) {
-    document.querySelector("body").classList.remove("right-sidebar-active");
+    document?.querySelector("body")?.classList.remove("right-sidebar-active");
   }
 };
 
@@ -157,14 +157,16 @@ export const resizeHandler = function (
   width = 992,
   attri = "right-sidebar-active",
 ) {
-  let bodyClasses =
-    document.querySelector("body") && document.querySelector("body").classList;
-  bodyClasses = bodyClasses.value
-    .split(" ")
-    .filter((item) => item !== "home" && item !== "loaded");
-  for (let i = 0; i < bodyClasses.length; i++) {
-    document.querySelector("body") &&
-      document.querySelector("body").classList.remove(bodyClasses[i]);
+  let bodyClasses = document?.querySelector("body")?.classList;
+  if (bodyClasses) {
+    bodyClasses.value = bodyClasses.value
+      .split(" ")
+      .filter((item) => item !== "home" && item !== "loaded")
+      .join(" ");
+    for (let i = 0; i < bodyClasses.length; i++) {
+      document?.querySelector("body") &&
+        document?.querySelector("body")?.classList.remove(bodyClasses[i]);
+    }
   }
 };
 
@@ -174,7 +176,7 @@ export const resizeHandler = function (
 export const stickyFooterHandler = function () {
   let stickyFooter: any = document.querySelector(".sticky-footer");
   let top: any = document.querySelector("main")
-    ? document.querySelector("main").offsetTop
+    ? document?.querySelector("main")?.offsetTop
     : 300;
 
   let height = 0;
@@ -191,13 +193,13 @@ export const stickyFooterHandler = function () {
         newNode.className = "sticky-content-wrapper";
         stickyFooter.parentNode.insertBefore(newNode, stickyFooter);
         document
-          .querySelector(".sticky-content-wrapper")
-          .insertAdjacentElement("beforeend", stickyFooter);
+          ?.querySelector(".sticky-content-wrapper")
+          ?.insertAdjacentElement("beforeend", stickyFooter);
       }
 
       document
-        .querySelector(".sticky-content-wrapper")
-        .setAttribute("style", "height: " + height + "px");
+        ?.querySelector(".sticky-content-wrapper")
+        ?.setAttribute("style", "height: " + height + "px");
     }
   } else {
     if (stickyFooter) {
@@ -206,8 +208,8 @@ export const stickyFooterHandler = function () {
 
     if (document.querySelector(".sticky-content-wrapper")) {
       document
-        .querySelector(".sticky-content-wrapper")
-        .removeAttribute("style");
+        ?.querySelector(".sticky-content-wrapper")
+        ?.removeAttribute("style");
     }
   }
 
@@ -215,7 +217,9 @@ export const stickyFooterHandler = function () {
     window.innerWidth > 768 &&
     document.querySelector(".sticky-content-wrapper")
   ) {
-    document.querySelector(".sticky-content-wrapper").style.height = "auto";
+    (
+      document.querySelector(".sticky-content-wrapper") as HTMLElement
+    ).style.height = "auto";
   }
 };
 
@@ -272,9 +276,9 @@ export function scrollTopHandler(isCustom = true, speed = 15) {
       offsetTop =
         document
           ?.querySelector(".main .container > .row")
-          .getBoundingClientRect().top +
-        window.pageYOffset -
-        document?.querySelector(".sticky-header").offsetHeight +
+          ?.getBoundingClientRect()?.top +
+        (window?.pageYOffset || 0) -
+        document?.querySelector(".sticky-header")?.offsetHeight +
         2;
     }
   } else {
@@ -341,7 +345,7 @@ export const getCartCount = (cartItems: any) => {
   let total = 0;
 
   for (let i = 0; i < cartItems?.length; i++) {
-    total += parseInt(cartItems[i]?.qty, 10);
+    total += parseInt(cartItems[i]?.quantity, 10);
   }
 
   return total;

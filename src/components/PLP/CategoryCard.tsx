@@ -3,12 +3,26 @@ import React from "react";
 import greenSareeOne from "../../../public/images/greenSareeOne.jpeg";
 import CartButton from "../navbar/CartButton";
 import LikeLogo from "../LikeLogo";
+import { Product } from "headless-toolkit";
+import { calculateDiscount, getProductImages } from "@/common/util/helper";
+import { useRouter } from "next/router";
 
 type Props = {
   className?: string;
+  product: Product;
 };
 
 const Card = (props: Props) => {
+  const router = useRouter();
+  const { product } = props;
+  const { id, title, price, listingPrice, images } = product;
+  const productImages = getProductImages(images);
+  const { defaultImage } = productImages;
+
+  const navigateToPDP = (e: any) => {
+    e.preventDefault();
+    router.push(`product/${id}`);
+  };
   return (
     <div
       className={`h-[550px] w-[100%] relative group py-3 ${props.className}`}
@@ -16,8 +30,11 @@ const Card = (props: Props) => {
       <div className="relative w-[100%] h-[443px] ">
         <div>
           <Image
-            src={greenSareeOne}
-            className="w-[100%] h-[443px]"
+            src={defaultImage.path}
+            onClick={navigateToPDP}
+            className="w-[100%] h-[443px] cursor-pointer"
+            width={100}
+            height={443}
             alt="greenSaree"
           />
         </div>
@@ -29,15 +46,19 @@ const Card = (props: Props) => {
             <LikeLogo />
           </div>
         </div>
-        <div className="absolute px-2 bg-white top-5 right-0">-10%</div>
+        <div className="absolute px-2 bg-white top-5 right-0">
+          {calculateDiscount(price, listingPrice)}%
+        </div>
       </div>
       <div className="mt-2 w-[200px]">
         <div className="overflow-hidden text-ellipsis whitespace-nowrap">
-          Sea Blue Georgette Sequins-Work Gharara-Bottom Readymade Salwar Kameez
+          {title}
         </div>
         <div className="flex gap-3 mt-4">
-          <div className="font-semibold text-lg">₹1,701.00</div>
-          <div className="line-through decoration-2 text-lg">₹1,801.00</div>
+          <div className="font-semibold text-lg">₹{price}</div>
+          <div className="line-through decoration-2 text-lg">
+            ₹{listingPrice}
+          </div>
         </div>
       </div>
     </div>

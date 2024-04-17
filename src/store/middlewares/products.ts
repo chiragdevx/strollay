@@ -2,7 +2,7 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import { productActions } from "../actions/products";
 
 // fetches all products
-export function* getProductsSaga(payload): Generator<any, void, any> {
+export function* getProductsSaga(payload: any): Generator<any, void, any> {
   try {
     console.log("attempt product: saga", payload);
     //api no call

@@ -1,61 +1,50 @@
-import { useState, useEffect } from "react";
+// Quantity component
+import React from "react";
 
-export default function Quantity({ qty = 1, ...props }) {
-  const { adClass = "mr-2 input-group" } = props;
-  const [quantity, setQuantity] = useState(parseInt(qty));
+interface QuantityProps {
+  max: number;
+  onChangeQty: (qty: number) => void;
+}
 
-  useEffect(() => {
-    setQuantity(qty);
-  }, [props.product]);
+const Quantity: React.FC<QuantityProps> = ({ max, onChangeQty }) => {
+  const [quantity, setQuantity] = React.useState(1);
 
-  useEffect(() => {
-    props.onChangeQty && props.onChangeQty(quantity);
-  }, [quantity]);
+  const handleIncrement = () => {
+    if (quantity < max) {
+      setQuantity(quantity + 1);
+      onChangeQty(quantity + 1);
+    }
+  };
 
-  function minusQuantity() {
+  const handleDecrement = () => {
     if (quantity > 1) {
-      setQuantity(parseInt(quantity) - 1);
+      setQuantity(quantity - 1);
+      onChangeQty(quantity - 1);
     }
-  }
-
-  function plusQuantity() {
-    if (!props.max) {
-      props.max = 10;
-    }
-    if (quantity < props.max) {
-      console.log("first");
-      setQuantity(parseInt(quantity) + 1);
-    }
-  }
-
-  function changeQty(e) {
-    let newQty;
-
-    if (e.currentTarget.value !== "") {
-      newQty = Math.min(parseInt(e.currentTarget.value), props.max);
-      newQty = Math.max(newQty, 1);
-      setQuantity(newQty);
-    }
-  }
+  };
 
   return (
-    <div className={adClass}>
-      <button
-        className="quantity-minus d-icon-minus"
-        onClick={minusQuantity}
-      ></button>
+    <div className="quantity">
+      <button className="btn-qty" onClick={handleDecrement}>
+        -
+      </button>
       <input
-        className="quantity form-control"
         type="number"
-        min="1"
-        max={props.max}
+        className="input-qty"
         value={quantity}
-        onChange={changeQty}
+        onChange={(e) => {
+          const value = parseInt(e.target.value);
+          if (!isNaN(value) && value >= 1 && value <= max) {
+            setQuantity(value);
+            onChangeQty(value);
+          }
+        }}
       />
-      <button
-        className="quantity-plus d-icon-plus"
-        onClick={plusQuantity}
-      ></button>
+      <button className="btn-qty" onClick={handleIncrement}>
+        +
+      </button>
     </div>
   );
-}
+};
+
+export default Quantity;

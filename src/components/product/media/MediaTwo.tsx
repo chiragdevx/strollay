@@ -1,19 +1,20 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-
-const Magnifier = dynamic(
-  () => import("@datobs/react-image-magnifiers").then((mod) => mod.Magnifier),
-  { ssr: false },
-);
-import Image from "next/image";
+import { Product, Image } from "headless-toolkit";
 import Banner9 from "../../../../public/images/greenSaree.jpeg";
 import Banner10 from "../../../../public/images/greenSareeOne.jpeg";
 import Banner11 from "../../../../public/images/greenSaree5.jpeg";
 import Banner12 from "../../../../public/images/greenSaree4.jpeg";
+import { getProductImages } from "@/common/util/helper";
 // import InnerImageZoom from "react-inner-image-zoom";
 // import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
 
 // import MediaLightBox from "~/components/partials/product/light-box";
+
+const Magnifier = dynamic(
+  () => import("@datobs/react-image-magnifiers").then((mod) => mod?.Magnifier),
+  { ssr: false },
+);
 const array = [
   Banner11,
   Banner9,
@@ -23,22 +24,19 @@ const array = [
   Banner11,
   Banner12,
 ];
-export default function MediaTwo(props) {
+type Props = {
+  product: Product;
+};
+export default function MediaTwo(props: Props) {
   const { product } = props;
   const [index, setIndex] = useState(0);
   const [isOpen, setOpenState] = useState(false);
-
-  let lgImages = product.large_pictures
-    ? product.large_pictures
-    : product.pictures;
+  const { images } = product;
+  const { images: imagesArray } = getProductImages(images);
 
   useEffect(() => {
     setIndex(0);
   }, [window.location.pathname]);
-
-  const changeOpenState = (openState) => {
-    setOpenState(openState);
-  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -46,7 +44,7 @@ export default function MediaTwo(props) {
     }
   }, [typeof window !== "undefined" && window.location.pathname]);
 
-  const openLightBox = (e) => {
+  const openLightBox = (e: any) => {
     e.preventDefault();
     setIndex(parseInt(e.currentTarget.getAttribute("index")));
     setOpenState(true);
@@ -55,12 +53,12 @@ export default function MediaTwo(props) {
   return (
     <>
       <div className="product-gallery row cols-sm-2">
-        {array?.slice(0, 4).map((image: any, index: any) => (
+        {imagesArray?.slice(0, 4).map((image: Image, index: any) => (
           <figure className="product-image mb-4" key={"image" + index}>
             <Magnifier
-              imageSrc={image.src}
+              imageSrc={image.path}
               imageAlt="magnifier"
-              largeImageSrc={image.src}
+              largeImageSrc={image.path}
               dragToMove={false}
               mouseActivation="hover"
               cursorStyleActive="crosshair"
@@ -108,7 +106,7 @@ export default function MediaTwo(props) {
               href="#"
               className="product-image-full"
               onClick={openLightBox}
-              index={index}
+              data-index={index}
             >
               <i className="d-icon-zoom"></i>
             </a>

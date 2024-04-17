@@ -1,18 +1,19 @@
+import React from "react";
+import ProductApi from "@/api/productApi";
+import { GetServerSidePropsContext } from "next";
 import ProductList from "@/components/PLP/ProductList";
 import Route from "@/components/PLP/Route";
 import Sidebar from "@/components/PLP/Sidebar";
 import ViewAs from "@/components/PLP/ViewAs";
 import ALink from "@/components/features/CustomLink";
-import React from "react";
+import { useRouter } from "next/router";
+import CategoryApi from "@/api/categoryApi";
 
-type Props = {};
-
-const index = (props: Props) => {
+const Index = ({ data }: any) => {
   return (
     <div className="mx-auto">
-      {/* <Route /> */}
       <div className="container flex w-full">
-        <ul className=" breadcrumb breadcrumb-lg mt-5 ">
+        <ul className="breadcrumb breadcrumb-lg mt-5">
           <li>
             <ALink href="/">
               <i className="d-icon-home"></i>
@@ -25,9 +26,20 @@ const index = (props: Props) => {
           </li>
         </ul>
       </div>
-      <ViewAs />
+      <ViewAs data={data} />
+      {/* Render your data here */}
     </div>
   );
 };
 
-export default index;
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  // Extract the pathname from the context
+  const pathname = context.req.url as string;
+  const response: any = await CategoryApi.getProductsByCategory(pathname);
+  const { data } = response.data;
+
+  // Pass data to the page via props
+  return { props: { data } };
+}
+
+export default Index;

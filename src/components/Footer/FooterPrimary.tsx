@@ -27,9 +27,9 @@ const FooterPrimary = (props: Props) => {
                       <path
                         fill="none"
                         stroke="#000"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="12"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="12"
                         d="M151.99414,207.99263v-48.001a8,8,0,0,0-8-8h-32a8,8,0,0,0-8,8v48.001a8,8,0,0,1-7.999,8l-47.99414.00632a8,8,0,0,1-8.001-8v-92.4604a8,8,0,0,1,2.61811-5.91906l79.9945-72.73477a8,8,0,0,1,10.76339-.00036l80.0055,72.73509A8,8,0,0,1,216,115.53887V207.999a8,8,0,0,1-8.001,8l-48.00586-.00632A8,8,0,0,1,151.99414,207.99263Z"
                       ></path>
                     </svg>
@@ -49,7 +49,7 @@ const FooterPrimary = (props: Props) => {
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      enable-background="new 0 0 512 512"
+                      enableBackground="new 0 0 512 512"
                       viewBox="0 0 512 512"
                       id="phone"
                       height={24}
@@ -79,11 +79,11 @@ const FooterPrimary = (props: Props) => {
                     >
                       <g
                         fill="none"
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         stroke="#000"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                       >
                         <path d="M3 1h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2z"></path>
                         <path d="m21 3-10 7L1 3"></path>
@@ -148,9 +148,9 @@ const FooterPrimary = (props: Props) => {
                     y2="1.464"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop offset="0" stop-color="#FFC107"></stop>
-                    <stop offset=".507" stop-color="#F44336"></stop>
-                    <stop offset=".99" stop-color="#9C27B0"></stop>
+                    <stop offset="0" stopColor="#FFC107"></stop>
+                    <stop offset=".507" stopColor="#F44336"></stop>
+                    <stop offset=".99" stopColor="#9C27B0"></stop>
                   </linearGradient>
                   <path
                     fill="url(#a)"
@@ -164,9 +164,9 @@ const FooterPrimary = (props: Props) => {
                     y2="5.172"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop offset="0" stop-color="#FFC107"></stop>
-                    <stop offset=".507" stop-color="#F44336"></stop>
-                    <stop offset=".99" stop-color="#9C27B0"></stop>
+                    <stop offset="0" stopColor="#FFC107"></stop>
+                    <stop offset=".507" stopColor="#F44336"></stop>
+                    <stop offset=".99" stopColor="#9C27B0"></stop>
                   </linearGradient>
                   <path
                     fill="url(#b)"
@@ -180,9 +180,9 @@ const FooterPrimary = (props: Props) => {
                     y2="3.323"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop offset="0" stop-color="#FFC107"></stop>
-                    <stop offset=".507" stop-color="#F44336"></stop>
-                    <stop offset=".99" stop-color="#9C27B0"></stop>
+                    <stop offset="0" stopColor="#FFC107"></stop>
+                    <stop offset=".507" stopColor="#F44336"></stop>
+                    <stop offset=".99" stopColor="#9C27B0"></stop>
                   </linearGradient>
                   <circle cx="12.3" cy="3.7" r=".533" fill="url(#c)"></circle>
                 </svg>

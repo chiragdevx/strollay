@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 
 import ALink from "@/components/features/CustomLink";
 
@@ -8,27 +8,30 @@ import ALink from "@/components/features/CustomLink";
 
 import { getTotalPrice, getCartCount, toDecimal } from "@/utils";
 import Image from "next/image";
+import { cartActions } from "@/store/actions/cart";
+import { getProductImages } from "@/common/util/helper";
 
 function CartMenu(props: any) {
-  const { cartList, removeFromCart } = props;
   const router = useRouter();
+  const dispatch = useDispatch();
+  const cartList = useSelector((state: any) => state.cart.data);
 
   useEffect(() => {
     hideCartMenu();
   }, [router.asPath]);
 
-  const showCartMenu = (e) => {
+  const showCartMenu = (e: any) => {
     e.preventDefault();
     e.currentTarget.closest(".cart-dropdown").classList.add("opened");
   };
 
   const hideCartMenu = () => {
-    if (document.querySelector(".cart-dropdown").classList.contains("opened"))
-      document.querySelector(".cart-dropdown").classList.remove("opened");
+    if (document.querySelector(".cart-dropdown")?.classList.contains("opened"))
+      document.querySelector(".cart-dropdown")?.classList.remove("opened");
   };
 
   const removeCart = (item: any) => {
-    removeFromCart(item);
+    dispatch(cartActions.removeFromCart(item));
   };
 
   return (
@@ -72,10 +75,7 @@ function CartMenu(props: any) {
                   <figure className="product-media pure-media">
                     <ALink href={"/product/default/" + item.slug}>
                       <Image
-                        src={
-                          process.env.NEXT_PUBLIC_ASSET_URI +
-                          item.pictures[0].url
-                        }
+                        src={getProductImages(item.images).defaultImage.path}
                         alt="product"
                         width="80"
                         height="88"
