@@ -84,7 +84,7 @@ import {
 import ProductList from "./ProductList";
 import ALink from "../features/CustomLink";
 import SidebarFilter from "../shop/sidebar/SidebarFilter";
-import { Product } from "headless-toolkit";
+// import { Product } from "headless-toolkit";
 
 const sortOptions = [
   { name: "Most Popular", href: "#", current: true },
@@ -139,7 +139,7 @@ const filters = [
 ];
 
 type Props = {
-  data: Array<Product>;
+  data: Array<any>;
 };
 const ViewAs = (props: Props) => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);

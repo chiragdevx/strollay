@@ -1,11 +1,11 @@
-import { Product, Variant, image } from "headless-toolkit";
+// import { Product, Variant, image } from "headless-toolkit";
 
 interface ProductImages {
-  defaultImage: image | null;
-  images: image[];
+  defaultImage: any | null;
+  images: any[];
 }
 
-export const getRecordKey = (product: Product) => {
+export const getRecordKey = (product: any) => {
   if (!product) return "";
   const { variants, id, variantId } = product;
   let recordKey = "";
@@ -25,24 +25,22 @@ export const getRecordKey = (product: Product) => {
   return recordKey;
 };
 
-export const getRelatedVariant = (product: Partial<Product>) => {
+export const getRelatedVariant = (product: Partial<any>) => {
   if (product) {
     const { variants = [], variantId } = product;
     if (variantId) {
-      return variants.find((v: Partial<Variant>) => v.id === variantId);
+      return variants.find((v: Partial<any>) => v.id === variantId);
     }
     return getDefaultVariant(product);
   }
   return null;
 };
 
-export const getDefaultVariant = (product: Product) => {
+export const getDefaultVariant = (product: any) => {
   if (!product) return null;
   const { variants } = product;
   if (variants.length) {
-    const defaultVariant = variants.find(
-      (v: Partial<Variant>) => v.defaultVariant,
-    );
+    const defaultVariant = variants.find((v: Partial<any>) => v.defaultVariant);
     if (defaultVariant) return defaultVariant;
     return variants[0];
   }
@@ -60,7 +58,7 @@ export const calculateDiscount = (
   return discount;
 };
 
-export const getProductImages = (images: image[] = []): ProductImages => {
+export const getProductImages = (images: any[] = []): ProductImages => {
   if (!images || !images.length) {
     return {
       defaultImage: null,

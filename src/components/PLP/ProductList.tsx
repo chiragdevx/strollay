@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import CategoryCard from "./CategoryCard";
 import Pagination from "../Pagination";
 import ToolBox from "../shop/Toolbox";
-import { Product } from "headless-toolkit";
+// import { Product } from "headless-toolkit";
 
 type Props = {
-  data: Array<Product>;
+  data: Array<any>;
 };
 
 const ProductList = (props: Props) => {

@@ -10,10 +10,10 @@ import Detail from "@/components/product/detail/Detail";
 import CollectionSlider from "@/components/collections/CollectionSlider";
 import { GetServerSidePropsContext } from "next";
 import ProductApi from "@/api/productApi";
-import { Product } from "headless-toolkit";
+// import { Product } from "headless-toolkit";
 
 type Props = {
-  data: Product;
+  data: any;
 };
 
 const Index = ({ data }: Props) => {

@@ -2,7 +2,7 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import Helmet from "react-helmet";
 
 import ALink from "@/components/features/CustomLink";
-import { Product } from "headless-toolkit";
+// import { Product } from "headless-toolkit";
 
 // import SlideToggle from "react-slide-toggle";
 
@@ -14,7 +14,7 @@ function Checkout() {
   const dispatch = useDispatch();
   const cart = useSelector((state: any) => state.cart.data);
   const cartList = cart.map(
-    ({ slug, images, title, quantity, price }: Partial<Product>) => {
+    ({ slug, images, title, quantity, price }: Partial<any>) => {
       return {
         slug,
         images,

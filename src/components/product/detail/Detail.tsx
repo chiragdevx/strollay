@@ -12,7 +12,7 @@ import fabricSVG from "../../../../public/images/menuImages/fabrics.svg";
 import helpSVG from "../../../../public/images/menuImages/help_wp.svg";
 import Image from "next/image";
 import Desc from "../desc/Desc";
-import { Product, Variant } from "headless-toolkit";
+// import { Product, Variant } from "headless-toolkit";
 import { cartActions } from "@/store/actions/cart";
 
 // import ProductNav from "~/components/partials/product/product-nav";
@@ -55,12 +55,12 @@ function Detail(props: any) {
   //   }
   // };
 
-  const addToCart = (_product: Partial<Product>) => {
+  const addToCart = (_product: Partial<any>) => {
     let product = _product;
     console.log("product.quantity", product.quantity);
     const { variants } = product;
     const variant = variants?.find(
-      (variant: Partial<Variant>) => variant === selectedVariant,
+      (variant: Partial<any>) => variant === selectedVariant,
     );
     if (variant) {
       product = {
@@ -219,7 +219,7 @@ function Detail(props: any) {
         {/* Add 'flex-wrap' to allow wrapping on small screens and 'lg:flex-nowrap' to prevent wrapping on larger screens */}
         <div className="flex flex-wrap gap-9 lg:flex-nowrap">
           {variants &&
-            variants.map((variant: Partial<Variant>) => (
+            variants.map((variant: Partial<any>) => (
               <div key={variant.id} className="w-full lg:w-auto">
                 <button
                   className={`block w-full text-left px-6 py-3 rounded-full border-r-2 border-black-300 text-gray-700 tab-button ${selectedVariant?.id === variant.id ? "border-black bg-black text-white" : ""} `}

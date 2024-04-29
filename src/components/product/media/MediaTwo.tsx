@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import { Product, Image } from "headless-toolkit";
+// import { Product, Image } from "headless-toolkit";
 import Banner9 from "../../../../public/images/greenSaree.jpeg";
 import Banner10 from "../../../../public/images/greenSareeOne.jpeg";
 import Banner11 from "../../../../public/images/greenSaree5.jpeg";
@@ -25,7 +25,7 @@ const array = [
   Banner12,
 ];
 type Props = {
-  product: Product;
+  product: any;
 };
 export default function MediaTwo(props: Props) {
   const { product } = props;
@@ -53,7 +53,7 @@ export default function MediaTwo(props: Props) {
   return (
     <>
       <div className="product-gallery row cols-sm-2">
-        {imagesArray?.slice(0, 4).map((image: Image, index: any) => (
+        {imagesArray?.slice(0, 4).map((image: any, index: any) => (
           <figure className="product-image mb-4" key={"image" + index}>
             <Magnifier
               imageSrc={image.path}

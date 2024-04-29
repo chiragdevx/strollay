@@ -3,13 +3,13 @@ import React from "react";
 import greenSareeOne from "../../../public/images/greenSareeOne.jpeg";
 import CartButton from "../navbar/CartButton";
 import LikeLogo from "../LikeLogo";
-import { Product } from "headless-toolkit";
+// import { Product } from "headless-toolkit";
 import { calculateDiscount, getProductImages } from "@/common/util/helper";
 import { useRouter } from "next/router";
 
 type Props = {
   className?: string;
-  product: Product;
+  product: any;
 };
 
 const Card = (props: Props) => {
