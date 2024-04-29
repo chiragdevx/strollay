@@ -244,6 +244,7 @@ function Detail(props: any) {
         <label className="d-none">QTY:</label>
         <div className="product-form-group flex flex-row gap-2">
           <Quantity max={product?.data?.stock} onChangeQty={changeQty} />
+
           <button
             className={`btn-product btn-cart text-normal ls-normal font-weight-semi-bold ${cartActive ? "" : "disabled"}`}
             onClick={() => addToCart({ ...product, quantity })}

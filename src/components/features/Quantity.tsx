@@ -26,12 +26,12 @@ const Quantity: React.FC<QuantityProps> = ({ max, onChangeQty }) => {
   return (
     <div className="flex items-center w-1/2">
       <div className="w-full flex h-8 items-center flex-row">
-        <button className="btn-qty h-full w-full" onClick={handleDecrement}>
+        <button className="btn-qty w-full" onClick={handleDecrement}>
           -
         </button>
         <input
           type="number"
-          className=" w-full text-center flex items-center  h-full"
+          className=" w-full text-center flex   h-full"
           value={quantity}
           onChange={(e) => {
             const value = parseInt(e.target.value);
@@ -41,7 +41,7 @@ const Quantity: React.FC<QuantityProps> = ({ max, onChangeQty }) => {
             }
           }}
         />
-        <button className="btn-qty h-full  w-full" onClick={handleIncrement}>
+        <button className="btn-qty  w-full" onClick={handleIncrement}>
           +
         </button>
       </div>
