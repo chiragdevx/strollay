@@ -6,49 +6,52 @@ interface ApiResponse<T> extends AxiosResponse {
 
 interface ApiParams {
   data?: any;
-  params?: any;
+  payload?: any;
 }
 
 interface ApiConfig {
   method: string;
   url: string;
   data?: any;
-  params?: any;
+  payload?: any;
   headers?: any;
 }
 
-const createApi = (type: string, resource: string) => {
+const createApi = (type: string, pathname: string) => {
   const url =
     type === "PIM"
-      ? `${process.env.NEXT_PUBLIC_PIM_URL}/${resource}`
-      : `${process.env.NEXT_PUBLIC_OMS_URL}/${resource}`;
+      ? `${process.env.NEXT_PUBLIC_PIM_URL}/${pathname}`
+      : `${process.env.NEXT_PUBLIC_OMS_URL}/${pathname}`;
 
-  const list = async <T>(
-    params: ApiParams,
-    prefix: string = "",
-  ): Promise<ApiResponse<T>> => {
-    return buildQuery<T>("get", params, prefix);
+  const list = async <T>(query?: string): Promise<ApiResponse<T>> => {
+    return buildQuery<T>("get", {}, query);
   };
 
   const get = async <T>(
-    id: string,
-    params: ApiParams,
+    payload: ApiParams,
+    query: string = "",
   ): Promise<ApiResponse<T>> => {
-    return buildQuery<T>("get", params, id);
+    return buildQuery<T>("get", payload, query);
   };
 
   const post = async <T>(
-    params: ApiParams,
-    prefix: string,
+    payload: ApiParams,
+    query?: string,
   ): Promise<ApiResponse<T>> => {
-    return buildQuery<T>("post", params, prefix);
+    console.log("payload", payload);
+    return buildQuery<T>("post", payload.payload, query);
   };
 
   const put = async <T>(
-    id: string,
-    params: ApiParams,
+    payload: ApiParams,
+    id?: string,
+    query?: string,
   ): Promise<ApiResponse<T>> => {
-    return buildQuery<T>("put", params, id);
+    let _query = "";
+    if (id) {
+      _query = `${id}/${query}`;
+    }
+    return buildQuery<T>("put", payload.payload, _query);
   };
 
   const del = async <T>(id: string): Promise<ApiResponse<T>> => {
@@ -57,25 +60,25 @@ const createApi = (type: string, resource: string) => {
 
   const buildQuery = async <T>(
     method: string,
-    params: ApiParams,
-    prefix: string,
+    payload: ApiParams = {},
+    query: string = "",
   ): Promise<ApiResponse<T>> => {
-    const token = localStorage.token;
+    // const token = localStorage?.token;
     const config: ApiConfig = {
       method,
-      url: getFullUrl(prefix),
-      data: params.data,
-      params: params.params,
+      url: getFullUrl(query),
+      data: payload,
+      payload: payload,
       headers: {
         "Content-Type": "application/json",
-        user_access_token: token || undefined,
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`,
       },
     };
-    return axios(config);
+    return await axios(config);
   };
 
-  const getFullUrl = (prefix: string): string => {
-    return `${url}${prefix ? `/${prefix}` : ""}`;
+  const getFullUrl = (query: string): string => {
+    return `${url}${query ? `${query}` : ""}`;
   };
 
   return {

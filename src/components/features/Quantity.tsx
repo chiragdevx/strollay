@@ -1,61 +1,60 @@
-import { useState, useEffect } from "react";
+// Quantity component
+import { cartActions } from "@/store/actions/cart";
+import React from "react";
+import { useDispatch } from "react-redux";
 
-export default function Quantity({ qty = 1, ...props }) {
-  const { adClass = "mr-2 input-group" } = props;
-  const [quantity, setQuantity] = useState(parseInt(qty));
+interface QuantityProps {
+  max: number;
+  item: any;
+  type: string;
+}
 
-  useEffect(() => {
-    setQuantity(qty);
-  }, [props.product]);
+const Quantity: React.FC<QuantityProps> = ({ max, item, type, qty }) => {
+  const [quantity, setQuantity] = React.useState(1);
+  const dispatch = useDispatch();
+  const handleIncrement = () => {
+    if (quantity < max) {
+      setQuantity(quantity + 1);
+      qty = quantity + 1;
+    }
+    if (!type) {
+      dispatch(cartActions.addToCart({ ...item, quantity: 1 }));
+    }
+  };
 
-  useEffect(() => {
-    props.onChangeQty && props.onChangeQty(quantity);
-  }, [quantity]);
-
-  function minusQuantity() {
+  const handleDecrement = () => {
     if (quantity > 1) {
-      setQuantity(parseInt(quantity) - 1);
+      setQuantity(quantity - 1);
+      qty = quantity - 1;
+      if (!type) {
+        dispatch(cartActions.removeFromCart({ ...item, quantity: 1 }));
+      }
     }
-  }
-
-  function plusQuantity() {
-    if (!props.max) {
-      props.max = 10;
-    }
-    if (quantity < props.max) {
-      console.log("first");
-      setQuantity(parseInt(quantity) + 1);
-    }
-  }
-
-  function changeQty(e) {
-    let newQty;
-
-    if (e.currentTarget.value !== "") {
-      newQty = Math.min(parseInt(e.currentTarget.value), props.max);
-      newQty = Math.max(newQty, 1);
-      setQuantity(newQty);
-    }
-  }
+  };
 
   return (
-    <div className={adClass}>
-      <button
-        className="quantity-minus d-icon-minus"
-        onClick={minusQuantity}
-      ></button>
-      <input
-        className="quantity form-control"
-        type="number"
-        min="1"
-        max={props.max}
-        value={quantity}
-        onChange={changeQty}
-      />
-      <button
-        className="quantity-plus d-icon-plus"
-        onClick={plusQuantity}
-      ></button>
+    <div className="flex items-center w-1/2">
+      <div className="w-full flex h-8 items-center flex-row">
+        <button className="btn-qty w-full" onClick={handleDecrement}>
+          -
+        </button>
+        <input
+          type="number"
+          className=" w-full text-center flex   h-full"
+          value={quantity}
+          onChange={(e) => {
+            const value = parseInt(e.target.value);
+            if (!isNaN(value) && value >= 1 && value <= max) {
+              setQuantity(value);
+            }
+          }}
+        />
+        <button className="btn-qty  w-full" onClick={handleIncrement}>
+          +
+        </button>
+      </div>
     </div>
   );
-}
+};
+
+export default Quantity;

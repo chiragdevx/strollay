@@ -1,86 +1,27 @@
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import ALink from "@/components/features/CustomLink";
 import Quantity from "@/components/features/Quantity";
-import Banner10 from "../../../public/images/Banner10.jpeg";
-import Banner9 from "../../../public/images/Banner9.jpg";
-import Banner11 from "../../../public/images/Banner11.jpeg";
-import Banner12 from "../../../public/images/Banner12.jpeg";
-import grenS3 from "../../../public/images/greenSare3.jpeg";
 
 // import { cartActions } from "~/store/cart";
 
 import { toDecimal, getTotalPrice } from "@/utils";
 import Image from "next/image";
-
-const cartList = [
-  {
-    slug: "one",
-    pictures: [Banner10, Banner11],
-    name: "Gray Silk Embroidered Party-Wear Boutique-Style Saree",
-    qty: 3,
-    price: 30,
-  },
-  {
-    slug: "two",
-    pictures: [Banner12, Banner11],
-    name: "Burlywood Soft Lakhnawi Linen-Cotton Saree",
-    qty: 3,
-    price: 30,
-  },
-  {
-    slug: "three",
-    pictures: [Banner11, Banner11],
-    name: "Light Olive Green Soft Lakhnawi Linen-Cotton Saree",
-    qty: 9,
-    price: 80,
-  },
-  {
-    slug: "four",
-    pictures: [grenS3, Banner11],
-    name: "Lilac Soft Lakhnawi Linen-Cotton Saree",
-    qty: 2,
-    price: 830,
-  },
-  {
-    slug: "five",
-    pictures: [Banner9, Banner11],
-    name: "Powder Blue Soft Lakhnawi Linen-Cotton Saree",
-    qty: 4,
-    price: 3400,
-  },
-];
+import { useAppDispatch } from "@/store/hooks";
+import { getProductImages } from "@/common/util/helper";
+import { cartActions } from "@/store/actions/cart";
 
 function Cart(props: any) {
-  //   const { cartList, removeFromCart, updateCart } = props;
-  const { removeFromCart, updateCart } = props;
-  const [cartItems, setCartItems] = useState<any>([]);
+  const cartList = useSelector((state: any) => state.cart.data);
+  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    setCartItems([...cartList]);
-  }, [cartList]);
+  // const onChangeQty = (product: any, qty: any) => {
+  //   dispatch(cartActions.addToCart({ ...product, quantity: 1 }));
+  // };
 
-  const onChangeQty = (name, qty) => {
-    setCartItems(
-      cartItems.map((item) => {
-        return item.name === name ? { ...item, qty: qty } : item;
-      }),
-    );
-  };
-
-  const compareItems = () => {
-    if (cartItems.length !== cartList.length) return false;
-
-    for (let index = 0; index < cartItems.length; index++) {
-      if (cartItems[index].qty !== cartList[index].qty) return false;
-    }
-
-    return true;
-  };
-
-  const update = () => {
-    updateCart(cartItems);
+  const removeFromCart = (item: any) => {
+    dispatch(cartActions.removeFromCart({ ...item, quantity: 1 }));
   };
 
   return (
@@ -100,7 +41,7 @@ function Cart(props: any) {
 
         <div className="container mt-7 mb-2">
           <div className="row">
-            {cartItems.length > 0 ? (
+            {cartList.length > 0 ? (
               <>
                 <div className="col-lg-8 col-md-12 pr-lg-4">
                   <table className="shop-table cart-table">
@@ -120,13 +61,16 @@ function Cart(props: any) {
                       </tr>
                     </thead>
                     <tbody>
-                      {cartItems.map((item) => (
-                        <tr key={"cart" + item.name}>
+                      {cartList.map((item: any) => (
+                        <tr key={"cart" + item.title}>
                           <td className="product-thumbnail">
                             <figure>
                               <ALink href={"/product/default/" + item.slug}>
                                 <Image
-                                  src={item.pictures[0]}
+                                  src={
+                                    getProductImages(item.images).defaultImage
+                                      .path
+                                  }
                                   width="100"
                                   height="100"
                                   alt="product"
@@ -137,7 +81,7 @@ function Cart(props: any) {
                           <td className="product-name">
                             <div className="product-name-section">
                               <ALink href={"/product/default/" + item.slug}>
-                                {item.name}
+                                {item.title}
                               </ALink>
                             </div>
                           </td>
@@ -149,16 +93,15 @@ function Cart(props: any) {
 
                           <td className="product-quantity">
                             <Quantity
-                              qty={item.qty}
-                              max={item.stock}
-                              onChangeQty={(qty: any) =>
-                                onChangeQty(item.name, qty)
-                              }
+                              qty={item.quantity}
+                              max={item.inventory}
+                              item={item}
+                              // onChangeQty={(qty: any) => onChangeQty(item, qty)}
                             />
                           </td>
                           <td className="product-price">
                             <span className="amount">
-                              ${toDecimal(item.price * item.qty)}
+                              ${toDecimal(item.price * item.quantity)}
                             </span>
                           </td>
                           <td className="product-close">
@@ -182,15 +125,8 @@ function Cart(props: any) {
                     >
                       <i className="d-icon-arrow-left"></i>Continue Shopping
                     </ALink>
-                    <button
-                      type="submit"
-                      className={`btn btn-outline btn-dark btn-md btn-rounded ${compareItems() ? " btn-disabled" : ""}`}
-                      onClick={update}
-                    >
-                      Update Cart
-                    </button>
                   </div>
-                  <div className="cart-coupon-box mb-8">
+                  {/* <div className="cart-coupon-box mb-8">
                     <h4 className="title coupon-title text-uppercase ls-m">
                       Coupon Discount
                     </h4>
@@ -207,7 +143,7 @@ function Cart(props: any) {
                     >
                       Apply Coupon
                     </button>
-                  </div>
+                  </div> */}
                 </div>
                 <aside className="col-lg-4 sticky-sidebar-wrapper">
                   <div
@@ -224,7 +160,7 @@ function Cart(props: any) {
                             </td>
                             <td>
                               <p className="summary-subtotal-price">
-                                ${toDecimal(getTotalPrice(cartItems))}
+                                ${toDecimal(getTotalPrice(cartList))}
                               </p>
                             </td>
                           </tr>
@@ -344,7 +280,7 @@ function Cart(props: any) {
                             </td>
                             <td>
                               <p className="summary-total-price ls-s">
-                                ${toDecimal(getTotalPrice(cartItems))}
+                                ${toDecimal(getTotalPrice(cartList))}
                               </p>
                             </td>
                           </tr>

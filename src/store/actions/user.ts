@@ -2,4 +2,5 @@ import { createAction } from "@reduxjs/toolkit";
 
 export const UserActions = {
   toggleAuth: createAction("products/toggleAuth"),
+  login: createAction<{}>("user/login"),
 };

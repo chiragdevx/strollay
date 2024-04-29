@@ -11,7 +11,7 @@ import Banner10 from "../../../public/images/Banner10.jpeg";
 import { toDecimal } from "@/utils";
 import Image from "next/image";
 
-function Product(props) {
+function Product(props: any) {
   const {
     product,
     adClass = "text-center",
@@ -25,7 +25,7 @@ function Product(props) {
   // decide if the product is wishlisted
   let isWishlisted;
   isWishlisted =
-    wishlist?.findIndex((item) => item.slug === product.slug) > -1
+    wishlist?.findIndex((item: any) => item.slug === product.slug) > -1
       ? true
       : false;
 
@@ -33,7 +33,7 @@ function Product(props) {
     openQuickview(product.slug);
   };
 
-  const wishlistHandler = (e) => {
+  const wishlistHandler = (e: any) => {
     if (toggleWishlist) {
       toggleWishlist(product);
     }
@@ -47,11 +47,10 @@ function Product(props) {
     }, 1000);
   };
 
-  const addToCartHandler = (e) => {
+  const addToCartHandler = (e: any) => {
     e.preventDefault();
     addToCart({ ...product, qty: 1, price: product.price[0] });
   };
-  console.log("product.pictures", product.pictures);
 
   return (
     <div className={`product text-left ${adClass}`}>
@@ -161,7 +160,7 @@ function Product(props) {
         {isCategory ? (
           <div className="product-cat">
             {product.categories
-              ? product.categories.map((item, index) => (
+              ? product.categories.map((item: any, index: number) => (
                   <React.Fragment key={item.name + "-" + index}>
                     <ALink
                       href={{

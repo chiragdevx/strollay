@@ -1,61 +1,105 @@
-import { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import Helmet from "react-helmet";
 
-import Collapse from "react-bootstrap/collapse";
-
 import ALink from "@/components/features/CustomLink";
-import Card from "@/components/features/accordion/card";
-import Banner10 from "../../../public/images/Banner10.jpeg";
-import Banner9 from "../../../public/images/Banner9.jpg";
-import Banner11 from "../../../public/images/Banner11.jpeg";
-import Banner12 from "../../../public/images/Banner12.jpeg";
-import grenS3 from "../../../public/images/greenSare3.jpeg";
+import { Product } from "headless-toolkit";
 
 // import SlideToggle from "react-slide-toggle";
 
 import { toDecimal, getTotalPrice } from "@/utils";
-const cartList = [
-  {
-    slug: "one",
-    pictures: [Banner10, Banner11],
-    name: "Gray Silk Embroidered Party-Wear Boutique-Style Saree",
-    qty: 3,
-    price: 30,
-  },
-  {
-    slug: "two",
-    pictures: [Banner12, Banner11],
-    name: "Burlywood Soft Lakhnawi Linen-Cotton Saree",
-    qty: 3,
-    price: 30,
-  },
-  {
-    slug: "three",
-    pictures: [Banner11, Banner11],
-    name: "Light Olive Green Soft Lakhnawi Linen-Cotton Saree",
-    qty: 9,
-    price: 80,
-  },
-  {
-    slug: "four",
-    pictures: [grenS3, Banner11],
-    name: "Lilac Soft Lakhnawi Linen-Cotton Saree",
-    qty: 2,
-    price: 830,
-  },
-  {
-    slug: "five",
-    pictures: [Banner9, Banner11],
-    name: "Powder Blue Soft Lakhnawi Linen-Cotton Saree",
-    qty: 4,
-    price: 3400,
-  },
-];
+import axios from "axios";
+import { cartActions } from "@/store/actions/cart";
 
-function Checkout(props) {
-  //   const { cartList } = props;
-  const [isFirst, setFirst] = useState(false);
+function Checkout() {
+  const dispatch = useDispatch();
+  const cart = useSelector((state: any) => state.cart.data);
+  const cartList = cart.map(
+    ({ slug, images, title, quantity, price }: Partial<Product>) => {
+      return {
+        slug,
+        images,
+        title,
+        quantity,
+        price,
+      };
+    },
+  );
+
+  type ProductObj = {
+    productId: any;
+    quantity: any;
+    variantId?: any;
+  };
+
+  const getProductIds = () => {
+    const productIds = cart.map((cartItem: any) => {
+      let productObj: ProductObj = {
+        productId: cartItem.productId,
+        quantity: cartItem.quantity,
+      };
+      if (cartItem.variantId) {
+        productObj = {
+          ...productObj,
+          variantId: cartItem.variantId,
+        };
+      }
+
+      return productObj;
+    });
+    return productIds;
+  };
+
+  const placeOrder = async (e: any) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+    const billingAddress = {
+      email: data.email,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      line1: data.address1,
+      line2: data?.address2 || "",
+      city: data.city,
+      state: data.state,
+      country: data.country,
+      postalCode: data.zip,
+      shippingMethod: "",
+      name: data.firstName.toString() + data.lastName.toString(),
+    };
+    const productIds = getProductIds();
+    const payload = {
+      productIds,
+      billingAddress,
+      shippingAddress: billingAddress,
+      totalTax: 0,
+      totalShippingCharge: 0,
+      totalCodCharge: 0,
+      totalPrepaidCharge: 0,
+      paymentMethod: "ONLINE",
+      priceCurrency: "usd",
+      type: "ONE_TIME",
+      userId: "39311b9b-cc61-4986-9dc8-6272e6fbfb54",
+      paymentType: "STRIPE",
+      successUrl: "https://one-11-labs.vercel.app/order-success/",
+    };
+
+    const endpoint = `${process.env.NEXT_PUBLIC_OMS_URL}/order/one-time`;
+    try {
+      const response = await axios.post(endpoint, payload, {
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`,
+        },
+      });
+      const { data } = response.data;
+      const { sessionUrl } = data;
+      window.location.href = sessionUrl;
+      cart.forEach((item) => {
+        dispatch(cartActions.clearCart({ ...item, quantity: item.quantity }));
+      });
+    } catch (error) {
+      throw error;
+    }
+  };
 
   return (
     <main className="main checkout">
@@ -191,7 +235,7 @@ function Checkout(props) {
                   </div>
                 </Card>
               </div> */}
-              <form action="#" className="form">
+              <form onSubmit={placeOrder} action="#" className="form">
                 <div className="row">
                   <div className="col-lg-7 mb-6 mb-lg-0 pr-lg-4">
                     <h3 className="title title-simple text-left text-uppercase">
@@ -203,7 +247,7 @@ function Checkout(props) {
                         <input
                           type="text"
                           className="form-control"
-                          name="first-name"
+                          name="firstName"
                           required
                         />
                       </div>
@@ -212,7 +256,7 @@ function Checkout(props) {
                         <input
                           type="text"
                           className="form-control"
-                          name="last-name"
+                          name="lastName"
                           required
                         />
                       </div>
@@ -222,7 +266,6 @@ function Checkout(props) {
                       type="text"
                       className="form-control"
                       name="company-name"
-                      required
                     />
                     <label>Country / Region *</label>
                     <div className="select-box">
@@ -249,7 +292,6 @@ function Checkout(props) {
                       type="text"
                       className="form-control"
                       name="address2"
-                      required
                       placeholder="Apartment, suite, unit, etc. (optional)"
                     />
                     <div className="row">
@@ -296,7 +338,7 @@ function Checkout(props) {
                     <input
                       type="text"
                       className="form-control"
-                      name="email-address"
+                      name="email"
                       required
                     />
 
@@ -484,8 +526,8 @@ function Checkout(props) {
                     <label>Order Notes (Optional)</label>
                     <textarea
                       className="form-control pb-2 pt-2 mb-0"
-                      cols="30"
-                      rows="5"
+                      cols={30}
+                      rows={5}
                       placeholder="Notes about your order, e.g. special notes for delivery"
                     ></textarea>
                   </div>
@@ -510,13 +552,13 @@ function Checkout(props) {
                             {cartList.map((item) => (
                               <tr key={"checkout-" + item.name}>
                                 <td className="product-name">
-                                  {item.name}{" "}
+                                  {item.title}{" "}
                                   <span className="product-quantity">
-                                    ×&nbsp;{item.qty}
+                                    ×&nbsp;{item.quantity}
                                   </span>
                                 </td>
                                 <td className="product-total text-body">
-                                  ${toDecimal(item.price * item.qty)}
+                                  ${toDecimal(item.price * item.quantity)}
                                 </td>
                               </tr>
                             ))}
@@ -529,7 +571,7 @@ function Checkout(props) {
                                 ${toDecimal(getTotalPrice(cartList))}
                               </td>
                             </tr>
-                            {/* <tr className="sumnary-shipping shipping-row-last">
+                            {/* <tr className="summary-shipping shipping-row-last">
                               <td colSpan="2">
                                 <h4 className="summary-subtitle">
                                   Calculate Shipping
@@ -601,7 +643,7 @@ function Checkout(props) {
                             </tr>
                           </tbody>
                         </table>
-                        <div className="payment accordion radio-type">
+                        {/* <div className="payment accordion radio-type">
                           <h4 className="summary-subtitle ls-m pb-3">
                             Payment Methods
                           </h4>
@@ -651,7 +693,7 @@ function Checkout(props) {
                               </div>
                             </Collapse>
                           </div>
-                        </div>
+                        </div> */}
                         <div className="form-checkbox mt-4 mb-5">
                           <input
                             type="checkbox"

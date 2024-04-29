@@ -11,6 +11,7 @@ import LoginModal from "@/components/features/modals/LoginModal";
 import { headerBorderRemoveList } from "@/utils/data/menu";
 import strollayLogo from "../../../public/images/strollay.png";
 import Image from "next/image";
+import CategoryApi from "@/api/categoryApi";
 
 export default function Header(props: any) {
   const router = useRouter();
@@ -24,12 +25,12 @@ export default function Header(props: any) {
       )
         header.classList.remove("header-border");
       else if (!headerBorderRemoveList.includes(router.pathname))
-        document.querySelector("header").classList.add("header-border");
+        document?.querySelector("header")?.classList.add("header-border");
     }
   }, [router.pathname]);
 
   const showMobileMenu = () => {
-    document.querySelector("body").classList.add("mmenu-active");
+    document?.querySelector("body")?.classList.add("mmenu-active");
   };
 
   function closeTopNotice(e: any) {
@@ -133,7 +134,7 @@ export default function Header(props: any) {
               <Image src={strollayLogo} alt="logo" width="153" height="44" />
             </ALink>
 
-            <SearchBox />
+            {/* <SearchBox /> */}
           </div>
 
           <div className="header-right">
@@ -147,18 +148,18 @@ export default function Header(props: any) {
               </div>
             </ALink> */}
             {/* <span className="divider"></span> */}
-            <ALink href="/pages/wishlist" className="wishlist">
+            {/* <ALink href="/pages/wishlist" className="wishlist">
               <i className="d-icon-heart"></i>
             </ALink>
-            <span className="divider"></span>
+            <span className="divider"></span> */}
 
             <div className="pr-1">
               <CartMenu />
             </div>
 
-            <span className="divider"></span>
+            {/* <span className="divider"></span> */}
 
-            <LoginModal />
+            {/* <LoginModal /> */}
           </div>
         </div>
       </div>
@@ -178,4 +179,13 @@ export default function Header(props: any) {
       </div>
     </header>
   );
+}
+
+export async function getServerSideProps() {
+  // Extract the pathname from the context
+  const response: any = await CategoryApi.getCategories();
+  const { data } = response.data;
+
+  // Pass data to the page via props
+  return { props: { data } };
 }

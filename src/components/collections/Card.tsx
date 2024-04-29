@@ -13,15 +13,13 @@ type Props = {
 const Card = (props: Props) => {
   const [isHovered, setIsHovered] = useState(false);
   const { product } = props;
-  console.log("product", product);
   const displayImageSrc =
     isHovered && product.pictures.length > 1
       ? product?.pictures[1].src
       : product?.pictures[0].src;
 
   return (
-    <ALink
-      href={`/product/${product.slug}`}
+    <div
       className={`w-full h-auto relative group p-3  ${props.className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -50,17 +48,15 @@ const Card = (props: Props) => {
             />
           </div>
         )}
-        {/* Ensure horizontal alignment and smooth appearance */}
-        <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex opacity-0 visibility-hidden group-hover:opacity-100 group-hover:visibility-visible transition-opacity duration-300 ease-in-out">
+
+        {/* <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex opacity-0 visibility-hidden group-hover:opacity-100 group-hover:visibility-visible transition-opacity duration-300 ease-in-out">
           <div className="bg-[#87c6e3] rounded-full cursor-pointer mr-2 p-4">
-            {" "}
-            {/* Add margin-right for spacing */}
             <CartButton />
           </div>
           <div className="bg-[#87c6e3] rounded-full cursor-pointer p-4">
             <LikeLogo />
           </div>
-        </div>
+        </div> */}
         <div className="absolute px-2 bg-white top-5 right-0">-10%</div>
       </div>
       <div className="mt-2 w-[175px] md:w-[300px] ">
@@ -77,7 +73,7 @@ const Card = (props: Props) => {
           </div>
         </div>
       </div>
-    </ALink>
+    </div>
   );
 };
 

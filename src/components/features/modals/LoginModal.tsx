@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import Modal from "react-modal";
 
 import ALink from "@/components/features/CustomLink";
+import { UserActions } from "@/store/actions/user";
+import { useDispatch } from "react-redux";
 
 const customStyles = {
   overlay: {
@@ -16,22 +18,32 @@ let index = 0;
 Modal.setAppElement("#__next");
 
 function LoginModal() {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
   function closeModal() {
-    document.querySelector(".ReactModal__Overlay").classList.add("removed");
+    document?.querySelector(".ReactModal__Overlay")?.classList.add("removed");
     document
-      .querySelector(".login-popup.ReactModal__Content")
-      .classList.remove("ReactModal__Content--after-open");
+      ?.querySelector(".login-popup.ReactModal__Content")
+      ?.classList.remove("ReactModal__Content--after-open");
     document
       .querySelector(".login-popup-overlay.ReactModal__Overlay")
-      .classList.remove("ReactModal__Overlay--after-open");
+      ?.classList.remove("ReactModal__Overlay--after-open");
     setTimeout(() => {
       setOpen(false);
     }, 330);
   }
-
-  function openModal(e, loginIndex = 0) {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const payload = {
+      email: emailRef.current?.value,
+      password: passwordRef.current?.value,
+    };
+    console.log("payload", payload);
+    dispatch(UserActions.login(payload));
+  };
+  function openModal(e: any, loginIndex = 0) {
     e.preventDefault();
     index = loginIndex;
     setOpen(true);
@@ -85,12 +97,13 @@ function LoginModal() {
 
                 <div className="tab-content">
                   <TabPanel className="tab-pane">
-                    <form action="#">
+                    <form action="#" onSubmit={handleSubmit}>
                       <div className="form-group mb-3">
                         <input
                           type="text"
                           className="form-control"
                           id="singin-email"
+                          ref={emailRef}
                           name="singin-email"
                           placeholder="Username or Email Address *"
                           required
@@ -100,6 +113,7 @@ function LoginModal() {
                         <input
                           type="password"
                           className="form-control"
+                          ref={passwordRef}
                           id="singin-password"
                           placeholder="Password *"
                           name="singin-password"
