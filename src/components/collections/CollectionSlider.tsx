@@ -10,6 +10,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Card from "./Card";
 import Product from "../product/Product";
+import { GetServerSidePropsContext } from "next";
+import collectionApi from "@/api/collection";
 
 type Props = {
   autoPlay?: boolean;
@@ -24,13 +26,12 @@ const array = [
   { slug: "8", price: 80, pictures: [Banner9, Banner11] },
 ];
 
-const CollectionSlider = (props: Props) => {
-  const { autoPlay } = props;
+const CollectionSlider = () => {
   const settings = {
     dots: false,
     infinite: true,
-    autoplay: autoPlay === true ? autoPlay : false,
-
+    // autoplay: autoPlay === true ? autoPlay : false,
+    autoplay: true,
     // speed: 5000, // Consider lowering this for quicker transitions if needed
     // autoplaySpeed: 3000, // Correct property name for autoplay speed
     cssEase: "ease-out", // This easing function can help make transitions appear smoother
@@ -94,5 +95,16 @@ const CollectionSlider = (props: Props) => {
     </div>
   );
 };
+
+// export async function getServerSideProps(context: GetServerSidePropsContext) {
+//   // Extract the pathname from the context
+//   const pathname = context.req.url as string;
+//   console.log("pathname22", pathname);
+//   const response: any = await collectionApi.getProductsBycollection(pathname);
+//   const { data } = response.data;
+//   console.log("data333", data);
+//   // Pass data to the page via props
+//   return { props: { data } };
+// }
 
 export default CollectionSlider;

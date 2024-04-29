@@ -93,9 +93,11 @@ function Cart(props: any) {
 
                           <td className="product-quantity">
                             <Quantity
-                              qty={item.quantity}
+                              quantity={item.quantity}
                               max={item.inventory}
                               item={item}
+                              type="Cart"
+
                               // onChangeQty={(qty: any) => onChangeQty(item, qty)}
                             />
                           </td>
