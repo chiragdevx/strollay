@@ -55,6 +55,7 @@ export const cartSlice = createSlice({
         ];
       }
     },
+
     removeFromCartSuccess: (state, action) => {
       const cart = current(state);
       const { payload: product } = action;
@@ -83,6 +84,13 @@ export const cartSlice = createSlice({
           });
         }
       }
+      return state;
+    },
+
+    clearCartSuccess: (state, action) => {
+      const { payload } = action;
+
+      state.data = payload.cartItems;
       return state;
     },
 
@@ -138,6 +146,7 @@ export const cartSlice = createSlice({
 export const {
   addToCartSuccess,
   removeFromCartSuccess,
+  clearCartSuccess,
   // updateCart,
   deleteItem,
   applyCoupons,

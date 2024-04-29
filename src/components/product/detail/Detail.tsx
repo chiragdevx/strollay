@@ -34,7 +34,6 @@ function Detail(props: any) {
   const [cartActive, setCartActive] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [selectedVariant, setSelectedVariant] = useState(null);
-  console.log("selectedVariant", selectedVariant);
   const { title, price, listingPrice, sku, slug, variants, inventory } =
     product;
   const dispatch = useDispatch();
@@ -244,10 +243,13 @@ function Detail(props: any) {
       <div className="product-form product-qty pb-0">
         <label className="d-none">QTY:</label>
         <div className="product-form-group flex flex-row gap-2">
-          <Quantity max={inventory} type="Detail" />
+          <Quantity qty={quantity} max={inventory} type="Detail" />
           <button
             className={`btn-product btn-cart text-normal ls-normal font-weight-semi-bold ${cartActive ? "" : "disabled"}`}
-            onClick={() => addToCart({ ...product, quantity })}
+            onClick={() => {
+              console.log("quantity", quantity);
+              addToCart({ ...product, quantity });
+            }}
           >
             <i className="d-icon-bag"></i>Add to Cart
           </button>

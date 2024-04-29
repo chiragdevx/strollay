@@ -9,4 +9,5 @@ export const cartActions = {
   emptyCart: createAction("cart/emptyCart"),
   setFrequency: createAction("cart/setFrequency"),
   deleteItem: createAction("cart/deleteItem"),
+  clearCart: createAction("cart/clearCart"),
 };

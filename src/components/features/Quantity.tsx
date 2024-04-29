@@ -5,15 +5,17 @@ import { useDispatch } from "react-redux";
 
 interface QuantityProps {
   max: number;
-  onChangeQty: (qty: number) => void;
+  item: any;
+  type: string;
 }
 
-const Quantity: React.FC<QuantityProps> = ({ max, item, type }) => {
+const Quantity: React.FC<QuantityProps> = ({ max, item, type, qty }) => {
   const [quantity, setQuantity] = React.useState(1);
   const dispatch = useDispatch();
   const handleIncrement = () => {
     if (quantity < max) {
       setQuantity(quantity + 1);
+      qty = quantity + 1;
     }
     if (!type) {
       dispatch(cartActions.addToCart({ ...item, quantity: 1 }));
@@ -23,6 +25,7 @@ const Quantity: React.FC<QuantityProps> = ({ max, item, type }) => {
   const handleDecrement = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
+      qty = quantity - 1;
       if (!type) {
         dispatch(cartActions.removeFromCart({ ...item, quantity: 1 }));
       }

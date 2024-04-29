@@ -126,7 +126,7 @@ function Cart(props: any) {
                       <i className="d-icon-arrow-left"></i>Continue Shopping
                     </ALink>
                   </div>
-                  <div className="cart-coupon-box mb-8">
+                  {/* <div className="cart-coupon-box mb-8">
                     <h4 className="title coupon-title text-uppercase ls-m">
                       Coupon Discount
                     </h4>
@@ -143,7 +143,7 @@ function Cart(props: any) {
                     >
                       Apply Coupon
                     </button>
-                  </div>
+                  </div> */}
                 </div>
                 <aside className="col-lg-4 sticky-sidebar-wrapper">
                   <div

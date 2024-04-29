@@ -1,25 +1,17 @@
-import { useState, useEffect } from "react";
-import { connect, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import Helmet from "react-helmet";
 
-import Collapse from "react-bootstrap/collapse";
-
 import ALink from "@/components/features/CustomLink";
-import Card from "@/components/features/accordion/card";
-import Banner10 from "../../../public/images/Banner10.jpeg";
-import Banner9 from "../../../public/images/Banner9.jpg";
-import Banner11 from "../../../public/images/Banner11.jpeg";
-import Banner12 from "../../../public/images/Banner12.jpeg";
-import grenS3 from "../../../public/images/greenSare3.jpeg";
 import { Product } from "headless-toolkit";
 
 // import SlideToggle from "react-slide-toggle";
 
 import { toDecimal, getTotalPrice } from "@/utils";
 import axios from "axios";
+import { cartActions } from "@/store/actions/cart";
 
 function Checkout() {
-  const [isFirst, setFirst] = useState(false);
+  const dispatch = useDispatch();
   const cart = useSelector((state: any) => state.cart.data);
   const cartList = cart.map(
     ({ slug, images, title, quantity, price }: Partial<Product>) => {
@@ -101,6 +93,9 @@ function Checkout() {
       const { data } = response.data;
       const { sessionUrl } = data;
       window.location.href = sessionUrl;
+      cart.forEach((item) => {
+        dispatch(cartActions.clearCart({ ...item, quantity: item.quantity }));
+      });
     } catch (error) {
       throw error;
     }
@@ -559,7 +554,7 @@ function Checkout() {
                                 <td className="product-name">
                                   {item.title}{" "}
                                   <span className="product-quantity">
-                                    ×&nbsp;{item.qty}
+                                    ×&nbsp;{item.quantity}
                                   </span>
                                 </td>
                                 <td className="product-total text-body">
@@ -648,7 +643,7 @@ function Checkout() {
                             </tr>
                           </tbody>
                         </table>
-                        <div className="payment accordion radio-type">
+                        {/* <div className="payment accordion radio-type">
                           <h4 className="summary-subtitle ls-m pb-3">
                             Payment Methods
                           </h4>
@@ -698,7 +693,7 @@ function Checkout() {
                               </div>
                             </Collapse>
                           </div>
-                        </div>
+                        </div> */}
                         <div className="form-checkbox mt-4 mb-5">
                           <input
                             type="checkbox"
