@@ -68,14 +68,12 @@ export const getProductImages = (images: image[] = []): ProductImages => {
     };
   }
   const sortedImages = [...images]?.sort((a, b) => a.priority - b.priority);
-  console.log("sortedImages", sortedImages);
   const changedImagesArray = sortedImages.map((image) => {
     return {
       ...image,
       path: process.env.NEXT_PUBLIC_CLOUDFRONT_URL + image.path,
     };
   });
-  console.log("changedImagesArray", changedImagesArray);
   return {
     defaultImage: changedImagesArray[0],
     images: changedImagesArray || [],

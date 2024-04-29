@@ -25,12 +25,12 @@ export default function Header(props: any) {
       )
         header.classList.remove("header-border");
       else if (!headerBorderRemoveList.includes(router.pathname))
-        document.querySelector("header").classList.add("header-border");
+        document?.querySelector("header")?.classList.add("header-border");
     }
   }, [router.pathname]);
 
   const showMobileMenu = () => {
-    document.querySelector("body").classList.add("mmenu-active");
+    document?.querySelector("body")?.classList.add("mmenu-active");
   };
 
   function closeTopNotice(e: any) {

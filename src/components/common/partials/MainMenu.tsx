@@ -24,7 +24,6 @@ export default function MainMenu({ data }: { data: any }) {
     fetchCatData();
   }, []);
 
-  console.log("catData", catData);
   return (
     <nav className="main-nav">
       <ul className="menu">

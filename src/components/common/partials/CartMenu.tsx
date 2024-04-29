@@ -34,7 +34,6 @@ function CartMenu(props: any) {
     dispatch(cartActions.removeFromCart(item));
   };
 
-  console.log("cartList", cartList);
   return (
     <div className="dropdown cart-dropdown type2 cart-offcanvas mr-0 mr-lg-2">
       <a

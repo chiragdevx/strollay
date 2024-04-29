@@ -35,7 +35,8 @@ function Detail(props: any) {
   const [quantity, setQuantity] = useState(1);
   const [selectedVariant, setSelectedVariant] = useState(null);
   console.log("selectedVariant", selectedVariant);
-  const { title, price, listingPrice, sku, slug, variants } = product;
+  const { title, price, listingPrice, sku, slug, variants, inventory } =
+    product;
   const dispatch = useDispatch();
   // decide if the product is wishlisted
 
@@ -243,7 +244,7 @@ function Detail(props: any) {
       <div className="product-form product-qty pb-0">
         <label className="d-none">QTY:</label>
         <div className="product-form-group flex flex-row gap-2">
-          <Quantity max={product?.data?.stock} onChangeQty={changeQty} />
+          <Quantity max={inventory} type="Detail" />
           <button
             className={`btn-product btn-cart text-normal ls-normal font-weight-semi-bold ${cartActive ? "" : "disabled"}`}
             onClick={() => addToCart({ ...product, quantity })}

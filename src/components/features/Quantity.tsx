@@ -1,25 +1,31 @@
 // Quantity component
+import { cartActions } from "@/store/actions/cart";
 import React from "react";
+import { useDispatch } from "react-redux";
 
 interface QuantityProps {
   max: number;
   onChangeQty: (qty: number) => void;
 }
 
-const Quantity: React.FC<QuantityProps> = ({ max, onChangeQty }) => {
+const Quantity: React.FC<QuantityProps> = ({ max, item, type }) => {
   const [quantity, setQuantity] = React.useState(1);
-
+  const dispatch = useDispatch();
   const handleIncrement = () => {
     if (quantity < max) {
       setQuantity(quantity + 1);
-      onChangeQty(quantity + 1);
+    }
+    if (!type) {
+      dispatch(cartActions.addToCart({ ...item, quantity: 1 }));
     }
   };
 
   const handleDecrement = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
-      onChangeQty(quantity - 1);
+      if (!type) {
+        dispatch(cartActions.removeFromCart({ ...item, quantity: 1 }));
+      }
     }
   };
 
@@ -37,7 +43,6 @@ const Quantity: React.FC<QuantityProps> = ({ max, onChangeQty }) => {
             const value = parseInt(e.target.value);
             if (!isNaN(value) && value >= 1 && value <= max) {
               setQuantity(value);
-              onChangeQty(value);
             }
           }}
         />

@@ -71,11 +71,9 @@ const createApi = (type: string, pathname: string) => {
       payload: payload,
       headers: {
         "Content-Type": "application/json",
-        Authorization:
-          "Bearer U2FsdGVkX18wGM92aNE++7zJEqrKDmw+DR3POotGOb/N2yMzirSEBPMhT5+gMNF7y13xbHL/hLfwTZT3wT1HB8Tj8Gtlnd4Ww4IeL4jr53u+dVRt9HpPOuf9/WEjxjNnk3ObvT3/k5gucBDclds2xdneMkQxH0Gm5dPCEDE+yNfMem/K99hg4iXGD6NUrDgvYIoOKfGjoj268dusf8xaq75unlM9k79bhynvI5/zTPy0JMRr5ANxRNoF//Z1LvKqQmCheRcrEs8EuAJaEf6cfTRzO/mHWSOUnEliX/D70Mxx2QTtkPxVpUv3yc5MORgO",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`,
       },
     };
-    console.log("config", config);
     return await axios(config);
   };
 
