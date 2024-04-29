@@ -34,6 +34,7 @@ function Detail(props: any) {
   const [cartActive, setCartActive] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [selectedVariant, setSelectedVariant] = useState(null);
+  console.log("selectedVariant", selectedVariant);
   const { title, price, listingPrice, sku, slug, variants } = product;
   const dispatch = useDispatch();
   // decide if the product is wishlisted
@@ -222,9 +223,10 @@ function Detail(props: any) {
             variants.map((variant: Partial<Variant>) => (
               <div key={variant.id} className="w-full lg:w-auto">
                 <button
-                  className="block w-full text-left px-6 py-3 rounded-full border-r-2 border-black-300 text-gray-700 tab-button"
+                  className={`block w-full text-left px-6 py-3 rounded-full border-r-2 border-black-300 text-gray-700 tab-button ${selectedVariant?.id === variant.id ? "border-black bg-black text-white" : ""} `}
                   onClick={() => {
                     setSelectedVariant(variant);
+                    setCartActive(true);
                   }}
                 >
                   {variant.title}
@@ -238,9 +240,8 @@ function Detail(props: any) {
 
       <div className="product-form product-qty pb-0">
         <label className="d-none">QTY:</label>
-        <div className="product-form-group">
+        <div className="product-form-group flex flex-row gap-2">
           <Quantity max={product?.data?.stock} onChangeQty={changeQty} />
-
           <button
             className={`btn-product btn-cart text-normal ls-normal font-weight-semi-bold ${cartActive ? "" : "disabled"}`}
             onClick={() => addToCart({ ...product, quantity })}

@@ -50,6 +50,7 @@ export default function MediaTwo(props: Props) {
     setOpenState(true);
   };
 
+  console.log("imageArray", imagesArray);
   return (
     <>
       <div className="product-gallery row cols-sm-2">

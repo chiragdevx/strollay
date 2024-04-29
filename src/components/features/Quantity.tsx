@@ -24,25 +24,27 @@ const Quantity: React.FC<QuantityProps> = ({ max, onChangeQty }) => {
   };
 
   return (
-    <div className="quantity">
-      <button className="btn-qty" onClick={handleDecrement}>
-        -
-      </button>
-      <input
-        type="number"
-        className="input-qty"
-        value={quantity}
-        onChange={(e) => {
-          const value = parseInt(e.target.value);
-          if (!isNaN(value) && value >= 1 && value <= max) {
-            setQuantity(value);
-            onChangeQty(value);
-          }
-        }}
-      />
-      <button className="btn-qty" onClick={handleIncrement}>
-        +
-      </button>
+    <div className="flex items-center w-1/2">
+      <div className="w-full flex h-8 items-center flex-row">
+        <button className="btn-qty h-full w-full" onClick={handleDecrement}>
+          -
+        </button>
+        <input
+          type="number"
+          className=" w-full text-center flex items-center  h-full"
+          value={quantity}
+          onChange={(e) => {
+            const value = parseInt(e.target.value);
+            if (!isNaN(value) && value >= 1 && value <= max) {
+              setQuantity(value);
+              onChangeQty(value);
+            }
+          }}
+        />
+        <button className="btn-qty h-full  w-full" onClick={handleIncrement}>
+          +
+        </button>
+      </div>
     </div>
   );
 };

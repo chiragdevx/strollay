@@ -1,12 +1,30 @@
+"use client";
 import { useRouter } from "next/router";
 
 import ALink from "@/components/features/CustomLink";
 
 import { mainMenu } from "@/utils/data/menu";
+import CategoryApi from "@/api/categoryApi";
+import { useEffect, useState } from "react";
 
-function MainMenu() {
+export default function MainMenu({ data }: { data: any }) {
   const pathname = useRouter().pathname;
+  const [catData, setCatData] = useState<Object[]>([]);
 
+  const fetchCatData = async () => {
+    try {
+      const response: any = await CategoryApi.getCategories();
+      setCatData(response.data.data);
+    } catch (error) {
+      console.log("error", error);
+      setCatData([]);
+    }
+  };
+  useEffect(() => {
+    fetchCatData();
+  }, []);
+
+  console.log("catData", catData);
   return (
     <nav className="main-nav">
       <ul className="menu">
@@ -22,9 +40,9 @@ function MainMenu() {
           <div className="megamenu">
             <div className="row">
               <div className="col-6 col-sm-4 col-md-3 col-lg-4">
-                <h4 className="menu-title">Variations 1</h4>
+                {/* <h4 className="menu-title">Variations 1</h4> */}
                 <ul>
-                  {mainMenu.shop.variation1.map((item, index) => (
+                  {/* {mainMenu.shop.variation1.map((item, index) => (
                     <li key={`shop-${item.title}`}>
                       <ALink href={"/" + item.url}>
                         {item.title}
@@ -35,11 +53,17 @@ function MainMenu() {
                         )}
                       </ALink>
                     </li>
-                  ))}
+                  ))} */}
+                  {catData.length > 0 &&
+                    catData?.map((item: any, index) => (
+                      <li key={`shop-${item.title}`}>
+                        <ALink href={"/" + item.id}>{item.title}</ALink>
+                      </li>
+                    ))}
                 </ul>
               </div>
 
-              <div className="col-6 col-sm-4 col-md-3 col-lg-4">
+              {/* <div className="col-6 col-sm-4 col-md-3 col-lg-4">
                 <h4 className="menu-title">Variations 2</h4>
                 <ul>
                   {mainMenu.shop.variation2.map((item, index) => (
@@ -55,8 +79,8 @@ function MainMenu() {
                     </li>
                   ))}
                 </ul>
-              </div>
-              <div className="col-6 col-sm-4 col-md-3 col-lg-4 menu-banner menu-banner1 banner banner-fixed">
+              </div> */}
+              {/* <div className="col-6 col-sm-4 col-md-3 col-lg-4 menu-banner menu-banner1 banner banner-fixed">
                 <figure>
                   <img
                     src="./images/menu/banner-1.jpg"
@@ -76,12 +100,12 @@ function MainMenu() {
                     shop now<i className="d-icon-arrow-right"></i>
                   </ALink>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </li>
 
-        <li
+        {/* <li
           className={`submenu  ${pathname.includes("/product") && !pathname.includes("/elements") ? "active" : ""}`}
         >
           <ALink href="/product/default/fashionable-leather-satchel">
@@ -210,10 +234,8 @@ function MainMenu() {
 
         <li>
           <ALink href="/pages/about-us">About Us</ALink>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );
 }
-
-export default MainMenu;

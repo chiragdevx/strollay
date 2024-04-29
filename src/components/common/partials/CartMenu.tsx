@@ -34,6 +34,7 @@ function CartMenu(props: any) {
     dispatch(cartActions.removeFromCart(item));
   };
 
+  console.log("cartList", cartList);
   return (
     <div className="dropdown cart-dropdown type2 cart-offcanvas mr-0 mr-lg-2">
       <a
@@ -96,10 +97,10 @@ function CartMenu(props: any) {
                       href={"/product/default/" + item.slug}
                       className="product-name"
                     >
-                      {item.name}
+                      {item.title}
                     </ALink>
                     <div className="price-box">
-                      <span className="product-quantity">{item.qty}</span>
+                      <span className="product-quantity">{item.quantity}</span>
                       <span className="product-price">
                         ${toDecimal(item.price)}
                       </span>
