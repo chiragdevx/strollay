@@ -9,7 +9,8 @@ import ALink from "@/components/features/CustomLink";
 import { useRouter } from "next/router";
 import CategoryApi from "@/api/categoryApi";
 
-const Index = ({ data }: any) => {
+const Index = ({ data, pathname }: any) => {
+  console.log("pathName%%%%%", pathname);
   return (
     <div className="mx-auto">
       <div className="container flex w-full">
@@ -20,8 +21,8 @@ const Index = ({ data }: any) => {
             </ALink>
           </li>
           <li>
-            <ALink href="/products" className="active">
-              Products
+            <ALink href={`/${pathname}`} className="active">
+              Product
             </ALink>
           </li>
         </ul>
@@ -35,12 +36,12 @@ const Index = ({ data }: any) => {
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   // Extract the pathname from the context
   const pathname = context.req.url as string;
-  console.log("pathname333", pathname);
+  console.log("pathname", pathname);
   const response: any = await CategoryApi.getProductsByCategory(pathname);
   const { data } = response.data;
 
   // Pass data to the page via props
-  return { props: { data } };
+  return { props: { data, pathname } };
 }
 
 export default Index;

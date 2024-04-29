@@ -49,8 +49,8 @@ const Index = ({ data }: Props) => {
                     </ALink>
                   </li>
                   <li>
-                    <ALink href="/products" className="active">
-                      Products
+                    <ALink href={`/${data.categoryId}`} className="active">
+                      Product
                     </ALink>
                   </li>
                   <li>Detail</li>
