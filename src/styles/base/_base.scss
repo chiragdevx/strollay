@@ -168,8 +168,6 @@ button {
 .sidebar-content {
   -webkit-overflow-scrolling: touch;
   &::-webkit-scrollbar {
-    height: 7px;
-    width: 4px;
   }
   &::-webkit-scrollbar-thumb {
     margin-right: 2px;
