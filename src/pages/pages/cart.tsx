@@ -93,9 +93,11 @@ function Cart(props: any) {
 
                           <td className="product-quantity">
                             <Quantity
-                              qty={item.quantity}
+                              quantity={item.quantity}
                               max={item.inventory}
                               item={item}
+                              type="Cart"
+
                               // onChangeQty={(qty: any) => onChangeQty(item, qty)}
                             />
                           </td>
@@ -303,7 +305,7 @@ function Cart(props: any) {
                 <p className="return-to-shop mb-0">
                   <ALink
                     className="button wc-backward btn btn-dark btn-md"
-                    href="/shop"
+                    href="/"
                   >
                     Return to shop
                   </ALink>

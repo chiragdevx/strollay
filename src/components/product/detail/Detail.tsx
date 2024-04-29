@@ -57,6 +57,7 @@ function Detail(props: any) {
 
   const addToCart = (_product: Partial<Product>) => {
     let product = _product;
+    console.log("product.quantity", product.quantity);
     const { variants } = product;
     const variant = variants?.find(
       (variant: Partial<Variant>) => variant === selectedVariant,
@@ -71,12 +72,8 @@ function Detail(props: any) {
         description: variant.title,
       };
     }
-    dispatch(cartActions.addToCart({ ...product, quantity: 1 }));
+    dispatch(cartActions.addToCart({ ...product, quantity }));
   };
-
-  function changeQty(qty: number) {
-    setQuantity(qty);
-  }
 
   return (
     <div
@@ -243,11 +240,17 @@ function Detail(props: any) {
       <div className="product-form product-qty pb-0">
         <label className="d-none">QTY:</label>
         <div className="product-form-group flex flex-row gap-2">
-          <Quantity qty={quantity} max={inventory} type="Detail" />
+          <Quantity
+            max={inventory}
+            quantity={quantity}
+            setQuantity={setQuantity}
+            item={product}
+            type="Detail"
+          />
           <button
             className={`btn-product btn-cart text-normal ls-normal font-weight-semi-bold ${cartActive ? "" : "disabled"}`}
             onClick={() => {
-              console.log("quantity", quantity);
+              console.log("quantity222", quantity);
               addToCart({ ...product, quantity });
             }}
           >
