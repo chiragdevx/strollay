@@ -134,7 +134,7 @@ export default function Header(props: any) {
               <Image src={strollayLogo} alt="logo" width="153" height="44" />
             </ALink>
 
-            <SearchBox />
+            {/* <SearchBox /> */}
           </div>
 
           <div className="header-right">
@@ -148,18 +148,18 @@ export default function Header(props: any) {
               </div>
             </ALink> */}
             {/* <span className="divider"></span> */}
-            <ALink href="/pages/wishlist" className="wishlist">
+            {/* <ALink href="/pages/wishlist" className="wishlist">
               <i className="d-icon-heart"></i>
             </ALink>
-            <span className="divider"></span>
+            <span className="divider"></span> */}
 
             <div className="pr-1">
               <CartMenu />
             </div>
 
-            <span className="divider"></span>
+            {/* <span className="divider"></span> */}
 
-            <LoginModal />
+            {/* <LoginModal /> */}
           </div>
         </div>
       </div>

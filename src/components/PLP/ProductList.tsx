@@ -23,7 +23,7 @@ const ProductList = (props: Props) => {
           <CategoryCard key={index} product={product} />
         ))}
       </section>
-      <Pagination totalPage={10} />
+      {/* <Pagination totalPage={10} /> */}
     </div>
   );
 };
