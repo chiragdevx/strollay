@@ -1,7 +1,6 @@
 import { connect, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import Collapse from "react-bootstrap/collapse";
 
 import ALink from "@/components/features/CustomLink";
 import { toDecimal } from "@/utils";
