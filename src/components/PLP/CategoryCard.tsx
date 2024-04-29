@@ -38,14 +38,14 @@ const Card = (props: Props) => {
             alt="greenSaree"
           />
         </div>
-        <div className="absolute hidden bottom-3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 justify-between items-start gap-3 group-hover:flex">
+        {/* <div className="absolute hidden bottom-3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 justify-between items-start gap-3 group-hover:flex">
           <div className="bg-blue-300 rounded-full cursor-pointer">
             <CartButton />
           </div>
           <div className="bg-blue-300 rounded-full cursor-pointer">
             <LikeLogo />
           </div>
-        </div>
+        </div> */}
         <div className="absolute px-2 bg-white top-5 right-0">
           {calculateDiscount(price, listingPrice)}%
         </div>
