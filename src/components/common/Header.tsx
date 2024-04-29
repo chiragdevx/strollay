@@ -38,7 +38,7 @@ export default function Header(props: any) {
     setShowTopNotice(false);
   }
 
-  const [showTopNotice, setShowTopNotice] = useState(true);
+  const [showTopNotice, setShowTopNotice] = useState(false);
   const settings = {
     dots: false,
     infinite: true,

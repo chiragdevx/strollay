@@ -101,19 +101,19 @@ const HeroSection = (props: Props) => {
             </div>
           </div>
         </div>  */}
-        <ALink href={"/product/3"} className="px-2">
+        <ALink href={"#"} className="px-2">
           <Image src={Banner10} alt="banner-9" />
         </ALink>
-        <ALink href={"/product/3"} className="px-2">
+        <ALink href={"#"} className="px-2">
           <Image src={Banner11} alt="banner-9" />
         </ALink>
-        <ALink href={"/product/3"} className="px-2">
+        <ALink href={"#"} className="px-2">
           <Image src={Banner12} alt="banner-9" />
         </ALink>
-        <ALink href={"/product/3"} className="px-2">
+        <ALink href={"#"} className="px-2">
           <Image src={Banner10} alt="banner-9" priority={true} />
         </ALink>
-        <ALink href={"/product/3"} className="px-2">
+        <ALink href={"#"} className="px-2">
           <Image src={Banner11} alt="banner-9" />
         </ALink>
       </Slider>
