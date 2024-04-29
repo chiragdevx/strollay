@@ -332,7 +332,7 @@ export const getTotalPrice = (cartItems: any) => {
   let total = 0;
   if (cartItems) {
     for (let i = 0; i < cartItems.length; i++) {
-      total += cartItems[i].price * parseInt(cartItems[i].qty, 10);
+      total += cartItems[i].price * parseInt(cartItems[i].quantity, 10);
     }
   }
   return total;

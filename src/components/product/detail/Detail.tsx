@@ -58,7 +58,7 @@ function Detail(props: any) {
   const addToCart = (_product: Partial<Product>) => {
     let product = _product;
     const { variants } = product;
-    const variant = variants.find(
+    const variant = variants?.find(
       (variant: Partial<Variant>) => variant === selectedVariant,
     );
     if (variant) {
@@ -214,9 +214,11 @@ function Detail(props: any) {
       </div> */}
 
       <div className="flex flex-col py-6 space-y-4 w-full mb-4">
-        <h1 className="text-3xl font-semibold text-gray-900 mb-4">
-          Blouse Option
-        </h1>
+        {variants && (
+          <h1 className="text-3xl font-semibold text-gray-900 mb-4">
+            Blouse Option
+          </h1>
+        )}
         {/* Add 'flex-wrap' to allow wrapping on small screens and 'lg:flex-nowrap' to prevent wrapping on larger screens */}
         <div className="flex flex-wrap gap-9 lg:flex-nowrap">
           {variants &&
