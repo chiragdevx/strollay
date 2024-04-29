@@ -11,8 +11,9 @@ import { getProductImages } from "@/common/util/helper";
 
 // import MediaLightBox from "~/components/partials/product/light-box";
 
-const Magnifier = dynamic(
-  () => import("@datobs/react-image-magnifiers").then((mod) => mod?.Magnifier),
+const Magnifier: any = dynamic(
+  () =>
+    import("@datobs/react-image-magnifiers").then((mod: any) => mod?.Magnifier),
   { ssr: false },
 );
 const array = [

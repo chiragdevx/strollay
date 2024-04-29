@@ -7,33 +7,36 @@ import Card from "@/components/features/accordion/card";
 import BannerOne from "../../../../public/images/Banner10.jpeg";
 import size_guide from "../../../../public/images/size_guide.png";
 
-import { modalActions } from "~/store/modal";
-
 import { toDecimal } from "@/utils";
 import Image from "next/image";
 
 function Desc(props: any) {
   const { product, adClass = "", openModal } = props;
-  let colors = [],
-    sizes = [];
+  let colors: any = [],
+    sizes: any = [];
 
   if (product?.variants?.length > 0) {
     if (product.variants[0].size)
-      product.variants.forEach((item) => {
-        if (sizes.findIndex((size) => size.name === item.size.name) === -1) {
+      product.variants.forEach((item: any) => {
+        if (
+          sizes.findIndex((size: any) => size.name === item.size.name) === -1
+        ) {
           sizes.push({ name: item.size.name, value: item.size.size });
         }
       });
 
     if (product.variants[0].color) {
-      product.variants.forEach((item) => {
-        if (colors.findIndex((color) => color.name === item.color.name) === -1)
+      product.variants.forEach((item: any) => {
+        if (
+          colors.findIndex((color: any) => color.name === item.color.name) ===
+          -1
+        )
           colors.push({ name: item.color.name, value: item.color.color });
       });
     }
   }
 
-  const setRating = (e) => {
+  const setRating = (e: any) => {
     e.preventDefault();
 
     if (e.currentTarget.parentNode.querySelector(".active")) {
@@ -43,12 +46,6 @@ function Desc(props: any) {
     }
 
     e.currentTarget.classList.add("active");
-  };
-
-  const showVideoModalHandler = (e) => {
-    e.preventDefault();
-    let link = e.currentTarget.closest(".btn-play").getAttribute("data");
-    openModal(link);
   };
 
   return (
@@ -198,7 +195,7 @@ function Desc(props: any) {
               <li>
                 <label>Categories:</label>
                 <p>
-                  {product.categories.map((item, index) => (
+                  {product.categories.map((item: any, index: any) => (
                     <React.Fragment key={item.name + "-" + index}>
                       {item.name}
                       {index < product.categories.length - 1 ? ", " : ""}
@@ -213,7 +210,7 @@ function Desc(props: any) {
               <li>
                 <label>Brands:</label>
                 <p>
-                  {product.brands.map((item, index) => (
+                  {product.brands.map((item: any, index: any) => (
                     <React.Fragment key={item.name + "-" + index}>
                       {item.name}
                       {index < product.brands.length - 1 ? ", " : ""}
@@ -228,7 +225,7 @@ function Desc(props: any) {
               <li>
                 <label>Color:</label>
                 <p>
-                  {colors.map((item, index) => (
+                  {colors.map((item: any, index: any) => (
                     <React.Fragment key={item.name + "-" + index}>
                       {item.name}
                       {index < colors.length - 1 ? ", " : ""}
@@ -243,7 +240,7 @@ function Desc(props: any) {
               <li>
                 <label>Size:</label>
                 <p>
-                  {sizes.map((item, index) => (
+                  {sizes.map((item: any, index: any) => (
                     <React.Fragment key={item.name + "-" + index}>
                       {item.name}
                       {index < sizes.length - 1 ? ", " : ""}

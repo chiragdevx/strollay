@@ -1,9 +1,9 @@
 import React from "react";
 
-function Accordion(props) {
+function Accordion(props: any) {
   const { adClass } = props;
 
-  function onHandleClick(e) {
+  function onHandleClick(e: any) {
     if (
       e.target.classList.contains("toggle-button") ||
       e.target.querySelector(".toggle-button")

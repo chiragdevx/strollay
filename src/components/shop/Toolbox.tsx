@@ -8,10 +8,10 @@ import ALink from "@/components/features/CustomLink";
 export default function ToolBox(props: any) {
   const { type = "left" } = props;
   const router = useRouter();
-  const query = router.query;
-  const gridType = query.type ? query.type : "grid";
-  const sortBy = query.sortby ? query.sortby : "default";
-  const perPage = query.per_page ? query.per_page : 12;
+  const query: any = router.query;
+  const gridType: any = query.type ? query.type : "grid";
+  const sortBy: any = query.sortby ? query.sortby : "default";
+  const perPage: any = query.per_page ? query.per_page : 12;
   let tmp = 0;
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function ToolBox(props: any) {
     };
   }, []);
 
-  const onChangeAttri = (e, attri) => {
+  const onChangeAttri = (e: any, attri: any) => {
     e.preventDefault();
     let url = router.pathname.replace("[grid]", query.grid);
     let arr = [`${attri}=${e.target.value}`, "page=1"];
@@ -36,27 +36,32 @@ export default function ToolBox(props: any) {
 
   const showSidebar = () => {
     if (type === "navigation" && window.innerWidth > 991) {
-      document.querySelector(".navigation-toggle-btn").click();
+      const body = document.querySelector(
+        ".navigation-toggle-btn",
+      ) as HTMLButtonElement;
+      if (body) body.click();
     } else {
-      document
-        .querySelector("body")
-        .classList.add(
+      const body = document.querySelector("body");
+      if (body)
+        body.classList.add(
           `${type === "left" || type === "off-canvas" || type === "navigation" || type === "horizontal" ? "sidebar-active" : "right-sidebar-active"}`,
         );
     }
   };
 
-  const stickyToolboxHandler = (e) => {
-    let top = document.querySelector(".page-content")
-      ? document.querySelector(".page-content").offsetTop +
-        document.querySelector("header").offsetHeight +
+  const stickyToolboxHandler = (e: any) => {
+    const pageContent = document.querySelector(".page-content") as HTMLElement;
+    let top = pageContent
+      ? pageContent.offsetTop +
+        (document.querySelector("header")!.offsetHeight ?? 0) +
         100
       : 600;
     let stickyToolbox = document.querySelector(".sticky-toolbox");
     let height = 0;
 
     if (stickyToolbox) {
-      height = stickyToolbox.offsetHeight;
+      const stickyToolboxElement = stickyToolbox as HTMLElement;
+      height = stickyToolboxElement.offsetHeight;
     }
 
     if (
@@ -69,23 +74,18 @@ export default function ToolBox(props: any) {
         if (!document.querySelector(".sticky-toolbox-wrapper")) {
           let newNode = document.createElement("div");
           newNode.className = "sticky-toolbox-wrapper";
-          stickyToolbox.parentNode.insertBefore(newNode, stickyToolbox);
-          document
-            .querySelector(".sticky-toolbox-wrapper")
-            .insertAdjacentElement("beforeend", stickyToolbox);
-          document
-            .querySelector(".sticky-toolbox-wrapper")
-            .setAttribute("style", "height: " + height + "px");
+          if (stickyToolbox && stickyToolbox.parentNode) {
+            let newNode = document.createElement("div");
+            newNode.className = "sticky-toolbox-wrapper";
+            stickyToolbox.parentNode.insertBefore(newNode, stickyToolbox);
+            document
+              .querySelector(".sticky-toolbox-wrapper")
+              ?.insertAdjacentElement("beforeend", stickyToolbox);
+          }
         }
-
-        if (
-          !document
-            .querySelector(".sticky-toolbox-wrapper")
-            .getAttribute("style")
-        ) {
-          document
-            .querySelector(".sticky-toolbox-wrapper")
-            .setAttribute("style", "height: " + height + "px");
+        const wrapper = document.querySelector(".sticky-toolbox-wrapper");
+        if (wrapper && !wrapper.getAttribute("style")) {
+          wrapper.setAttribute("style", "height: " + height + "px");
         }
       }
     } else {
@@ -93,18 +93,17 @@ export default function ToolBox(props: any) {
         stickyToolbox.classList.remove("fixed");
       }
 
-      if (document.querySelector(".sticky-toolbox-wrapper")) {
-        document
-          .querySelector(".sticky-toolbox-wrapper")
-          .removeAttribute("style");
+      const wrapper = document.querySelector(".sticky-toolbox-wrapper");
+      if (wrapper) {
+        wrapper.removeAttribute("style");
       }
     }
 
-    if (
-      window.outerWidth > 767 &&
-      document.querySelector(".sticky-toolbox-wrapper")
-    ) {
-      document.querySelector(".sticky-toolbox-wrapper").style.height = "auto";
+    const wrapper = document.querySelector(
+      ".sticky-toolbox-wrapper",
+    ) as HTMLElement;
+    if (wrapper && window.outerWidth > 767) {
+      wrapper.style.height = "auto";
     }
 
     tmp = e.currentTarget.scrollY;

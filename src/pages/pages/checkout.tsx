@@ -93,7 +93,7 @@ function Checkout() {
       const { data } = response.data;
       const { sessionUrl } = data;
       window.location.href = sessionUrl;
-      cart.forEach((item) => {
+      cart.forEach((item: any) => {
         dispatch(cartActions.clearCart({ ...item, quantity: item.quantity }));
       });
     } catch (error) {
@@ -549,7 +549,7 @@ function Checkout() {
                             </tr>
                           </thead>
                           <tbody>
-                            {cartList.map((item) => (
+                            {cartList.map((item: any) => (
                               <tr key={"checkout-" + item.name}>
                                 <td className="product-name">
                                   {item.title}{" "}
@@ -739,12 +739,6 @@ function Checkout() {
       </div>
     </main>
   );
-}
-
-function mapStateToProps(state) {
-  return {
-    cartList: state.cart.data ? state.cart.data : [],
-  };
 }
 
 export default Checkout;

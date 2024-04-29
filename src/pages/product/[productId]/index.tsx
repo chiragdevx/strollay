@@ -167,7 +167,7 @@ const Index = ({ data }: Props) => {
                   You may also be Interested in
                 </h3>
               </div>
-              <CollectionSlider autoPlay={true} />
+              <CollectionSlider />
             </div>
             <div className="mt-5">
               <div className="flex items-center justify-center ">
@@ -176,7 +176,7 @@ const Index = ({ data }: Props) => {
                   You may also want to Look at
                 </h3>
               </div>
-              <CollectionSlider autoPlay={true} />
+              <CollectionSlider />
             </div>
           </div>
         </div>

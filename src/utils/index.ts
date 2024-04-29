@@ -271,15 +271,13 @@ export const showScrollTopHandler = function () {
 export function scrollTopHandler(isCustom = true, speed = 15) {
   let offsetTop = 0;
 
-  if (isCustom && !isEdgeBrowser()) {
-    if (document?.querySelector(".main .container > .row")) {
-      offsetTop =
-        document
-          ?.querySelector(".main .container > .row")
-          ?.getBoundingClientRect()?.top +
-        (window?.pageYOffset || 0) -
-        document?.querySelector(".sticky-header")?.offsetHeight +
-        2;
+  if (document?.querySelector(".main .container > .row")) {
+    const row = document.querySelector(".main .container > .row");
+    if (row) {
+      const rect = row.getBoundingClientRect();
+      if (rect) {
+        offsetTop = (rect.top || 0) + (window?.pageYOffset || 0);
+      }
     }
   } else {
     offsetTop = 0;

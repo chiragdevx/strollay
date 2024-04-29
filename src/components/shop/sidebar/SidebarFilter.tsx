@@ -19,8 +19,8 @@ import { scrollTopHandler } from "@/utils";
 
 function SidebarFilter(props: any) {
   const { type = "left", isFeatured = false } = props;
-  const router = useRouter();
-  const query = router.query;
+  const router: any = useRouter();
+  const query: any = router.query;
   const data: any = {
     shopSidebarData: {
       categories: [
@@ -170,7 +170,7 @@ function SidebarFilter(props: any) {
   const [filterPrice, setPrice] = useState(tmpPrice);
   const [isFirst, setFirst] = useState(true);
   let sidebarData = data && data.shopSidebarData;
-  let timerId;
+  let timerId: any;
 
   useEffect(() => {
     window.addEventListener("resize", hideSidebar);
@@ -192,7 +192,7 @@ function SidebarFilter(props: any) {
     }
   }, [query]);
 
-  const filterByPrice = (e) => {
+  const filterByPrice = (e: any) => {
     e.preventDefault();
     let url = router.pathname.replace("[grid]", query.grid);
     let arr = [
@@ -213,30 +213,31 @@ function SidebarFilter(props: any) {
     router.push(url);
   };
 
-  const containsAttrInUrl = (type, value) => {
+  const containsAttrInUrl = (type: any, value: any) => {
     const currentQueries = query[type] ? query[type].split(",") : [];
     return currentQueries && currentQueries.includes(value);
   };
 
-  const getUrlForAttrs = (type, value) => {
+  const getUrlForAttrs = (type: any, value: any) => {
     let currentQueries = query[type] ? query[type].split(",") : [];
     currentQueries = containsAttrInUrl(type, value)
-      ? currentQueries.filter((item) => item !== value)
+      ? currentQueries.filter((item: any) => item !== value)
       : [...currentQueries, value];
     return currentQueries.join(",");
   };
 
-  const onChangePrice = (value) => {
+  const onChangePrice = (value: any) => {
     setPrice(value);
   };
 
-  const toggleSidebar = (e) => {
+  const toggleSidebar = (e: any) => {
     e.preventDefault();
-    document
-      .querySelector("body")
-      .classList.remove(
+    const body = document.querySelector("body");
+    if (body) {
+      body.classList.remove(
         `${type === "left" || type === "off-canvas" ? "sidebar-active" : "right-sidebar-active"}`,
       );
+    }
 
     let stickyWraper = e.currentTarget.closest(".sticky-sidebar-wrapper");
 
@@ -261,15 +262,16 @@ function SidebarFilter(props: any) {
     }
   };
 
-  const showSidebar = (e) => {
+  const showSidebar = (e: any) => {
     e.preventDefault();
-    document.querySelector("body").classList.add("sidebar-active");
+    const body = document.querySelector("body");
+    if (body) body.classList.add("sidebar-active");
   };
 
   const hideSidebar = () => {
-    document
-      .querySelector("body")
-      .classList.remove(
+    const body = document.querySelector("body");
+    if (body)
+      body.classList.remove(
         `${type === "left" || type === "off-canvas" || type === "boxed" || type === "banner" ? "sidebar-active" : "right-sidebar-active"}`,
       );
   };
@@ -333,11 +335,11 @@ function SidebarFilter(props: any) {
               >
                 <ul className="widget-body filter-items search-ul">
                   {data &&
-                    sidebarData.categories.map((item, index) =>
+                    sidebarData.categories.map((item: any, index: any) =>
                       item.children ? (
                         <li
                           key={item.name + " - " + index}
-                          className={`with-ul overflow-hidden ${item.slug === query.category || item.children.findIndex((subCat) => subCat.slug === query.category) > -1 ? "show" : ""} `}
+                          className={`with-ul overflow-hidden ${item.slug === query.category || item.children.findIndex((subCat: any) => subCat.slug === query.category) > -1 ? "show" : ""} `}
                         >
                           {/* <SlideToggle collapsed={true}>
                             {({

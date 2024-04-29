@@ -47,15 +47,15 @@ export default function ProductNav(props: any) {
           >
             Next <i className="d-icon-arrow-right"></i>
             <span className="product-nav-popup">
-              <img
+              {/* <img
                 src={
                   //   process.env.NEXT_PUBLIC_ASSET_URI +
                   //   product.next.pictures[0].url
-                }
-                alt="product thumbnail"
+                } */}
+              {/* alt="product thumbnail"
                 width="110"
                 height="123"
-              />
+              /> */}
               <span className="product-name">{product.next.name}</span>
             </span>
           </ALink>

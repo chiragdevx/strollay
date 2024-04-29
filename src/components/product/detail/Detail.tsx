@@ -33,7 +33,7 @@ function Detail(props: any) {
   const { toggleWishlist, wishlist } = props;
   const [cartActive, setCartActive] = useState(false);
   const [quantity, setQuantity] = useState(1);
-  const [selectedVariant, setSelectedVariant] = useState(null);
+  const [selectedVariant, setSelectedVariant] = useState<any>(null);
   const { title, price, listingPrice, sku, slug, variants, inventory } =
     product;
   const dispatch = useDispatch();

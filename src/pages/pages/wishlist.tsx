@@ -16,7 +16,7 @@ import Image from "next/image";
 function Wishlist(props: any) {
   const { wishlist, addToCart, removeFromWishlist } = props;
 
-  const moveToCart = (e, item) => {
+  const moveToCart = (e: any, item: any) => {
     e.preventDefault();
     addToCart({ ...item, qty: 1, price: item.price[0] });
     removeFromWishlist(item);

@@ -15,12 +15,17 @@ const SearchBox = () => {
   // const [searchProducts, { data }] = useLazyQuery(GET_PRODUCTS);
   const [timer, setTimer] = useState(null);
 
-  const data = [];
+  const data: any = [];
   useEffect(() => {
-    document.querySelector("body").addEventListener("click", onBodyClick);
+    const body = document.querySelector("body");
+    if (body) {
+      body.addEventListener("click", onBodyClick);
+    }
 
     return () => {
-      document.querySelector("body").removeEventListener("click", onBodyClick);
+      if (body) {
+        body.removeEventListener("click", onBodyClick);
+      }
     };
   }, []);
 
@@ -41,10 +46,10 @@ const SearchBox = () => {
   }, [search]);
 
   useEffect(() => {
-    document.querySelector(".header-search.show-results") &&
-      document
-        .querySelector(".header-search.show-results")
-        .classList.remove("show-results");
+    const headerSearch = document.querySelector(".header-search.show-results");
+    if (headerSearch) {
+      headerSearch.classList.remove("show-results");
+    }
   }, [router.pathname]);
 
   function removeXSSAttacks(html: any) {
@@ -77,19 +82,24 @@ const SearchBox = () => {
     e.currentTarget.parentNode.classList.toggle("show");
   }
 
-  function onBodyClick(e) {
+  function onBodyClick(e: any) {
     if (e.target.closest(".header-search"))
       return (
         e.target.closest(".header-search").classList.contains("show-results") ||
         e.target.closest(".header-search").classList.add("show-results")
       );
 
-    document.querySelector(".header-search.show") &&
-      document.querySelector(".header-search.show").classList.remove("show");
-    document.querySelector(".header-search.show-results") &&
-      document
-        .querySelector(".header-search.show-results")
-        .classList.remove("show-results");
+    const headerSearchShow = document.querySelector(".header-search.show");
+    if (headerSearchShow) {
+      headerSearchShow.classList.remove("show");
+    }
+
+    const headerSearchShowResults = document.querySelector(
+      ".header-search.show-results",
+    );
+    if (headerSearchShowResults) {
+      headerSearchShowResults.classList.remove("show-results");
+    }
   }
 
   function onSearchChange(e: any) {

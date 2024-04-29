@@ -20,7 +20,7 @@ const NavbarSecondary = (props: Props) => {
           <div className="header-bottom d-lg-show">
             <div className="container">
               <div className="header-left">
-                <MainMenu />
+                <MainMenu data={[]} />
               </div>
             </div>
           </div>
