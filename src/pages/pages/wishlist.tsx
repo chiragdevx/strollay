@@ -109,9 +109,9 @@ function Wishlist(props: any) {
                       White Digitally Printed Festive-Wear Linen-Cotton Saree
                     </div>
                     <div className="flex gap-10">
-                      <h3 className="font-semibold text-2xl">₹1,701.00</h3>
+                      <h3 className="font-semibold text-2xl">₹$,701.00</h3>
                       <h3 className="line-through decoration-2 font-semibold text-2xl">
-                        ₹1,801.00
+                        $1,801.00
                       </h3>{" "}
                     </div>
                     <div>

@@ -67,10 +67,10 @@ const Card = (props: Props) => {
         <div className="flex justify-between gap-2 mt-2 md:w-[200px]">
           <div className="font-semibold text-lg">
             {" "}
-            <h5>₹1,601.00</h5>
+            <h5>$1,601.00</h5>
           </div>
           <div className="line-through decoration-2 text-lg">
-            <h5 className="font-normal">₹1,801.00</h5>
+            <h5 className="font-normal">$1,801.00</h5>
           </div>
         </div>
       </div>

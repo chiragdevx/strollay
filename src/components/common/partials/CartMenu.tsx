@@ -75,7 +75,7 @@ function CartMenu(props: any) {
                     key={"cart-menu-product-" + index}
                   >
                     <figure className="product-media pure-media max-h-[80px]">
-                      <ALink href={"/product/default/" + item.slug}>
+                      <ALink href={"/product/" + item.id}>
                         <Image
                           src={getProductImages(item.images).defaultImage.path}
                           alt="product"
@@ -95,7 +95,7 @@ function CartMenu(props: any) {
                     </figure>
                     <div className="product-detail">
                       <ALink
-                        href={"/product/default/" + item.slug}
+                        href={"/product/" + item.id}
                         className="product-name"
                       >
                         {item.title}

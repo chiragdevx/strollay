@@ -65,7 +65,7 @@ function Cart(props: any) {
                         <tr key={"cart" + item.title}>
                           <td className="product-thumbnail">
                             <figure>
-                              <ALink href={"/product/default/" + item.slug}>
+                              <ALink href={"/product/" + item.id}>
                                 <Image
                                   src={
                                     getProductImages(item.images).defaultImage
@@ -80,7 +80,7 @@ function Cart(props: any) {
                           </td>
                           <td className="product-name">
                             <div className="product-name-section">
-                              <ALink href={"/product/default/" + item.slug}>
+                              <ALink href={"/product/" + item.id}>
                                 {item.title}
                               </ALink>
                             </div>
@@ -122,7 +122,7 @@ function Cart(props: any) {
                   </table>
                   <div className="cart-actions mb-6 pt-4">
                     <ALink
-                      href="/shop"
+                      href="/"
                       className="btn btn-primary btn-md btn-rounded btn-icon-left mr-4 mb-4"
                     >
                       <i className="d-icon-arrow-left"></i>Continue Shopping

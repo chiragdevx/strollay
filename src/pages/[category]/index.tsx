@@ -10,7 +10,6 @@ import { useRouter } from "next/router";
 import CategoryApi from "@/api/categoryApi";
 
 const Index = ({ data, pathname }: any) => {
-  console.log("pathName%%%%%", pathname);
   return (
     <div className="mx-auto">
       <div className="container flex w-full">
@@ -21,8 +20,8 @@ const Index = ({ data, pathname }: any) => {
             </ALink>
           </li>
           <li>
-            <ALink href={`/${pathname}`} className="active">
-              Product
+            <ALink href={`#`} className="active">
+              Products
             </ALink>
           </li>
         </ul>

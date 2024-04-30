@@ -131,12 +131,12 @@ function Detail(props: any) {
           (product.variants?.length === 0 ||
           (product.variants?.length > 0 && !product.variants[0]?.price) ? (
             <>
-              <ins className="new-price">₹{toDecimal(price)}</ins>
-              <del className="old-price">₹{toDecimal(listingPrice)}</del>
+              <ins className="new-price">${toDecimal(price)}</ins>
+              <del className="old-price">${toDecimal(listingPrice)}</del>
             </>
           ) : (
             <del className="new-price">
-              ₹{toDecimal(price)} – ₹{toDecimal(listingPrice)}
+              ${toDecimal(price)} – ${toDecimal(listingPrice)}
             </del>
           ))}
       </div>

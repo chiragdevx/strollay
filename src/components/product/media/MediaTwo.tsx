@@ -54,7 +54,7 @@ export default function MediaTwo(props: Props) {
   return (
     <>
       <div className="product-gallery row cols-sm-2">
-        {imagesArray?.slice(0, 4).map((image: any, index: any) => (
+        {imagesArray?.slice(0, 6).map((image: any, index: any) => (
           <figure className="product-image mb-4" key={"image" + index}>
             <Magnifier
               imageSrc={image.path}

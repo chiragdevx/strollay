@@ -63,9 +63,9 @@ const Card = (props: Props) => {
           {title}
         </div>
         <div className="flex gap-3 mt-4">
-          <div className="font-semibold text-lg">₹{price}</div>
+          <div className="font-semibold text-lg">${price}</div>
           <div className="line-through decoration-2 text-lg">
-            ₹{listingPrice}
+            ${listingPrice}
           </div>
         </div>
       </div>
