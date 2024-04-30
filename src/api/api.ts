@@ -64,11 +64,12 @@ const createApi = (type: string, pathname: string) => {
     query: string = "",
   ): Promise<ApiResponse<T>> => {
     // const token = localStorage?.token;
-
+    const key = method === "get" ? "payload" : "data";
     const config: ApiConfig = {
       method,
       url: getFullUrl(query),
-      payload,
+      [key]: payload,
+
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`,
