@@ -37,7 +37,7 @@ const store = configureStore({
     }).concat(middleware) as any,
 });
 
-// Run Saga Middleware
+// Run Saga Middleware.
 sagaMiddleware.run(rootSaga);
 
 // Persisted Store
