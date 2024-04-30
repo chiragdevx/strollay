@@ -25,7 +25,7 @@ const Card = (props: Props) => {
   };
   return (
     <div
-      className={`h-[550px] w-[140%] relative group py-3 ${props.className}`}
+      className={`cursor-pointer h-[550px] w-[140%] relative group py-3 ${props.className}`}
     >
       <div className="relative w-[100%] h-[443px] ">
         <div>
