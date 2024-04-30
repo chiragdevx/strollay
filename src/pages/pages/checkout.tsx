@@ -9,11 +9,17 @@ import ALink from "@/components/features/CustomLink";
 import { toDecimal, getTotalPrice } from "@/utils";
 import axios from "axios";
 import { cartActions } from "@/store/actions/cart";
+import Loader from "@/components/common/CircularLoader";
+import { useState } from "react";
 
 function Checkout() {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isTermsChecked, setIsTermsChecked] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
   const cart = useSelector((state: any) => state.cart.data);
-  const cartList = cart.map(
+  const cartList = cart?.map(
     ({ slug, images, title, quantity, price }: Partial<any>) => {
       return {
         slug,
@@ -29,6 +35,12 @@ function Checkout() {
     productId: any;
     quantity: any;
     variantId?: any;
+  };
+
+  const handleCheckBoxChange = (e: any) => {
+    e.preventDefault();
+    console.log("Reached");
+    setIsTermsChecked(e.target.checked);
   };
 
   const getProductIds = () => {
@@ -51,8 +63,17 @@ function Checkout() {
 
   const placeOrder = async (e: any) => {
     e.preventDefault();
+    setIsLoading(true);
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
+    console.log("data", data);
+    if (!data.termsCondition) {
+      setErrorMessage("*Please agree to the terms and conditions.");
+      setIsLoading(false);
+      return;
+    }
+    setErrorMessage("");
+
     const billingAddress = {
       email: data.email,
       firstName: data.firstName,
@@ -92,11 +113,13 @@ function Checkout() {
       });
       const { data } = response.data;
       const { sessionUrl } = data;
+      setIsLoading(false);
       window.location.href = sessionUrl;
       cart.forEach((item: any) => {
         dispatch(cartActions.clearCart({ ...item, quantity: item.quantity }));
       });
     } catch (error) {
+      setIsLoading(false);
       throw error;
     }
   };
@@ -110,7 +133,7 @@ function Checkout() {
       <h1 className="d-none">Riode React eCommerce Template - Checkout</h1>
 
       <div
-        className={`page-content pt-7 pb-10 ${cartList.length > 0 ? "mb-10" : "mb-2"}`}
+        className={`page-content pt-7 pb-10 ${cartList && cartList.length > 0 ? "mb-10" : "mb-2"}`}
       >
         <div className="step-by pr-4 pl-4">
           <h3 className="title title-simple title-step">
@@ -124,7 +147,7 @@ function Checkout() {
           </h3> */}
         </div>
         <div className="container mt-7">
-          {cartList.length > 0 ? (
+          {cartList?.length > 0 ? (
             <>
               {/* <div className="card accordion">
                 <Card
@@ -698,22 +721,28 @@ function Checkout() {
                           <input
                             type="checkbox"
                             className="custom-checkbox"
-                            id="terms-condition"
-                            name="terms-condition"
+                            id="termsCondition"
+                            name="termsCondition"
+                            onChange={handleCheckBoxChange}
                           />
                           <label
                             className="form-control-label"
-                            htmlFor="terms-condition"
+                            htmlFor="termsCondition"
                           >
                             I have read and agree to the website{" "}
                             <ALink href="#">terms and conditions </ALink>*
                           </label>
                         </div>
+                        {errorMessage && (
+                          <p className="error-message text-red-600">
+                            {errorMessage}
+                          </p>
+                        )}
                         <button
                           type="submit"
                           className="btn btn-dark btn-rounded btn-order"
                         >
-                          Place Order
+                          {isLoading ? <Loader /> : "Place Order"}
                         </button>
                       </div>
                     </div>
