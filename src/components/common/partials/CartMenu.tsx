@@ -147,12 +147,3 @@ function CartMenu(props: any) {
 }
 
 export default CartMenu;
-// function mapStateToProps(state) {
-//   return {
-//     cartList: state.cart.data,
-//   };
-// }
-
-// export default connect(mapStateToProps, {
-//   removeFromCart: cartActions.removeFromCart,
-// })(CartMenu);

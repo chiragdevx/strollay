@@ -19,10 +19,11 @@ const Card = (props: Props) => {
       : product?.pictures[0].src;
 
   return (
-    <div
+    <ALink
       className={`w-full h-auto relative group p-3  ${props.className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      href={`/${product.link}`}
     >
       <div className="relative h-[250px] md:h-[411px] w-[175px] md:w-[300px] ">
         <div
@@ -73,7 +74,7 @@ const Card = (props: Props) => {
           </div>
         </div>
       </div>
-    </div>
+    </ALink>
   );
 };
 

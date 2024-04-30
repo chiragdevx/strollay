@@ -17,13 +17,48 @@ type Props = {
   autoPlay?: boolean;
 };
 const array = [
-  { slug: "2", price: 20, pictures: [Banner10, Banner12] },
-  { slug: "3", price: 30, pictures: [Banner9, Banner11] },
-  { slug: "4", price: 40, pictures: [Banner11, Banner12] },
-  { slug: "5", price: 50, pictures: [Banner10, Banner9] },
-  { slug: "6", price: 60, pictures: [Banner12, Banner9] },
-  { slug: "7", price: 70, pictures: [Banner11, Banner10] },
-  { slug: "8", price: 80, pictures: [Banner9, Banner11] },
+  {
+    slug: "2",
+    price: 20,
+    pictures: [Banner10, Banner12],
+    link: "1cdbc911-8e42-4c23-8b8e-d03fb9904717",
+  },
+  {
+    slug: "3",
+    price: 30,
+    pictures: [Banner9, Banner11],
+    link: "1cdbc911-8e42-4c23-8b8e-d03fb9904717",
+  },
+  {
+    slug: "4",
+    price: 40,
+    pictures: [Banner11, Banner12],
+    link: "1cdbc911-8e42-4c23-8b8e-d03fb9904717",
+  },
+  {
+    slug: "5",
+    price: 50,
+    pictures: [Banner10, Banner9],
+    link: "1cdbc911-8e42-4c23-8b8e-d03fb9904717",
+  },
+  {
+    slug: "6",
+    price: 60,
+    pictures: [Banner12, Banner9],
+    link: "1cdbc911-8e42-4c23-8b8e-d03fb9904717",
+  },
+  {
+    slug: "7",
+    price: 70,
+    pictures: [Banner11, Banner10],
+    link: "1cdbc911-8e42-4c23-8b8e-d03fb9904717",
+  },
+  {
+    slug: "8",
+    price: 80,
+    pictures: [Banner9, Banner11],
+    link: "1cdbc911-8e42-4c23-8b8e-d03fb9904717",
+  },
 ];
 
 const CollectionSlider = () => {
