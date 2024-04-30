@@ -36,7 +36,6 @@ const Index = ({ data, pathname }: any) => {
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   // Extract the pathname from the context
   const pathname = context.req.url as string;
-  console.log("pathname", pathname);
   const response: any = await CategoryApi.getProductsByCategory(pathname);
   const { data } = response.data;
 

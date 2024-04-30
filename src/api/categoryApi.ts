@@ -12,6 +12,7 @@ export default class CategoryApi {
       throw new Error(`Error fetching products by category: ${error}`);
     }
   }
+
   static async getCategories() {
     try {
       const api = createApi("PIM", "categories");

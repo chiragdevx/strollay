@@ -60,15 +60,15 @@ const createApi = (type: string, pathname: string) => {
 
   const buildQuery = async <T>(
     method: string,
-    payload: ApiParams = {},
+    payload: ApiParams,
     query: string = "",
   ): Promise<ApiResponse<T>> => {
     // const token = localStorage?.token;
+
     const config: ApiConfig = {
       method,
       url: getFullUrl(query),
-      data: payload,
-      payload: payload,
+      payload,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`,
