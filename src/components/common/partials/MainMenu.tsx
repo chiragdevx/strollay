@@ -34,7 +34,7 @@ export default function MainMenu({ data }: { data: any }) {
         <li
           className={`submenu  ${pathname.includes("/shop") ? "active" : ""}`}
         >
-          <ALink href="/shop">Categories</ALink>
+          <ALink href="/">Categories</ALink>
 
           <div className="megamenu">
             <div className="row">
