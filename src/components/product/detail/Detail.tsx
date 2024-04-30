@@ -21,7 +21,6 @@ import { cartActions } from "@/store/actions/cart";
 // import { cartActions } from "~/store/cart";
 
 function Detail(props: any) {
-  let router = useRouter();
   const {
     data: product,
     isSticky = false,
@@ -72,6 +71,11 @@ function Detail(props: any) {
       };
     }
     dispatch(cartActions.addToCart({ ...product, quantity }));
+    showCart();
+  };
+
+  const showCart = () => {
+    document?.querySelector(".cart-dropdown")?.classList.add("opened");
   };
 
   return (
@@ -248,8 +252,7 @@ function Detail(props: any) {
           />
           <button
             className={`btn-product btn-cart text-normal ls-normal font-weight-semi-bold ${cartActive ? "" : "disabled"}`}
-            onClick={() => {
-              console.log("quantity222", quantity);
+            onClick={(e) => {
               addToCart({ ...product, quantity });
             }}
           >

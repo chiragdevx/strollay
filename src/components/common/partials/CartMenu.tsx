@@ -22,6 +22,7 @@ function CartMenu(props: any) {
 
   const showCartMenu = (e: any) => {
     e.preventDefault();
+    console.log("e", e);
     e.currentTarget.closest(".cart-dropdown").classList.add("opened");
   };
 
