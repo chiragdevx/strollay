@@ -56,10 +56,10 @@
       megamenu:
         (
           padding: 1rem,
-          min-width: 61.8rem,
+          min-width: 20.8rem,
           background: #fff,
           title: (
-            padding: 0 1rem,
+            padding: 0 0.5rem,
             font-family: false,
             font-size: 1.4rem,
             font-weight: 600,
@@ -503,7 +503,7 @@
     flex: 1;
     padding: 0 1rem;
     > * {
-      padding: 1.8rem 1rem 0.8rem;
+      padding: 1.2rem 0.5rem 0.8rem;
     }
   }
 }
@@ -884,7 +884,7 @@
       font-size: 1rem;
     }
     .megamenu {
-      min-width: 68.5rem;
+      min-width: 20.5rem;
       padding: 0 0 0 0.9rem;
       > li {
         padding: 0 1rem;
@@ -955,7 +955,7 @@
       }
       &.type2 {
         display: block;
-        min-width: 88rem;
+        min-width: 20rem;
         padding: 0 1rem 2rem;
         .menu-title {
           padding-top: 1.5rem;

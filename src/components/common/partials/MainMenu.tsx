@@ -38,7 +38,8 @@ export default function MainMenu({ data }: { data: any }) {
 
           <div className="megamenu">
             <div className="row">
-              <div className="col-6 col-sm-4 col-md-3 col-lg-4">
+              <div className="col-1 col-sm-2 col-md-3 col-lg-2">
+                {" "}
                 {/* <h4 className="menu-title">Variations 1</h4> */}
                 <ul>
                   {/* {mainMenu.shop.variation1.map((item, index) => (
