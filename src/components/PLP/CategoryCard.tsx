@@ -30,7 +30,7 @@ const Card = (props: Props) => {
       <div className="relative w-[100%] h-[443px] ">
         <div>
           <Image
-            src={defaultImage.path}
+            src={defaultImage?.path}
             onClick={navigateToPDP}
             className="w-[100%] h-[443px] cursor-pointer"
             width={100}
