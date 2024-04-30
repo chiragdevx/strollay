@@ -25,16 +25,24 @@ const Card = (props: Props) => {
   };
   return (
     <div
-      className={`h-[550px] w-[100%] relative group py-3 ${props.className}`}
+      className={`h-[550px] w-[140%] relative group py-3 ${props.className}`}
     >
       <div className="relative w-[100%] h-[443px] ">
         <div>
+          {/* <Image
+            src={defaultImage?.path}
+            onClick={navigateToPDP}
+            // className="w-[100%] h-[443px] cursor-pointer"
+            width={500}
+            height={500}
+            objectFit="fill"
+            alt="greenSaree"
+          /> */}
           <Image
             src={defaultImage?.path}
             onClick={navigateToPDP}
-            className="w-[100%] h-[443px] cursor-pointer"
-            width={100}
-            height={443}
+            layout="fill"
+            objectFit="cover" // or "fill" if you are okay with potential distortion
             alt="greenSaree"
           />
         </div>

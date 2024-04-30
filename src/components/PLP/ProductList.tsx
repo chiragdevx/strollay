@@ -18,7 +18,7 @@ const ProductList = (props: Props) => {
     <div>
       <ToolBox />
 
-      <section className="m-0 w-fit grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-start gap-y-6 gap-x-16 mb-5">
+      <section className="m-0 w-fit grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-start gap-y-6 gap-x-40 mb-5">
         {data.length > 0 ? (
           data.map((product, index) => (
             <CategoryCard key={index} product={product} />
