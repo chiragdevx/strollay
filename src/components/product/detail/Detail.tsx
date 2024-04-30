@@ -55,7 +55,6 @@ function Detail(props: any) {
 
   const addToCart = (_product: Partial<any>) => {
     let product = _product;
-    console.log("product.quantity", product.quantity);
     const { variants } = product;
     const variant = variants?.find(
       (variant: Partial<any>) => variant === selectedVariant,

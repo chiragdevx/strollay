@@ -20,12 +20,11 @@ import {
 
 export function* addToCartSaga(action: any): Generator<any, void, any> {
   try {
-    const { productId, variantId, quantity } = action.payload;
-
+    const { id, variantId, quantity } = action.payload;
     const api = createApi("PIM", "add-to-cart");
     const _payload = {
       payload: {
-        productId,
+        productId: id,
         variantId,
         quantity,
       },
