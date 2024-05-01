@@ -59,20 +59,22 @@ export function* removeFromCartSaga(action: any): Generator<any, void, any> {
 
 export function* clearCartSaga(action: any): Generator<any, void, any> {
   try {
-    const { productId, variantId, quantity } = action.payload;
-    const api = createApi("PIM", "remove-from-cart");
-    const _payload = {
-      payload: {
-        productId,
-        variantId,
-        quantity,
-      },
-    };
-    yield call(api.put, _payload);
-
+    const cartArray = action.payload;
+    for (const item of cartArray) {
+      const api = createApi("PIM", "remove-from-cart");
+      const _payload = {
+        payload: {
+          productId: item.id,
+          variantId: item.variantId,
+          quantity: item.quantity,
+        },
+      };
+      yield call(api.put, _payload);
+    }
     yield put(clearCartSuccess(action.payload));
   } catch (error) {
-    yield put(setCartError(action.payload));
+    // Dispatch an error action if any item fails to be cleared
+    yield put(setCartError(error));
   }
 }
 

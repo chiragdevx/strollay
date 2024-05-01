@@ -64,7 +64,6 @@ function Checkout() {
     setIsLoading(true);
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
-    console.log("data", data);
     if (!data.termsCondition) {
       setErrorMessage("*Please agree to the terms and conditions.");
       setIsLoading(false);
@@ -112,10 +111,9 @@ function Checkout() {
       const { data } = response.data;
       const { sessionUrl } = data;
       setIsLoading(false);
-      window.location.href = sessionUrl;
-      cart.forEach((item: any) => {
-        dispatch(cartActions.clearCart({ ...item, quantity: item.quantity }));
-      });
+      // window.location.href = sessionUrl;
+
+      dispatch(cartActions.clearCart(cart));
     } catch (error) {
       setIsLoading(false);
       throw error;

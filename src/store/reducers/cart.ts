@@ -88,9 +88,7 @@ export const cartSlice = createSlice({
     },
 
     clearCartSuccess: (state, action) => {
-      const { payload } = action;
-
-      state.data = payload.cartItems;
+      state.data = [];
       return state;
     },
 
