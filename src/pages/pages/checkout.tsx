@@ -38,8 +38,6 @@ function Checkout() {
   };
 
   const handleCheckBoxChange = (e: any) => {
-    e.preventDefault();
-    console.log("Reached");
     setIsTermsChecked(e.target.checked);
   };
 
