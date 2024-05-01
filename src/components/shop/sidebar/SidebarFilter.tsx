@@ -209,8 +209,8 @@ function SidebarFilter(props: any) {
       )
         arr.push(key + "=" + query[key]);
     }
-    url = url + "?" + arr.join("&");
-    router.push(url);
+    // url = url + "?" + arr.join("&");
+    // router.push(url);
   };
 
   const containsAttrInUrl = (type: any, value: any) => {
@@ -312,13 +312,14 @@ function SidebarFilter(props: any) {
                   )}
                 </a>
                 <ALink
-                  href={{
-                    pathname: router.pathname,
-                    query: {
-                      grid: query.grid,
-                      type: router.query.type ? router.query.type : null,
-                    },
-                  }}
+                  href="#"
+                  // {{
+                  //   pathname: router.pathname,
+                  //   query: {
+                  //     grid: query.grid,
+                  //     type: router.query.type ? router.query.type : null,
+                  //   },
+                  // }}
                   scroll={false}
                   className="filter-clean"
                 >
@@ -410,16 +411,17 @@ function SidebarFilter(props: any) {
                           key={item.name + " - " + index}
                         >
                           <ALink
-                            href={{
-                              pathname: router.pathname,
-                              query: {
-                                category: item.slug,
-                                grid: query.grid,
-                                type: router.query.type
-                                  ? router.query.type
-                                  : null,
-                              },
-                            }}
+                            href={"#"}
+                            // {{
+                            //   pathname: router.pathname,
+                            //   query: {
+                            //     category: item.slug,
+                            //     grid: query.grid,
+                            //     type: router.query.type
+                            //       ? router.query.type
+                            //       : null,
+                            //   },
+                            // }}
                             scroll={false}
                           >
                             {item.name}
@@ -438,7 +440,7 @@ function SidebarFilter(props: any) {
                 expanded={true}
               >
                 <div className="widget-body">
-                  <form action="#">
+                  <form action="/">
                     <div className="filter-price-slider noUi-target noUi-ltr noUi-horizontal shop-input-range">
                       {/* <InputRange
                         formatLabel={(value) => `$${value}`}
@@ -484,15 +486,16 @@ function SidebarFilter(props: any) {
                     >
                       <ALink
                         scroll={false}
-                        href={{
-                          pathname: router.pathname,
-                          query: {
-                            ...query,
-                            page: 1,
-                            sizes: getUrlForAttrs("sizes", item.slug),
-                            type: router.query.type ? router.query.type : null,
-                          },
-                        }}
+                        href={"#"}
+                        // href={{
+                        //   pathname: router.pathname,
+                        //   query: {
+                        //     ...query,
+                        //     page: 1,
+                        //     sizes: getUrlForAttrs("sizes", item.slug),
+                        //     type: router.query.type ? router.query.type : null,
+                        //   },
+                        // }}
                       >
                         {item.name}
                       </ALink>
@@ -518,15 +521,16 @@ function SidebarFilter(props: any) {
                     >
                       <ALink
                         scroll={false}
-                        href={{
-                          pathname: router.pathname,
-                          query: {
-                            ...query,
-                            page: 1,
-                            colors: getUrlForAttrs("colors", item.slug),
-                            type: router.query.type ? router.query.type : null,
-                          },
-                        }}
+                        href={"#"}
+                        // href={{
+                        //   pathname: router.pathname,
+                        //   query: {
+                        //     ...query,
+                        //     page: 1,
+                        //     colors: getUrlForAttrs("colors", item.slug),
+                        //     type: router.query.type ? router.query.type : null,
+                        //   },
+                        // }}
                       >
                         {item.name}
                       </ALink>
@@ -552,15 +556,16 @@ function SidebarFilter(props: any) {
                     >
                       <ALink
                         scroll={false}
-                        href={{
-                          pathname: router.pathname,
-                          query: {
-                            ...query,
-                            page: 1,
-                            brands: getUrlForAttrs("brands", item.slug),
-                            type: router.query.type ? router.query.type : null,
-                          },
-                        }}
+                        href={"#"}
+                        // href={{
+                        //   pathname: router.pathname,
+                        //   query: {
+                        //     ...query,
+                        //     page: 1,
+                        //     brands: getUrlForAttrs("brands", item.slug),
+                        //     type: router.query.type ? router.query.type : null,
+                        //   },
+                        // }}
                       >
                         {item.name}
                       </ALink>

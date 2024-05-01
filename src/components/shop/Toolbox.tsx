@@ -30,8 +30,8 @@ export default function ToolBox(props: any) {
       if (key !== attri && key !== "page" && key !== "grid")
         arr.push(key + "=" + query[key]);
     }
-    url = url + "?" + arr.join("&");
-    router.push(url);
+    // url = url + "?" + arr.join("&");
+    // router.push(url);
   };
 
   const showSidebar = () => {
@@ -178,18 +178,20 @@ export default function ToolBox(props: any) {
           className={`toolbox-item toolbox-layout ${type === "right" ? "mr-lg-0" : ""}`}
         >
           <ALink
-            href={{
-              pathname: router.pathname,
-              query: { ...query, type: "list" },
-            }}
+            // href={{
+            //   pathname: router.pathname,
+            //   query: { ...query, type: "list" },
+            // }}
+            href={"#"}
             scroll={false}
             className={`d-icon-mode-list btn-layout ${gridType === "list" ? "active" : ""}`}
           ></ALink>
           <ALink
-            href={{
-              pathname: router.pathname,
-              query: { ...query, type: "grid" },
-            }}
+            // href={{
+            //   pathname: router.pathname,
+            //   query: { ...query, type: "grid" },
+            // }}
+            href={"#"}
             scroll={false}
             className={`d-icon-mode-grid btn-layout ${gridType !== "list" ? "active" : ""}`}
           ></ALink>
