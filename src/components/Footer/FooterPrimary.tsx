@@ -104,22 +104,16 @@ const FooterPrimary = (props: Props) => {
                 <Link href="/about-us">About Us</Link>
               </li>
               <li className="mb-3">
-                <a href="https://www.strollay.com/cancellation-refund-policy/">
-                  Cancellation & Refund Policy
-                </a>
+                <Link href="/">Cancellation & Refund Policy</Link>
               </li>
               <li className="mb-3">
-                <a href="https://www.strollay.com/privacy/">Privacy Policy</a>
+                <Link href="/">Privacy Policy</Link>
               </li>
               <li className="mb-3">
-                <a href="https://www.strollay.com/shipping-delivery/">
-                  Shipping & Delivery
-                </a>
+                <Link href="/">Shipping & Delivery</Link>
               </li>
               <li>
-                <a href="https://www.strollay.com/terms-of-use/">
-                  Terms of Use
-                </a>
+                <Link href="/">Terms of Use</Link>
               </li>
             </ul>
           </div>
