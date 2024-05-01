@@ -42,6 +42,8 @@ const Quantity: React.FC<QuantityProps> = ({
       if (setQuantity) {
         setQuantity(newQuantity);
       }
+      console.log("ppppppp", item);
+
       if (type === "Cart") {
         dispatch(
           cartActions.removeFromCart({

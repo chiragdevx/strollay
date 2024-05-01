@@ -46,7 +46,7 @@ function Checkout() {
   const getProductIds = () => {
     const productIds = cart.map((cartItem: any) => {
       let productObj: ProductObj = {
-        productId: cartItem.productId,
+        productId: cartItem.id,
         quantity: cartItem.quantity,
       };
       if (cartItem.variantId) {

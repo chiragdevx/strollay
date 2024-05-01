@@ -39,15 +39,16 @@ export function* addToCartSaga(action: any): Generator<any, void, any> {
 
 export function* removeFromCartSaga(action: any): Generator<any, void, any> {
   try {
-    const { productId, variantId, quantity } = action.payload;
+    const { id, variantId, quantity } = action.payload;
     const api = createApi("PIM", "remove-from-cart");
     const _payload = {
       payload: {
-        productId,
+        productId: id,
         variantId,
         quantity,
       },
     };
+
     yield call(api.put, _payload);
 
     yield put(removeFromCartSuccess(action.payload));

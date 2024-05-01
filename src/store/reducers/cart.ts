@@ -59,7 +59,7 @@ export const cartSlice = createSlice({
     removeFromCartSuccess: (state, action) => {
       const cart = current(state);
       const { payload: product } = action;
-
+      console.log("payload", product);
       if (!product) return cart;
 
       const recordKey = getRecordKey(product);
