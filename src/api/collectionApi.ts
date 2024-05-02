@@ -1,11 +1,11 @@
 import createApi from "./api";
 
 export default class collectionApi {
-  static async getProductsBycollection(collectionId: string) {
+  static async getProductsByCollection(collectionId: string) {
     try {
       const api = createApi("PIM", "collection");
 
-      const pathName = `${collectionId}/products`;
+      const pathName = `/${collectionId}/products`;
       const response = await api.get({}, pathName);
       return response.data;
     } catch (error) {
@@ -15,6 +15,7 @@ export default class collectionApi {
 
   static async getCollections() {
     try {
+      console.log("Reached here");
       const api = createApi("PIM", "collections");
       const response = await api.get({});
       return response.data;

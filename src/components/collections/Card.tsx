@@ -4,6 +4,7 @@ import Banner9 from "../../../public/images/Banner9.jpg";
 import CartButton from "../navbar/CartButton";
 import LikeLogo from "../LikeLogo";
 import ALink from "../features/CustomLink";
+import { getProductImages } from "@/common/util/helper";
 
 type Props = {
   className?: string;
@@ -13,10 +14,9 @@ type Props = {
 const Card = (props: Props) => {
   const [isHovered, setIsHovered] = useState(false);
   const { product } = props;
+  const { images, defaultImage } = getProductImages(product.images);
   const displayImageSrc =
-    isHovered && product.pictures.length > 1
-      ? product?.pictures[1].src
-      : product?.pictures[0].src;
+    isHovered && images.length > 1 ? images[1].path : images[0].src;
 
   return (
     <ALink
@@ -27,22 +27,22 @@ const Card = (props: Props) => {
     >
       <div className="relative h-[250px] md:h-[411px] w-[175px] md:w-[300px] ">
         <div
-          className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${isHovered && product?.pictures?.length > 1 ? "opacity-0" : "opacity-100"}`}
+          className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${isHovered && images.length > 1 ? "opacity-0" : "opacity-100"}`}
         >
           <Image
-            src={product?.pictures[0]?.src}
+            src={images[0]?.src}
             layout="fill"
             objectFit="cover"
             alt="Product Image"
           />
         </div>
         {/* Second Image */}
-        {product?.pictures.length > 1 && (
+        {images.length > 1 && (
           <div
-            className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${isHovered ? "opacity-100" : "opacity-0"}`}
+            className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${isHovered ? "opacity-0" : "opacity-100"}`}
           >
             <Image
-              src={product?.pictures[1]?.src}
+              src={images[1].path}
               layout="fill"
               objectFit="cover"
               alt="Product Image"
@@ -62,15 +62,15 @@ const Card = (props: Props) => {
       </div>
       <div className="mt-2 w-[175px] md:w-[300px] ">
         <div className="overflow-hidden text-ellipsis whitespace-nowrap">
-          Sea Blue Georgette Sequins-Work Gharara-Bottom Readymade Salwar Kameez
+          {product.title}
         </div>
         <div className="flex justify-between gap-2 mt-2 md:w-[200px]">
           <div className="font-semibold text-lg">
             {" "}
-            <h5>$1,601.00</h5>
+            <h5>${product.price}</h5>
           </div>
           <div className="line-through decoration-2 text-lg">
-            <h5 className="font-normal">$1,801.00</h5>
+            <h5 className="font-normal">${product.listingPrice}</h5>
           </div>
         </div>
       </div>

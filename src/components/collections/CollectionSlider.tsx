@@ -11,7 +11,8 @@ import "slick-carousel/slick/slick-theme.css";
 import Card from "./Card";
 import Product from "../product/Product";
 import { GetServerSidePropsContext } from "next";
-import collectionApi from "@/api/collection";
+import collectionApi from "@/api/collectionApi";
+import { useSelector } from "react-redux";
 
 type Props = {
   autoPlay?: boolean;
@@ -62,6 +63,10 @@ const array = [
 ];
 
 const CollectionSlider = () => {
+  const productsByCollections = useSelector(
+    (state: any) => state.collection.selectedCollectionProducts,
+  );
+  console.log("productsByCollections", productsByCollections);
   const settings = {
     dots: false,
     infinite: true,
@@ -119,13 +124,14 @@ const CollectionSlider = () => {
   return (
     <div className="relative px-2 space-x-4 gap-2 max-w-7xl lg:max-w-[1400px] mx-auto">
       <Slider {...settings} className=" flex cursor-pointer">
-        {array.map((product: any, index: any) => {
-          return (
-            <div key={index} className="px-4 ">
-              <Card product={product} />
-            </div>
-          );
-        })}
+        {productsByCollections &&
+          productsByCollections.map((product: any, index: any) => {
+            return (
+              <div key={index} className="px-4 ">
+                <Card product={product} />
+              </div>
+            );
+          })}
       </Slider>
     </div>
   );

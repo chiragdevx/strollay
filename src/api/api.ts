@@ -31,6 +31,7 @@ const createApi = (type: string, pathname: string) => {
     payload: ApiParams,
     query: string = "",
   ): Promise<ApiResponse<T>> => {
+    console.log("payload, query", payload, query);
     return buildQuery<T>("get", payload, query);
   };
 
