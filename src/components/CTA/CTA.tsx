@@ -1,8 +1,91 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
+import Button from "../Button";
+import { v4 as uuidv4 } from "uuid";
+// import { generateSHA512Hash } from "@/utils";
 
 type Props = {};
 
 const CTA = (props: Props) => {
+  // useEffect(() => {
+  //   var snapmint = document.createElement("script");
+  //   snapmint.type = "text/javascript";
+  //   snapmint.async = true;
+  //   snapmint.src =
+  //     ("https:" == document.location.protocol ? "https://" : "https://") +
+  //     "assets.snapmint.com/assets/merchant/1413/snapmint_emi.js";
+  //   var s = document.getElementsByTagName("script")[0] as any;
+  //   s.parentNode.insertBefore(snapmint, s);
+  // }, []);
+
+  // const snapmint = async () => {
+  //   try {
+  //     const orderId = uuidv4();
+  //     const merchant_key = "Q99btdqX";
+  //     const order_value = 40000.0;
+  //     const full_name = "John Doe";
+  //     const email = "parth@devxconsultancy.com";
+  //     const merchant_token = "-wj9TgxY";
+  //     const inputString =
+  //       merchant_key +
+  //       orderId +
+  //       order_value +
+  //       full_name +
+  //       email +
+  //       merchant_token;
+  //     const checkSumHash = generateSHA512Hash(inputString);
+  //     const url = "https://sandboxapi.snapmint.com/v3/public/online_checkout";
+  //     const data = {
+  //       token: "-wj9TgxY",
+  //       merchant_confirmation_url: "https://yourwebsite.com/confirmation",
+  //       merchant_failure_url: "https://yourwebsite.com/failure",
+  //       checksum_hash: checkSumHash,
+  //       order_id: orderId,
+  //       order_value: `${order_value}`,
+  //       first_name: "John",
+  //       last_name: "Doe",
+  //       full_name: full_name,
+  //       email: "john.doe@example.com",
+  //       mobile: "1234567890",
+  //       shipping_address_line1: "123 My Street",
+  //       shipping_zip: "12345",
+  //       billing_address_line1: "123 My Street",
+  //       billing_zip: "12345",
+  //       products: JSON.stringify([
+  //         {
+  //           sku: "SKU123",
+  //           name: "Product 1",
+  //           quantity: "1",
+  //           unit_price: "50.00",
+  //         },
+  //         {
+  //           sku: "SKU456",
+  //           name: "Product 2",
+  //           quantity: "2",
+  //           unit_price: "25.00",
+  //         },
+  //       ]),
+  //     };
+  //     try {
+  //       const response: any = await fetch(url, {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/x-www-form-urlencoded",
+  //         },
+  //         body: new URLSearchParams(data),
+  //       });
+
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! status: ${response.status}`);
+  //       }
+
+  //       const responseJson = await response.json();
+  //       console.log(responseJson);
+  //     } catch (error) {
+  //       console.error("There was an error!", error);
+  //     }
+  //   } catch (error) {}
+  // };
   return (
     <div className="mt-5 md:mt-10 flex justify-center items-center mb-12">
       <div>
@@ -61,6 +144,18 @@ const CTA = (props: Props) => {
             </button>
           </form>
         </div>
+        {/* <div className="snap_emi_txt"></div>
+        <span
+          className="snapmint_lowest_emi_value"
+          style={{ display: "none" }}
+          data-snapmint-price="30000"
+          data-snapmint-merchant_id="2545"
+          data-snapmint-
+          page="eligibility"
+        ></span>
+        <div>
+          <Button onClick={() => snapmint()}>Snapmint</Button>
+        </div> */}
       </div>
     </div>
   );
